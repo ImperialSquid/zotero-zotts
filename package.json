@@ -8,7 +8,8 @@
     "addonRef": "zotts",
     "addonInstance": "ZoTTS",
     "releasepage": "",
-    "updaterdf": ""
+    "updaterdf": "",
+    "prefsPrefix": "extensions.zotero.ZoTTS"
   },
   "main": "src/index.ts",
   "scripts": {
