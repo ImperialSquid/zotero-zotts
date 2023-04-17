@@ -5,8 +5,8 @@
   "config": {
     "addonName": "ZoTTS",
     "addonID": "zotts@ImperialSquid.com.txt",
-    "addonRef": "",
-    "addonInstance": "",
+    "addonRef": "zotts",
+    "addonInstance": "ZoTTS",
     "releasepage": "",
     "updaterdf": ""
   },
