@@ -8,7 +8,7 @@ import {
 import { config } from "../package.json";
 import { getString, initLocale } from "./modules/locale";
 import { registerPrefsScripts } from "./modules/preferenceScript";
-import { setDefaultPrefs} from "./modules/defaults";
+import { setDefaultPrefs} from "./modules/prefUtils";
 
 async function onStartup() {
   await Promise.all([
