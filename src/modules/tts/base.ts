@@ -14,15 +14,15 @@ export abstract class Base {
         volume ? this.volume = volume : this.getVolume()
     }
 
-    abstract speak(input: string): null;
+    abstract speak(input: string): void;
 
-    abstract stop(): null;
+    abstract stop(): void;
 
-    protected pause?(): null
+    protected pause?(): void;
 
     abstract getVoices(): Array<string>;
 
-    abstract setVoice(newVoices: string): null;
+    abstract setVoice(newVoices: string): void;
 
     getRate(): number {
         if (this.rate === undefined) {
@@ -31,10 +31,9 @@ export abstract class Base {
         return this.rate
     }
 
-    setRate(newRate: number): null {
+    setRate(newRate: number): void {
         this.rate = newRate
         setPref("voiceRate", this.rate)
-        return null
     }
 
     getPitch(): number {
@@ -44,10 +43,9 @@ export abstract class Base {
         return this.pitch
     }
 
-    setPitch(newPitch: number): null {
+    setPitch(newPitch: number): void {
         this.pitch = newPitch
         setPref("voicePitch", this.pitch)
-        return null
     }
 
     getVolume(): number {
@@ -57,9 +55,8 @@ export abstract class Base {
         return this.volume
     }
 
-    setVolume(newVolume: number): null {
+    setVolume(newVolume: number): void {
         this.volume = newVolume
         setPref("voiceVolume", this.volume)
-        return null
     }
 }
