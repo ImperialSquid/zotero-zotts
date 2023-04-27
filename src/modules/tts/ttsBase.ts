@@ -1,6 +1,6 @@
 import {getPref, setPref} from "../prefUtils";
 
-export abstract class Base {
+export abstract class ttsBase {
     protected rate: number = 1
     protected pitch: number = 1
     protected volume: number = 1
