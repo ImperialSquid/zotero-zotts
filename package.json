@@ -38,6 +38,7 @@
   },
   "homepage": "",
   "dependencies": {
+    "say.js": "ImperialSquid/say.js",
     "zotero-plugin-toolkit": "^2.0.1"
   },
   "devDependencies": {
