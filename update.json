@@ -1,10 +1,10 @@
 {
   "addons": {
-    "__addonID__": {
+    "zotts@ImperialSquid.com.txt": {
       "updates": [
         {
-          "version": "__buildVersion__",
-          "update_link": "__releasepage__",
+          "version": "0.0.1",
+          "update_link": "",
           "applications": {
             "gecko": {
               "strict_min_version": "60.0"
@@ -12,8 +12,8 @@
           }
         },
         {
-          "version": "__buildVersion__",
-          "update_link": "__releasepage__",
+          "version": "0.0.1",
+          "update_link": "",
           "applications": {
             "zotero": {
               "strict_min_version": "6.999"
