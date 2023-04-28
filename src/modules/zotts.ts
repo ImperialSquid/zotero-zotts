@@ -11,6 +11,10 @@ export class ZoTTS {
         } else {
             this.tts = new ttsSay()
         }
+
+        if (this.tts.isPausable() && (this.tts.pause === undefined || this.tts.resume === undefined)) {
+            this.tts.setPausable(false)
+        }
     }
 
     private static registerNotifier(func: Function){
