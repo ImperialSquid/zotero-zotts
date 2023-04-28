@@ -105,6 +105,7 @@ async function main() {
       },
       bundle: true,
       outfile: path.join(buildDir, "addon/chrome/content/scripts/index.js"),
+      platform: "node",
       // Don't turn minify on
       // minify: true,
     })
