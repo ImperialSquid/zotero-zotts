@@ -9,6 +9,7 @@ import { config } from "../package.json";
 import { getString, initLocale } from "./modules/locale";
 import { registerPrefsScripts } from "./modules/preferenceScript";
 import { setDefaultPrefs} from "./modules/prefUtils";
+import {ZoTTS} from "./modules/zotts";
 
 async function onStartup() {
   await Promise.all([
@@ -20,6 +21,8 @@ async function onStartup() {
   initLocale();
 
   setDefaultPrefs()
+
+  const zotts = new ZoTTS();
 }
 
 function onShutdown(): void {

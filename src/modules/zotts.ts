@@ -15,5 +15,16 @@ export class ZoTTS {
         } else {
             this.tts = new ttsSay()
         }
+
+        this.addButton()
+    }
+
+    private addButton() {
+        this.ztk.ReaderInstance.register("initialized", "zotts",
+            async (reader) => {
+                await reader._initPromise
+                await reader._waitForReader()
+                this.ztk.log(`ZoTTS reader id ${reader.itemID} initialized`)
+            })
     }
 }
