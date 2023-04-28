@@ -18,7 +18,9 @@ export abstract class ttsBase {
 
     abstract stop(): void;
 
-    protected pause?(): void;
+    pause?(): void;
+
+    resume?(): void;
 
     abstract getVoices(): Array<string>;
 
@@ -58,5 +60,13 @@ export abstract class ttsBase {
     setVolume(newVolume: number): void {
         this.volume = newVolume
         setPref("voiceVolume", this.volume)
+    }
+
+    isPausable(): boolean {
+        return this.canPause
+    }
+
+    setPausable(pausable: boolean): void {
+        this.canPause = pausable
     }
 }
