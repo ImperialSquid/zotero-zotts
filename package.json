@@ -42,13 +42,13 @@
     "zotero-plugin-toolkit": "^2.0.1"
   },
   "devDependencies": {
-    "@types/node": "^18.11.17",
+    "@types/node": "^18.16.3",
     "compressing": "^1.6.3",
     "concurrently": "^8.0.1",
     "cross-env": "^7.0.3",
     "esbuild": "^0.17.4",
     "minimist": "^1.2.7",
-    "release-it": "^15.6.0",
+    "release-it": "^15.10.2",
     "replace-in-file": "^6.3.5",
     "typescript": "^5.0.4",
     "zotero-types": "^1.0.12"
