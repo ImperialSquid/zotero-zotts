@@ -1,41 +1,44 @@
 import {getPref, setPref} from "../prefUtils";
 
-export abstract class ttsBase {
-    protected rate: number = 1
-    protected pitch: number = 1
-    protected volume: number = 1
-    protected abstract canPause: boolean
-    protected abstract voices: Array<string>
-
-    constructor(rate?: number, pitch?: number, volume?: number) {
-        // set defaults if defined, otherwise get from prefs
-        rate ? this.rate = rate : this.getRate()
-        pitch ? this.pitch = pitch : this.getPitch()
-        volume ? this.volume = volume : this.getVolume()
-    }
-
-    abstract speak(input: string): void;
-
-    abstract stop(): void;
-
+// Establishes the base interface for a TTS engine
+export type ttsEngineBase = {
+    canPause: boolean;
+    speak(input: string): void;
+    stop(): void;
     pause?(): void;
-
     resume?(): void;
+    getVoices(): Array<string>;
+    setVoice(newVoices: string): void;
+    getSpeed(): number;
+    setSpeed(newSpeed: number): void;
+    getPitch(): number;
+    setPitch(newPitch: number): void;
+    getVolume(): number;
+    setVolume(newVolume: number): void;
+}
 
-    abstract getVoices(): Array<string>;
+// Common TTS settings and methods
+export class ttsMixin {
+    private pitch: number;
+    private speed: number;
+    private volume: number;
 
-    abstract setVoice(newVoices: string): void;
-
-    getRate(): number {
-        if (this.rate === undefined) {
-            this.rate = getPref("voiceRate") as number
-        }
-        return this.rate
+    constructor(speed: number = 1, pitch: number = 1, volume: number = 1) {
+        this.speed = speed
+        this.pitch = pitch
+        this.volume = volume
     }
 
-    setRate(newRate: number): void {
-        this.rate = newRate
-        setPref("voiceRate", this.rate)
+    getSpeed(): number {
+        if (this.speed === undefined) {
+            this.speed = getPref("voiceSpeed") as number
+        }
+        return this.speed
+    }
+
+    setSpeed(newSpeed: number): void {
+        this.speed = newSpeed
+        setPref("voiceSpeed", this.speed)
     }
 
     getPitch(): number {
@@ -60,13 +63,5 @@ export abstract class ttsBase {
     setVolume(newVolume: number): void {
         this.volume = newVolume
         setPref("voiceVolume", this.volume)
-    }
-
-    isPausable(): boolean {
-        return this.canPause
-    }
-
-    setPausable(pausable: boolean): void {
-        this.canPause = pausable
     }
 }
