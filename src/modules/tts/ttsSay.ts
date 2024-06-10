@@ -1,7 +1,5 @@
 import {ttsEngineBase, ttsMixin} from "./ttsBase";
 
-const VOICES_UNAVAILABLE = "Voice selection unavailable";
-
 export class ttsWindows extends ttsMixin implements ttsEngineBase {
     canPause: boolean;
 
