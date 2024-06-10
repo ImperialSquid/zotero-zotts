@@ -1,10 +1,7 @@
 import {ttsEngineBase, ttsMixin} from "./ttsBase";
 
-import {BasicTool} from "zotero-plugin-toolkit/dist/basic";
-
-const bt = new BasicTool();
-const synthesis = bt.getGlobal("window").speechSynthesis;
-const utterance = bt.getGlobal("window").SpeechSynthesisUtterance;
+const synthesis = window.speechSynthesis;
+const utterance = window.SpeechSynthesisUtterance;
 
 export class ttsWebSpeech extends ttsMixin implements ttsEngineBase {
     public canPause: boolean;
