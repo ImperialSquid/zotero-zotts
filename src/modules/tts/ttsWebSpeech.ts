@@ -1,4 +1,4 @@
-import {ttsBase} from "./ttsBase";
+import {ttsEngineBase, ttsMixin} from "./ttsBase";
 
 import {BasicTool} from "zotero-plugin-toolkit/dist/basic";
 
@@ -6,11 +6,11 @@ const bt = new BasicTool();
 const synthesis = bt.getGlobal("window").speechSynthesis;
 const utterance = bt.getGlobal("window").SpeechSynthesisUtterance;
 
-export class ttsWebSpeech extends ttsBase {
-    protected canPause: boolean;
-    protected voices: Array<string>;
+export class ttsWebSpeech extends ttsMixin implements ttsEngineBase {
+    public canPause: boolean;
+    private readonly voices: Array<string>;
     private voice: string;
-    private paused: boolean = false;
+    public paused: boolean = false;
 
     constructor() {
         super();
@@ -23,7 +23,7 @@ export class ttsWebSpeech extends ttsBase {
         this.stop() // prevent queueing multiple utterances for simplicity
 
         const utt = new utterance(input);
-        utt.rate = this.getRate();
+        utt.rate = this.getSpeed();
         utt.pitch = this.getPitch();
         utt.volume = this.getVolume();
         utt.voice = this.getVoiceByName(this.voice);
