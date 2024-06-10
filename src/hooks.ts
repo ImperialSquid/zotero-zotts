@@ -20,7 +20,7 @@ async function onStartup() {
 
   initLocale();
 
-  setDefaultPrefs()
+  setDefaultPrefs();
 
   const zotts = new ZoTTS();
 }
