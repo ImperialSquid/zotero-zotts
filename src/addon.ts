@@ -17,6 +17,7 @@ class Addon {
       columns: Array<ColumnOptions>;
       rows: Array<{ [dataKey: string]: string }>;
     };
+    webSpeech: SpeechSynthesis | null | number;
   };
   // Lifecycle hooks
   public hooks: typeof hooks;
@@ -29,6 +30,7 @@ class Addon {
       env: __env__,
       // ztoolkit: new MyToolkit(),
       ztoolkit: new ZoteroToolkit(),
+      webSpeech: null
     };
     this.hooks = hooks;
     this.api = {};
