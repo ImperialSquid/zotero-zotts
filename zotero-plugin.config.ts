@@ -1,4 +1,5 @@
 import { defineConfig } from "zotero-plugin-scaffold";
+// @ts-ignore
 import pkg from "./package.json";
 import { copyFileSync } from "fs";
 
