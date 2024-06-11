@@ -4,27 +4,17 @@
   "description": "Zotero ZoTTS",
   "config": {
     "addonName": "ZoTTS",
-    "addonID": "zotts@ImperialSquid.com.txt",
+    "addonID": "zotts@ImperialSquid.com",
     "addonRef": "zotts",
     "addonInstance": "ZoTTS",
-    "releasepage": "",
-    "updaterdf": "",
     "prefsPrefix": "extensions.zotero.ZoTTS"
   },
   "main": "src/index.ts",
   "scripts": {
-    "build-dev": "cross-env NODE_ENV=development node scripts/build.js",
-    "build-prod": "cross-env NODE_ENV=production node scripts/build.js",
-    "build": "concurrently -c auto npm:build-prod npm:tsc",
+    "start": "zotero-plugin serve",
+    "build": "tsc --noEmit && zotero-plugin build",
+    "release": "zotero-plugin release",
     "tsc": "tsc --noEmit",
-    "start-z6": "node scripts/start.js --z 6",
-    "start-z7": "node scripts/start.js --z 7",
-    "start": "node scripts/start.js",
-    "stop": "node scripts/stop.js",
-    "restart-dev": "npm run build-dev && npm run stop && npm run start",
-    "restart-prod": "npm run build-prod && npm run stop && npm run start",
-    "restart": "npm run restart-dev",
-    "release": "release-it",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -38,19 +28,15 @@
   },
   "homepage": "",
   "dependencies": {
-    "say.js": "ImperialSquid/say.js",
     "zotero-plugin-toolkit": "^2.0.1"
   },
   "devDependencies": {
     "@types/node": "^18.16.3",
-    "compressing": "^1.6.3",
     "concurrently": "^8.0.1",
     "cross-env": "^7.0.3",
-    "esbuild": "^0.17.4",
     "minimist": "^1.2.7",
-    "release-it": "^15.10.2",
-    "replace-in-file": "^6.3.5",
     "typescript": "^5.0.4",
+    "zotero-plugin-scaffold": "^0.0.31",
     "zotero-types": "^1.0.12"
   }
 }
