@@ -18,7 +18,8 @@ async function onStartup() {
     Zotero.uiReadyPromise,
   ]);
 
-  initLocale();
+  // TODO: implement locale initialization
+  // initLocale();
 
   setDefaultPrefs();
 
