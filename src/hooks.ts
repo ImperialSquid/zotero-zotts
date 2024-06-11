@@ -23,7 +23,28 @@ async function onStartup() {
 
   setDefaultPrefs();
 
-  const zotts = new ZoTTS();
+  await onMainWindowLoad(window);
+}
+
+async function onMainWindowLoad(win: Window): Promise<void> {
+  await new Promise((resolve) => {
+    if (win.document.readyState !== "complete") {
+      win.document.addEventListener("readystatechange", () => {
+        if (win.document.readyState === "complete") {
+          resolve(void 0);
+        }
+      });
+    }
+    resolve(void 0);
+  });
+
+  await Promise.all([
+    Zotero.initializationPromise,
+    Zotero.unlockPromise,
+    Zotero.uiReadyPromise,
+  ]);
+
+  addon.data.webSpeech = new window.SpeechSynthesis();
 }
 
 function onShutdown(): void {
@@ -121,4 +142,5 @@ export default {
   onPrefsEvent,
   onShortcuts,
   onDialogEvents,
+  onMainWindowLoad,
 };
