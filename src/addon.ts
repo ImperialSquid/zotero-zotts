@@ -1,6 +1,7 @@
 import ZoteroToolkit from "zotero-plugin-toolkit/dist/index";
 import { ColumnOptions } from "zotero-plugin-toolkit/dist/helpers/virtualizedTable";
 import hooks from "./hooks";
+import { ttsManager } from "./modules/tts/ttsManager";
 
 class Addon {
   public data: {
@@ -17,7 +18,7 @@ class Addon {
       columns: Array<ColumnOptions>;
       rows: Array<{ [dataKey: string]: string }>;
     };
-    webSpeech: SpeechSynthesis | null | number;
+    ttsManager: ttsManager;
   };
   // Lifecycle hooks
   public hooks: typeof hooks;
@@ -30,7 +31,7 @@ class Addon {
       env: __env__,
       // ztoolkit: new MyToolkit(),
       ztoolkit: new ZoteroToolkit(),
-      webSpeech: null
+      ttsManager: new ttsManager(),
     };
     this.hooks = hooks;
     this.api = {};

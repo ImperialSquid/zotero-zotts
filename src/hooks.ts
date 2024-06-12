@@ -9,7 +9,6 @@ import { config } from "../package.json";
 import { getString, initLocale } from "./modules/locale";
 import { registerPrefsScripts } from "./modules/preferenceScript";
 import { setDefaultPrefs} from "./modules/prefUtils";
-import {ZoTTS} from "./modules/zotts";
 import {waitUntil, waitUtilAsync} from "./modules/wait";
 
 async function onStartup() {
@@ -44,11 +43,6 @@ async function onMainWindowLoad(win: Window): Promise<void> {
     Zotero.unlockPromise,
     Zotero.uiReadyPromise,
   ]);
-
-  waitUntil(() => window.speechSynthesis !== undefined,
-      () => undefined, 100, 10000);
-
-  addon.data.webSpeech = new window.SpeechSynthesis();
 }
 
 function onShutdown(): void {
