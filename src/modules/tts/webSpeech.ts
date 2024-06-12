@@ -1,9 +1,9 @@
-import {ttsEngineBase, ttsMixin} from "./ttsBase";
+import {ttsEngineBase, ttsMixin} from "./base";
 
 const synthesis = window.speechSynthesis;
 const utterance = window.SpeechSynthesisUtterance;
 
-export class ttsWebSpeech extends ttsMixin implements ttsEngineBase {
+export class webSpeech extends ttsMixin implements ttsEngineBase {
     public canPause: boolean;
     private readonly voices: Array<string>;
     private voice: string;

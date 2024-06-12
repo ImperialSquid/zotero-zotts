@@ -1,4 +1,4 @@
-import {ttsEngineBase, ttsMixin} from "./ttsBase";
+import {ttsEngineBase, ttsMixin} from "./base";
 
 export class ttsWindows extends ttsMixin implements ttsEngineBase {
     canPause: boolean;

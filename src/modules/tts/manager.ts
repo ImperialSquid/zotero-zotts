@@ -1,8 +1,8 @@
-import {ttsEngineBase} from "./ttsBase";
-import {ttsWebSpeech} from "./ttsWebSpeech";
-import {ttsWindows, ttsLinux, ttsMacOS} from "./ttsSay";
+import {ttsEngineBase} from "./base";
+import {webSpeech} from "./webSpeech";
+import {ttsWindows, ttsLinux, ttsMacOS} from "./native";
 
-export class ttsManager {
+export class manager {
     private engines: Array<ttsEngineBase> = [];
 
     constructor() {
@@ -11,7 +11,7 @@ export class ttsManager {
 
     private setupEngines() {
         if (ztoolkit.isZotero7()) {
-            this.engines.push(new ttsWebSpeech());
+            this.engines.push(new webSpeech());
         }
 
         if (Zotero.isWindows()) {
