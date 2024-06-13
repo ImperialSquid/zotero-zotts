@@ -6,10 +6,10 @@ import {
   UIExampleFactory,
 } from "./modules/examples";
 import { config } from "../package.json";
-import { getString, initLocale } from "./modules/locale";
+import { getString, initLocale } from "./modules/utils/locale";
 import { registerPrefsScripts } from "./modules/preferenceScript";
-import { setDefaultPrefs} from "./modules/prefUtils";
-import {waitUntil, waitUtilAsync} from "./modules/wait";
+import { setDefaultPrefs} from "./modules/utils/prefs";
+import {waitUntil, waitUtilAsync} from "./modules/utils/wait";
 
 async function onStartup() {
   await Promise.all([
