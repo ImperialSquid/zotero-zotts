@@ -1,10 +1,12 @@
 import {ttsEngineBase, ttsMixin} from "./base";
 
 export class ttsWindows extends ttsMixin implements ttsEngineBase {
+    name: string;
     canPause: boolean;
 
     constructor() {
         super();
+        this.name = "Windows TTS";
         this.canPause = false;
     }
 
@@ -26,10 +28,12 @@ export class ttsWindows extends ttsMixin implements ttsEngineBase {
 }
 
 export class ttsMacOS extends ttsMixin implements ttsEngineBase {
+    name: string;
     canPause: boolean;
 
     constructor() {
         super();
+        this.name = "MacOS TTS";
         this.canPause = false;
     }
 
@@ -51,10 +55,12 @@ export class ttsMacOS extends ttsMixin implements ttsEngineBase {
 }
 
 export class ttsLinux extends ttsMixin implements ttsEngineBase {
+    name: string;
     canPause: boolean;
 
     constructor() {
         super();
+        this.name = "Linux TTS";
         this.canPause = false;
     }
 

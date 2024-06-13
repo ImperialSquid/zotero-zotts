@@ -3,10 +3,13 @@ import {webSpeech} from "./webSpeech";
 // import {ttsWindows, ttsLinux, ttsMacOS} from "./native";
 
 export class manager {
-    private engines: Array<ttsEngineBase> = [];
+    engines: Array<ttsEngineBase> = [];
+    currentEngine: ttsEngineBase;
 
     constructor() {
         this.setupEngines()
+
+        this.currentEngine = this.engines[0];
     }
 
     private setupEngines() {
