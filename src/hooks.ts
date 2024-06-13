@@ -10,6 +10,10 @@ import { getString, initLocale } from "./modules/utils/locale";
 import { registerPrefsScripts } from "./modules/preferenceScript";
 import { setDefaultPrefs} from "./modules/utils/prefs";
 import {waitUntil, waitUtilAsync} from "./modules/utils/wait";
+import ZoteroToolkit from "zotero-plugin-toolkit/dist/index";
+import { registerMenu } from "./modules/menu";
+import { registerPrefsWindow } from "./modules/prefsWindow";
+import { registerShortcuts } from "./modules/shortcuts";
 
 async function onStartup() {
   await Promise.all([
@@ -22,6 +26,8 @@ async function onStartup() {
   // initLocale();
 
   setDefaultPrefs();
+
+  registerShortcuts();
 
   await onMainWindowLoad(window);
 }
@@ -43,6 +49,27 @@ async function onMainWindowLoad(win: Window): Promise<void> {
     Zotero.unlockPromise,
     Zotero.uiReadyPromise,
   ]);
+
+  // TODO: optim - create custom toolkit to minify
+  addon.data.ztoolkit = new ZoteroToolkit();
+
+  // TODO: l10n - implement locale appending
+  // (win as any).MozXULElement.insertFTLIfNeeded(
+  //     `${config.addonRef}-mainWindow.ftl`,
+  // );
+
+  registerPrefsWindow();
+
+  registerMenu();
+}
+
+async function onMainWindowUnload(win: Window): Promise<void> {
+  ztoolkit.unregisterAll();
+
+  // TODO: l10n - implement locale removal
+  // win.document
+  //     .querySelector(`[href="${config.addonRef}-mainWindow.ftl"]`)
+  //     ?.remove();
 }
 
 function onShutdown(): void {
