@@ -1,7 +1,8 @@
-import {getPref, setPref} from "../prefUtils";
+import {getPref, setPref} from "../utils/prefs";
 
 // Establishes the base interface for a TTS engine
 export type ttsEngineBase = {
+    name: string;
     canPause: boolean;
     speak(input: string): void;
     stop(): void;

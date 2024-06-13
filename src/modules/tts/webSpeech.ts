@@ -4,6 +4,7 @@ const synthesis = window.speechSynthesis;
 const utterance = window.SpeechSynthesisUtterance;
 
 export class webSpeech extends ttsMixin implements ttsEngineBase {
+    public name: string;
     public canPause: boolean;
     private readonly voices: Array<string>;
     private voice: string;
@@ -11,6 +12,7 @@ export class webSpeech extends ttsMixin implements ttsEngineBase {
 
     constructor() {
         super();
+        this.name = "Web Speech API";
         this.canPause = true;
         this.voices = this.getVoices();
         this.voice = this.voices[0];
