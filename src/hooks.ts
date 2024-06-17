@@ -75,9 +75,14 @@ function onShutdown(): void {
 // Keep in mind hooks only do dispatch. Don't add code that does real jobs in hooks.
 // Otherwise the code would be hard to read and maintian.
 
+function onSpeak(text: string) {
+  null
+}
+
 export default {
   onStartup,
   onShutdown,
   onMainWindowLoad,
   onMainWindowUnload,
+  onSpeak
 };
