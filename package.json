@@ -35,7 +35,7 @@
     "concurrently": "^8.0.1",
     "cross-env": "^7.0.3",
     "minimist": "^1.2.7",
-    "typescript": "^5.0.4",
+    "typescript": "^5.4.5",
     "zotero-plugin-scaffold": "^0.0.31",
     "zotero-types": "^1.0.12"
   }
