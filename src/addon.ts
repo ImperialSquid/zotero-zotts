@@ -1,7 +1,7 @@
 import ZoteroToolkit from "zotero-plugin-toolkit/dist/index";
 import { ColumnOptions } from "zotero-plugin-toolkit/dist/helpers/virtualizedTable";
 import hooks from "./hooks";
-import { manager } from "./modules/tts/manager";
+import { initEngines } from "./modules/tts";
 
 class Addon {
   public data: {
@@ -18,7 +18,19 @@ class Addon {
       columns: Array<ColumnOptions>;
       rows: Array<{ [dataKey: string]: string }>;
     };
-    ttsManager: manager;
+    tts: {
+      current: string;
+      engines: {
+        [key: string]: {
+          name: string;
+          canPause: boolean;
+          speak: (input: string) => void;
+          stop: () => void;
+          pause?: () => void;
+          resume?: () => void;
+        }
+      }
+    }
   };
   // Lifecycle hooks
   public hooks: typeof hooks;
@@ -31,10 +43,15 @@ class Addon {
       env: __env__,
       // ztoolkit: new MyToolkit(),
       ztoolkit: new ZoteroToolkit(),
-      ttsManager: new manager(),
+      tts: {
+        current: "",
+        engines: {}
+      }
     };
     this.hooks = hooks;
     this.api = {};
+
+    initEngines(this)
   }
 }
 

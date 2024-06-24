@@ -1,60 +1,42 @@
-import {ttsEngineBase, ttsMixin} from "./base";
+import {getPref, setPref} from "../utils/prefs";
 
-const synthesis = window.speechSynthesis;
-const utterance = window.SpeechSynthesisUtterance;
+function speak(text: string) {
+    ztoolkit.log(`Speaking: ${text}`);
 
-export class webSpeech extends ttsMixin implements ttsEngineBase {
-    public name: string;
-    public canPause: boolean;
-    private readonly voices: Array<string>;
-    private voice: string;
-    public paused: boolean = false;
-
-    constructor() {
-        super();
-        this.name = "Web Speech API";
-        this.canPause = true;
-        this.voices = this.getVoices();
-        this.voice = this.voices[0];
+    if (window.speechSynthesis.speaking || window.speechSynthesis.pending) {
+      window.speechSynthesis.cancel();
     }
 
-    speak(input: string): void {
-        this.stop() // prevent queueing multiple utterances for simplicity
+    let utt = new window.SpeechSynthesisUtterance(text);
+    let voices = window.speechSynthesis.getVoices();
+    utt.voice = voices[0];
+    window.speechSynthesis.speak(utt);
+}
 
-        const utt = new utterance(input);
-        utt.rate = this.getSpeed();
-        utt.pitch = this.getPitch();
-        utt.volume = this.getVolume();
-        utt.voice = this.getVoiceByName(this.voice);
+function stop() {
+    // TODO: WSA - implement
+    ztoolkit.log("Stopping");
+}
 
-        synthesis.speak(utt);
-    }
+function pause() {
+    // TODO: WSA - implement
+    ztoolkit.log("Pausing");
+}
 
-    stop(): void {
-        synthesis.cancel();
-    }
+function resume() {
+    // TODO: WSA - implement
+    ztoolkit.log("Resuming");
+}
 
-    pause(): void {
-        synthesis.pause();
-        this.paused = true;
-    }
+function setDefaultPrefs() {
+    // TODO: WSA - implement
+    ztoolkit.log("Setting default prefs");
+}
 
-    resume(): void {
-        synthesis.resume();
-        this.paused = false;
-    }
-
-    getVoices(): Array<string> {
-        return synthesis.getVoices().map((v) => `${v.name} (${v.lang})`)
-    }
-
-    setVoice(newVoice: string): void {
-        if (this.voices.indexOf(newVoice) > -1) {
-            this.voice = newVoice;
-        }
-    }
-
-    private getVoiceByName(voice: string): SpeechSynthesisVoice {
-        return synthesis.getVoices().filter((v) => `${v.name} (${v.lang})` === voice)[0];
-    }
+export {
+    speak,
+    stop,
+    pause,
+    resume,
+    setDefaultPrefs,
 }
