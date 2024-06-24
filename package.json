@@ -34,6 +34,7 @@
     "@types/node": "^20.14.8",
     "concurrently": "^8.0.1",
     "cross-env": "^7.0.3",
+    "esbuild": "^0.19.4",
     "minimist": "^1.2.7",
     "typescript": "^5.5.2",
     "zotero-plugin-scaffold": "^0.0.31",
