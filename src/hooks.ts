@@ -76,7 +76,29 @@ function onShutdown(): void {
 // Otherwise the code would be hard to read and maintian.
 
 function onSpeak(text: string) {
-  null
+  ztoolkit.log(`Speaking: ${text}`);
+
+  addon.data.tts.engines[addon.data.tts.current].speak(text);
+}
+
+function onStop() {
+  addon.data.tts.engines[addon.data.tts.current].stop();
+}
+
+// TODO: future - implement skipping to next as well as cancelling all
+
+function onPause() {
+  if (addon.data.tts.engines[addon.data.tts.current].canPause) {
+    // @ts-ignore
+    addon.data.tts.engines[addon.data.tts.current].pause();
+  }
+}
+
+function onResume() {
+  if (addon.data.tts.engines[addon.data.tts.current].canPause) {
+    // @ts-ignore
+    addon.data.tts.engines[addon.data.tts.current].resume();
+  }
 }
 
 export default {
@@ -84,5 +106,8 @@ export default {
   onShutdown,
   onMainWindowLoad,
   onMainWindowUnload,
-  onSpeak
+  onSpeak,
+  onStop,
+  onPause,
+  onResume,
 };
