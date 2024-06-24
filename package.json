@@ -37,6 +37,6 @@
     "minimist": "^1.2.7",
     "typescript": "^5.0.4",
     "zotero-plugin-scaffold": "^0.0.31",
-    "zotero-types": "^1.0.12"
+    "zotero-types": "^2.0.2"
   }
 }
