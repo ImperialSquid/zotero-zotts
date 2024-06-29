@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="48"
+   height="48"
+   viewBox="0 0 12.7 12.7"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="speak@48.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     showguides="true"
+     inkscape:zoom="8"
+     inkscape:cx="17"
+     inkscape:cy="16.6875"
+     inkscape:window-width="1360"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     inkscape:clip-to-page="false" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(1e-4)">
+    <path
+       d="M 9.6655595,11.726565 A 6.8067098,6.8067098 0 0 0 12.303556,6.3500002 6.8067098,6.8067098 0 0 0 9.6655595,0.97343495 L 8.9733567,1.8149075 A 5.717522,5.717522 0 0 1 11.214365,6.3500002 5.717522,5.717522 0 0 1 8.9733567,10.885093 Z"
+       style="fill:#2a7fff;stroke-width:0.0476989"
+       id="sound2" />
+    <path
+       d="M 8.1912642,9.9342395 A 4.3856404,4.3856404 0 0 0 10.053263,6.3500002 4.3856404,4.3856404 0 0 0 8.1912642,2.765761 L 7.5701486,3.5208412 a 3.4115669,3.4115669 0 0 1 1.5090381,2.829159 3.4115669,3.4115669 0 0 1 -1.5090381,2.8291591 z"
+       style="fill:#2a7fff;stroke-width:0.0307329"
+       id="sound1" />
+    <path
+       id="speaker2"
+       style="fill:#2a7fff;stroke-width:0.129214"
+       d="M 3.0152791,3.2824903 6.8391265,0.44654375 V 12.253456 L 3.0152791,9.4175151 Z"
+       sodipodi:nodetypes="ccccc" />
+    <rect
+       style="fill:#2a7fff;stroke-width:0.0158741"
+       id="speaker1"
+       width="2.2843575"
+       height="6.1350241"
+       x="-9.9999997e-05"
+       y="3.2824912"
+       rx="0"
+       ry="0" />
+  </g>
+</svg>

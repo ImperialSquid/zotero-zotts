@@ -1,9 +1,10 @@
 import {getPref} from "./utils/prefs";
 // import {getString} from "./utils/locale";
+import { config } from "../../package.json"
 
 
 export function registerMenu() {
-    // const menuIcon = `chrome://${config.addonRef}/content/icons/favicon.png`;
+    const menuIcon = `chrome://${config.addonRef}/content/icons/speak@48.svg`;
     ztoolkit.Menu.register("item", {
         tag: "menuseparator",
     });
@@ -16,8 +17,7 @@ export function registerMenu() {
             let title = item.getField("title") as string;
             addon.hooks.onSpeak(title);
         },
-        // TODO: prettify - add icon
-        // icon: menuIcon,
+        icon: menuIcon,
     });
     ztoolkit.Menu.register("item", {
         tag: "menuitem",
@@ -28,7 +28,6 @@ export function registerMenu() {
             let title = item.getField("abstractNote") as string;
             addon.hooks.onSpeak(title);
         },
-        // TODO: prettify - add icon
-        // icon: menuIcon,
+        icon: menuIcon,
     });
 }
