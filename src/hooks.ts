@@ -6,6 +6,7 @@ import ZoteroToolkit from "zotero-plugin-toolkit/dist/index";
 import { registerMenu } from "./modules/menu";
 import { registerPrefsWindow } from "./modules/prefsWindow";
 import { registerShortcuts } from "./modules/shortcuts";
+import { registerReaderListeners } from "./modules/reader";
 
 async function onStartup() {
   await Promise.all([
@@ -20,6 +21,8 @@ async function onStartup() {
   setDefaultPrefs();
 
   registerShortcuts();
+
+  await registerReaderListeners();
 
   await onMainWindowLoad(window);
 }
