@@ -4,7 +4,7 @@ import { config } from "../../package.json"
 
 
 export function registerMenu() {
-    const menuIcon = `chrome://${config.addonRef}/content/icons/speak@48.svg`;
+    const menuIcon = `chrome://${config.addonRef}/content/icons/speak@16.svg`;
     ztoolkit.Menu.register("item", {
         tag: "menuseparator",
     });
