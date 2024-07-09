@@ -8,8 +8,13 @@ function speak(text: string) {
     }
 
     let utt = new window.SpeechSynthesisUtterance(text);
-    let voices = window.speechSynthesis.getVoices();
-    utt.voice = voices[0];
+
+    utt.pitch = getPref("webSpeech.pitch") as number;
+    utt.rate = getPref("webSpeech.rate") as number;
+    utt.volume = getPref("webSpeech.volume") as number;
+
+    utt.voice = getVoice(getPref("webSpeech.voice") as string)
+
     window.speechSynthesis.speak(utt);
 }
 
@@ -56,4 +61,17 @@ export {
     pause,
     resume,
     setDefaultPrefs,
+}
+
+function getVoice(voiceName: string) {
+    let voices = window.speechSynthesis.getVoices()
+    let filteredVoices = voices.filter((v) => v.name === voiceName)
+
+    // if voice is not found for some reason, default to first voice
+    if (filteredVoices.length === 0) {
+        setPref("webSpeech.voice", voices[0].name)
+        return voices[0]
+    }
+
+    return filteredVoices[0]
 }
