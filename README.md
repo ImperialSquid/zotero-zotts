@@ -5,11 +5,7 @@ A Zotero plugin to add TTS functionality
 
 # Roadmap
 This plugin is still a work in progress, these jobs need completion before first release:
-- [ ] Implement WebSpeech API engine
-  - [x] Speak
-  - [ ] Cancel
-  - [ ] Pause
-  - [ ] Resume
+- [x] Implement WebSpeech API engine
 - [x] Add collection menu items
   - [x] Speak title
   - [x] Speak abstract
