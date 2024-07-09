@@ -19,18 +19,15 @@ function speak(text: string) {
 }
 
 function stop() {
-    // TODO: WSA - implement
-    ztoolkit.log("Stopping");
+    window.speechSynthesis.cancel()
 }
 
 function pause() {
-    // TODO: WSA - implement
-    ztoolkit.log("Pausing");
+    window.speechSynthesis.pause()
 }
 
 function resume() {
-    // TODO: WSA - implement
-    ztoolkit.log("Resuming");
+    window.speechSynthesis.resume()
 }
 
 function setDefaultPrefs() {
