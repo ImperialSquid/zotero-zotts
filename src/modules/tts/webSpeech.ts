@@ -31,6 +31,23 @@ function resume() {
 function setDefaultPrefs() {
     // TODO: WSA - implement
     ztoolkit.log("Setting default prefs");
+
+    if (!getPref("webSpeech.pitch")) {
+        setPref("webSpeech.pitch", 1);
+    }
+
+    if (!getPref("webSpeech.rate")) {
+        setPref("webSpeech.rate", 1);
+    }
+
+    if (!getPref("webSpeech.volume")) {
+        setPref("webSpeech.volume", 1);
+    }
+
+    if (!getPref("webSpeech.voice")) {
+        let voice = window.speechSynthesis.getVoices()[0].name
+        setPref("webSpeech.voice", voice);
+    }
 }
 
 export {
