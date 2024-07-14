@@ -9,9 +9,9 @@ function speak(text: string) {
 
     let utt = new window.SpeechSynthesisUtterance(text);
 
-    utt.pitch = getPref("webSpeech.pitch") as number;
-    utt.rate = getPref("webSpeech.rate") as number;
-    utt.volume = getPref("webSpeech.volume") as number;
+    utt.pitch = (getPref("webSpeech.pitch") as number)/100;
+    utt.rate = (getPref("webSpeech.rate") as number)/100;
+    utt.volume = (getPref("webSpeech.volume") as number)/100;
 
     utt.voice = getVoice(getPref("webSpeech.voice") as string)
 

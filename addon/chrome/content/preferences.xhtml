@@ -24,8 +24,8 @@
       <html:input id="webspeech-volume"
                   type="range"
                   min="0"
-                  max="1"
-                  value="0.5"
+                  max="100"
+                  value="50"
                   preference="__prefsPrefix__.webSpeech.volume"
                   style="width:50%"
       />
@@ -45,9 +45,9 @@
       <!-- WSA spec allows for x0.1-10 range but that seems excessive for now -->
       <html:input id="webspeech-rate"
                   type="range"
-                  min="0.25"
-                  max="4"
-                  value="1"
+                  min="25"
+                  max="400"
+                  value="100"
                   preference="__prefsPrefix__.webSpeech.rate"
                   style="width:50%"
       />
@@ -67,15 +67,14 @@
       <html:input id="webspeech-pitch"
                   type="range"
                   min="0"
-                  max="2"
-                  value="1"
+                  max="200"
+                  value="100"
                   preference="__prefsPrefix__.webSpeech.pitch"
                   style="width:50%"
       />
     </vbox>
 
   </groupbox>
-  <!-- pitch label and slider -->
 
     <!--<vbox>-->
     <!--  <label-->
