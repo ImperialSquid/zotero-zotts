@@ -5,6 +5,17 @@
 >
   <groupbox id="__addonRef__-general">
     <label><html:h2>General</html:h2></label>
+
+    <!-- queue or cancel on playing new items -->
+    <vbox>
+      <label>When attempting to play multiple items:</label>
+      <radiogroup preference="__prefsPrefix__.newItemBehaviour" style="padding-left:20px">
+        <radio label="Cancel anything currently playing" value="cancel"/>
+        <radio label="Add new item to a queue" value="queue"/>
+      </radiogroup>
+    </vbox>
+
+<!--//TODO: shortcuts-->
   </groupbox>
 
   <groupbox id="__addonRef__-webspeech">

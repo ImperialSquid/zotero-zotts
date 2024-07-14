@@ -3,7 +3,8 @@ import {getPref, setPref} from "../utils/prefs";
 function speak(text: string) {
     ztoolkit.log(`Speaking: ${text}`);
 
-    if (window.speechSynthesis.speaking || window.speechSynthesis.pending) {
+    if (getPref("newItemBehaviour") === "cancel" &&
+        (window.speechSynthesis.speaking || window.speechSynthesis.pending)) {
       window.speechSynthesis.cancel();
     }
 
