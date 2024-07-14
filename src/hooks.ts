@@ -7,6 +7,7 @@ import { registerMenu } from "./modules/menu";
 import { registerPrefsWindow } from "./modules/prefsWindow";
 import { registerShortcuts } from "./modules/shortcuts";
 import { registerReaderListeners } from "./modules/reader";
+import MenuList = XUL.MenuList;
 
 async function onStartup() {
   await Promise.all([
@@ -105,7 +106,11 @@ function onResume() {
 }
 
 function onPrefsLoad(type: string, doc: Document) {
-  ztoolkit.log("Prefs event: " + type)
+  ztoolkit.log("Prefs event: " + type);
+
+  let voices = (addon.data.tts.engines.webSpeech.extras.getVoices() as Array<string>);
+  let menu = (doc.getElementById("webspeech-voice") as MenuList);
+  voices.forEach((v) => menu.appendItem(v, v))
 }
 
 export default {

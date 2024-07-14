@@ -10,6 +10,16 @@
   <groupbox id="__addonRef__-webspeech">
     <label><html:h2>Web Speech</html:h2></label>
 
+    <!-- WSA voice -->
+    <vbox>
+      <html:label for="webspeech-voice">Current Voice</html:label>
+      <menulist id="webspeech-voice" preference="__prefsPrefix__.webSpeech.voice">
+        <menupopup id="webspeech-voice-popup">
+          <!-- populate at runtime -->
+        </menupopup>
+      </menulist>
+    </vbox>
+
     <!-- volume label and slider -->
     <vbox>
       <hbox align="center">
