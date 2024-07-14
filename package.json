@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.14.8",
-    "typescript": "^5.5.2",
+    "typescript": "^5.5.3",
     "zotero-plugin-scaffold": "^0.0.32",
     "zotero-types": "^2.0.2"
   }
