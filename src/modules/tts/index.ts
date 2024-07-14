@@ -12,7 +12,8 @@ export function initEngines(addon: Addon) {
                 stop: e.stop,
                 canPause: true,
                 pause: e.pause,
-                resume: e.resume
+                resume: e.resume,
+                extras: {getVoices: e.getVoices}
             }
         }
     )

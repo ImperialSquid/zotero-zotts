@@ -28,6 +28,7 @@ class Addon {
           stop: () => void;
           pause?: () => void;
           resume?: () => void;
+          extras: {[key: string]: any}
         }
       }
     }

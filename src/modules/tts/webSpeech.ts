@@ -52,12 +52,17 @@ function setDefaultPrefs() {
     }
 }
 
+function getVoices() {
+    return window.speechSynthesis.getVoices().map((v) => v.name)
+}
+
 export {
     speak,
     stop,
     pause,
     resume,
     setDefaultPrefs,
+    getVoices
 }
 
 function getVoice(voiceName: string) {
