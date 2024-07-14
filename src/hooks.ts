@@ -104,6 +104,10 @@ function onResume() {
   }
 }
 
+function onPrefsLoad(type: string, doc: Document) {
+  ztoolkit.log("Prefs event: " + type)
+}
+
 export default {
   onStartup,
   onShutdown,
@@ -113,4 +117,5 @@ export default {
   onStop,
   onPause,
   onResume,
+  onPrefsLoad,
 };
