@@ -19,7 +19,7 @@ This plugin is still a work in progress, these jobs need completion before first
   - [ ] Cancel
 - [ ] Preferences menu
   - [ ] General settings
-  - [ ] WSA specific settings
+  - [x] WSA specific settings
 
 These features will be added soon after
 - [ ] Locale text
