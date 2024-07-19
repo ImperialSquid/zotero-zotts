@@ -20,10 +20,10 @@ This plugin is still a work in progress, these jobs need completion before first
 - [ ] Preferences menu
   - [ ] General settings
   - [x] WSA specific settings
+- [x] Keyboard shortcuts
 
 These features will be added soon after
 - [ ] Locale text
-- [ ] Keyboard shortcuts
 - [ ] Ability to skip 1 as well as cancel all
 - [ ] Style
   - [ ] Add hover effects for buttons
