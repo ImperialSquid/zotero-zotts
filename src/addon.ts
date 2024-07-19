@@ -13,10 +13,8 @@ class Addon {
     locale?: {
       current: any;
     };
-    prefs?: {
-      window: Window;
-      columns: Array<ColumnOptions>;
-      rows: Array<{ [dataKey: string]: string }>;
+    ui: {
+      toolbars: Array<HTMLDivElement>;
     };
     tts: {
       current: string;
@@ -44,6 +42,9 @@ class Addon {
       env: __env__,
       // ztoolkit: new MyToolkit(),
       ztoolkit: new ZoteroToolkit(),
+      ui: {
+        toolbars: []
+      },
       tts: {
         current: "",
         engines: {}
