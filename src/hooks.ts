@@ -105,6 +105,32 @@ function onResume() {
   }
 }
 
+// for speaking using shortcuts and UI elements not specifically tied to any text (eg text selection popup)
+// TODO: prefs - implement toggle between title/abstract and annotation/comment reading
+function onContextualSpeak() {
+  if (Zotero_Tabs.selectedType == "library") {
+    // library tab context
+    let items = Zotero.getActiveZoteroPane().getSelectedItems()
+
+    if (items.length === 0) {
+      // if none selected, skip
+      return
+    } else if (items.length === 1) {
+      // if single item, read title
+      addon.hooks.onSpeak(items[0].name)
+    }
+    // if multiple and queue disabled, just read first
+    // if multiple and queue enabled, read all
+  } else {
+    // reader tab context
+
+    // if text selected, read
+    // if annotation selected, read annotation
+    // if multiple annotation and queue disabled, just read first
+    // if multiple annotation and queue enabled, read all
+  }
+}
+
 function onPrefsLoad(type: string, doc: Document) {
   ztoolkit.log("Prefs event: " + type);
 
@@ -123,4 +149,5 @@ export default {
   onPause,
   onResume,
   onPrefsLoad,
+  onContextualSpeak
 };
