@@ -1,6 +1,6 @@
 import { config } from "../package.json";
 import { getString, initLocale } from "./modules/utils/locale";
-import { setDefaultPrefs} from "./modules/utils/prefs";
+import {getPref, setDefaultPrefs} from "./modules/utils/prefs";
 import {waitUntil, waitUtilAsync} from "./modules/utils/wait";
 import ZoteroToolkit from "zotero-plugin-toolkit/dist/index";
 import { registerMenu } from "./modules/menu";
@@ -111,16 +111,19 @@ function onContextualSpeak() {
   if (Zotero_Tabs.selectedType == "library") {
     // library tab context
     let items = Zotero.getActiveZoteroPane().getSelectedItems()
+    // TODO: future - add extra handling for other item types?
 
     if (items.length === 0) {
       // if none selected, skip
       return
-    } else if (items.length === 1) {
-      // if single item, read title
-      addon.hooks.onSpeak(items[0].name)
+    } else if ((items.length === 1) ||
+        (items.length > 1 && getPref("newItemBehaviour") === "cancel")) {
+      // if single item, or if multiple items but queue disabled, just read first
+      addon.hooks.onSpeak(items[0].getDisplayTitle())
+    } else {
+      // if multiple items and queue enabled, read all
+      items.forEach((i) => addon.hooks.onSpeak(i.getDisplayTitle()))
     }
-    // if multiple and queue disabled, just read first
-    // if multiple and queue enabled, read all
   } else {
     // reader tab context
 
