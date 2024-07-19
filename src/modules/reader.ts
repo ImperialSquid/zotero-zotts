@@ -8,6 +8,11 @@ export async function registerReaderListeners() {
         .then((res) => res.text())
         .then((text) => {speakIcon = text})
 
+    let playIcon: string;
+    await fetch(`chrome://${config.addonRef}/content/icons/play@16.svg`)
+        .then((res) => res.text())
+        .then((text) => {playIcon = text})
+
     Zotero.Reader.registerEventListener(
         "renderTextSelectionPopup",
         (event) => {
@@ -165,11 +170,38 @@ export async function registerReaderListeners() {
         }
     )
 
-    // TODO: reader - add toolbar UI elements and callbacks to update if currently playing
-    // Zotero.Reader.registerEventListener(
-    //     "renderToolbar",
-    //     (event) => {
-    //         ztoolkit.log(event);
-    //     }
-    // )
+    Zotero.Reader.registerEventListener(
+        "renderToolbar",
+        (event) => {
+            const { reader, doc, params, append } = event
+
+            let readerToolbarUI = ztoolkit.UI.createElement(doc, "div",
+                {
+                    children: [
+                        {
+                            tag: "button",
+                            namespace: "html",
+                            properties: {
+                                innerHTML: `${playIcon}`,
+                                // innerHTML: "PLAY"
+                            },
+                            classList: ["toolbar-button",],
+                            listeners: [
+                                {
+                                    type: "click",
+                                    listener: (e) => {
+                                        // ztoolkit.log(`${reader.itemID}`)
+                                        addon.hooks.onContextualSpeak()
+                                    }
+                                }
+                            ]
+                        },
+                    ]
+                }
+            )
+
+            append(readerToolbarUI);
+            addon.data.ui.toolbars.push(readerToolbarUI)
+        }
+    )
 }
