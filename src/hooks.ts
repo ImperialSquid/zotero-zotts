@@ -126,11 +126,28 @@ function onContextualSpeak() {
     }
   } else {
     // reader tab context
+    let reader = Zotero.Reader.getByTabID(Zotero_Tabs.selectedID)
+    if (reader === undefined) {
+      return
+    }
 
-    // if text selected, read
-    // if annotation selected, read annotation
-    // if multiple annotation and queue disabled, just read first
-    // if multiple annotation and queue enabled, read all
+    if (ztoolkit.Reader.getSelectedText(reader) !== "") {
+      // if text selected, read
+      addon.hooks.onSpeak(ztoolkit.Reader.getSelectedText(reader))
+    }
+
+    let annos = reader._internalReader._annotationManager._annotations
+    let selectedAnnos = annos.filter((anno) =>
+        reader._internalReader._state.selectedAnnotationIDs.includes(anno.id))
+
+    if ((selectedAnnos.length === 1) ||
+        (selectedAnnos.length > 1 && getPref("newItemBehaviour") === "cancel")) {
+      // if single anno, or if multiple anno and queue disabled, just read first
+      addon.hooks.onSpeak(selectedAnnos[0].text || "")
+    } else {
+      // if multiple annotation and queue enabled, read all
+      selectedAnnos.forEach((a) => addon.hooks.onSpeak(a.text || ""))
+    }
   }
 }
 
@@ -154,3 +171,10 @@ export default {
   onPrefsLoad,
   onContextualSpeak
 };
+
+
+// Shortcut - play selected annotation
+// let currentReader = await ztoolkit.Reader.getReader()
+// if (currentReader) {
+//     ztoolkit.Reader.getSelectedAnnotationData(currentReader)
+// }
