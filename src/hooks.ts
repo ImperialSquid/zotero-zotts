@@ -103,11 +103,13 @@ function onResume() {
 
 // for speaking using shortcuts and UI elements not specifically tied to any text (eg text selection popup)
 // TODO: prefs - implement toggle between title/abstract and annotation/comment reading
-function onContextualSpeak() {
+function onContextualSpeak(shiftHeld: boolean) {
   if (Zotero_Tabs.selectedType == "library") {
     // library tab context
     let items = Zotero.getActiveZoteroPane().getSelectedItems()
     // TODO: future - add extra handling for other item types?
+
+    let swap = shiftHeld !== (getPref("shortcuts.swapLibraryItem") as boolean)
 
     if (items.length === 0) {
       // if none selected, skip
@@ -115,10 +117,16 @@ function onContextualSpeak() {
     } else if ((items.length === 1) ||
         (items.length > 1 && getPref("newItemBehaviour") === "cancel")) {
       // if single item, or if multiple items but queue disabled, just read first
-      addon.hooks.onSpeak(items[0].getDisplayTitle())
+
+      let text = swap ? items[0].getField("abstractNote") : items[0].getDisplayTitle()
+      addon.hooks.onSpeak(text)
     } else {
       // if multiple items and queue enabled, read all
-      items.forEach((i) => addon.hooks.onSpeak(i.getDisplayTitle()))
+
+      items.forEach((i) => {
+        let text = swap ? i.getField("abstractNote") : i.getDisplayTitle()
+        addon.hooks.onSpeak(text)
+      })
     }
   } else {
     // reader tab context
@@ -136,22 +144,30 @@ function onContextualSpeak() {
     let selectedAnnos = annos.filter((anno) =>
         reader._internalReader._state.selectedAnnotationIDs.includes(anno.id))
 
+    let swap = shiftHeld !== (getPref("shortcuts.swapAnnotation") as boolean)
+
     if ((selectedAnnos.length === 1) ||
         (selectedAnnos.length > 1 && getPref("newItemBehaviour") === "cancel")) {
       // if single anno, or if multiple anno and queue disabled, just read first
-      addon.hooks.onSpeak(selectedAnnos[0].text || "")
+
+      let text = swap ? selectedAnnos[0].comment : selectedAnnos[0].text
+      addon.hooks.onSpeak(text || "")
     } else {
       // if multiple annotation and queue enabled, read all
-      selectedAnnos.forEach((a) => addon.hooks.onSpeak(a.text || ""))
+
+      selectedAnnos.forEach((a) => {
+        let text = swap ? a.comment: a.text
+        addon.hooks.onSpeak(text || "")
+      })
     }
   }
 }
 
-function onSpeakOrResume() {
+function onSpeakOrResume(shiftHeld: boolean) {
   if (addon.data.tts.state === "paused") {
     onResume()
   } else {
-    onContextualSpeak()
+    onContextualSpeak(shiftHeld)
   }
 }
 

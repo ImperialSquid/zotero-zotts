@@ -8,7 +8,7 @@ export function registerShortcuts() {
         if (data.type === "keyup") {
             if (ev.ctrlKey &&
                 ev.key.toLowerCase() === (getPref("shortcuts.speak") as string).toLowerCase()) {
-                addon.hooks.onSpeakOrResume()
+                addon.hooks.onSpeakOrResume(ev.shiftKey)
             }
 
             if (ev.ctrlKey && ev.shiftKey &&

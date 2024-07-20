@@ -19,6 +19,23 @@
   <groupbox id="__addonRef__-shortcuts">
     <label><html:h2>Shortcuts</html:h2></label>
 
+    <vbox>
+      <label>Shift modifier</label>
+      <label>Modify what ZoTTs does when you hold Shift when speaking (the unselected option will be done when not holding Shift)</label>
+
+      <label>When speaking a library item:</label>
+      <radiogroup preference="__prefsPrefix__.shortcuts.swapLibraryItem" style="padding-left:20px">
+        <radio label="Speak title" value="false"/>
+        <radio label="Speak abstract" value="true"/>
+      </radiogroup>
+
+      <label>When speaking an annotation:</label>
+      <radiogroup preference="__prefsPrefix__.shortcuts.swapAnnotation" style="padding-left:20px">
+        <radio label="Speak annotated text" value="false"/>
+        <radio label="Speak attached comment" value="true"/>
+      </radiogroup>
+    </vbox>
+
     <html:div style="display: grid;align-items: center;grid-template-columns: 1fr max-content max-content;">
       <html:label for="__addonRed__-textbox-speak">Speak</html:label>
       <html:label class="modifier optional-shift"/>
