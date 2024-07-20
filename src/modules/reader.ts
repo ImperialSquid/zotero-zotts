@@ -13,6 +13,11 @@ export async function registerReaderListeners() {
         .then((res) => res.text())
         .then((text) => {playIcon = text})
 
+    let cancelIcon: string;
+    await fetch(`chrome://${config.addonRef}/content/icons/cancel@16.svg`)
+        .then((res) => res.text())
+        .then((text) => {cancelIcon = text})
+
     Zotero.Reader.registerEventListener(
         "renderTextSelectionPopup",
         (event) => {
@@ -192,6 +197,24 @@ export async function registerReaderListeners() {
                                     listener: (e) => {
                                         // ztoolkit.log(`${reader.itemID}`)
                                         addon.hooks.onContextualSpeak()
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            tag: "button",
+                            namespace: "html",
+                            properties: {
+                                innerHTML: `${cancelIcon}`,
+                                // innerHTML: "CANCEL"
+                            },
+                            classList: ["toolbar-button",],
+                            listeners: [
+                                {
+                                    type: "click",
+                                    listener: (e) => {
+                                        // ztoolkit.log(`${reader.itemID}`)
+                                        addon.hooks.onStop()
                                     }
                                 }
                             ]
