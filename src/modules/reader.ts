@@ -200,7 +200,7 @@ export async function registerReaderListeners() {
                                     type: "click",
                                     listener: (e) => {
                                         // ztoolkit.log(`${reader.itemID}`)
-                                        addon.hooks.onContextualSpeak()
+                                        addon.hooks.onSpeakOrResume()
                                     }
                                 }
                             ]

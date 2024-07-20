@@ -147,11 +147,11 @@ function onContextualSpeak() {
   }
 }
 
-function onSpeakOrResume(text?: string) {
+function onSpeakOrResume() {
   if (addon.data.tts.state === "paused") {
     onResume()
   } else {
-    onSpeak(text || "")
+    onContextualSpeak()
   }
 }
 
