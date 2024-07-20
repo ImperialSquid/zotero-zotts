@@ -16,6 +16,11 @@ function speak(text: string) {
 
     utt.voice = getVoice(getPref("webSpeech.voice") as string)
 
+    utt.onstart = () => {addon.data.tts.state = "playing"}
+    utt.onend = () => {addon.data.tts.state = "idle"}
+    utt.onpause = () => {addon.data.tts.state = "paused"}
+    utt.onresume = () => {addon.data.tts.state = "playing"}
+
     window.speechSynthesis.speak(utt)
 }
 

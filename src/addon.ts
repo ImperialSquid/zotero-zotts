@@ -17,6 +17,7 @@ class Addon {
     }
     tts: {
       current: string
+      state: "idle" | "playing" | "paused"
       engines: {
         [key: string]: {
           name: string
@@ -46,6 +47,7 @@ class Addon {
       },
       tts: {
         current: "",
+        state: "idle",
         engines: {}
       }
     }
