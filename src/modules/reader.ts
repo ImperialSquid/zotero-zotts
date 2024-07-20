@@ -1,8 +1,8 @@
 import { config } from "../../package.json"
 
 export async function registerReaderListeners() {
-    // fetching the icon rather than hard coding it allows for better stylistic
-    // changes without massively changing the code
+    // fetching the icons rather than hard coding it allows for better stylistic
+    // changes without massively changing the code every time
     let speakIcon: string
     await fetch(`chrome://${config.addonRef}/content/icons/speak@16.svg`)
         .then((res) => res.text())

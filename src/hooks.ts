@@ -14,7 +14,7 @@ async function onStartup() {
     Zotero.uiReadyPromise,
   ])
 
-  // TODO: implement locale initialization
+  // TODO: l10n - implement locale initialization
   // initLocale()
 
   setDefaultPrefs()
@@ -75,8 +75,11 @@ function onShutdown(): void {
 
 // Add your hooks here. For element click, etc.
 // Keep in mind hooks only do dispatch. Don't add code that does real jobs in hooks.
-// Otherwise the code would be hard to read and maintian.
+// Otherwise, the code would be hard to read and maintain.
 
+// TODO: future: preformat text before speaking?
+//   WSA on windows can be a little rough (eg pronouncing "a/b" as "a forward slash b", etc)
+//   might be nice to reformat text into a better form, might have to be managed by each engine internally
 function onSpeak(text: string) {
   addon.data.tts.engines[addon.data.tts.current].speak(text)
 }
@@ -102,10 +105,10 @@ function onResume() {
 }
 
 // for speaking using shortcuts and UI elements not specifically tied to any text (eg text selection popup)
-// TODO: prefs - implement toggle between title/abstract and annotation/comment reading
 function onContextualSpeak(shiftHeld?: boolean) {
   if (Zotero_Tabs.selectedType == "library") {
     // library tab context
+
     let items = Zotero.getActiveZoteroPane().getSelectedItems()
     // TODO: future - add extra handling for other item types?
 
@@ -135,6 +138,9 @@ function onContextualSpeak(shiftHeld?: boolean) {
     }
   } else {
     // reader tab context
+
+    // TODO: future - add code for reading paper text if no selection or annotation?
+
     let reader = Zotero.Reader.getByTabID(Zotero_Tabs.selectedID)
     if (reader === undefined) {
       return
@@ -186,7 +192,7 @@ function onPrefsLoad(type: string, doc: Document) {
   let menu = (doc.getElementById("webspeech-voice") as MenuList)
   voices.forEach((v) => menu.appendItem(v, v))
 
-  // shortcuts section moddelled on core Zotero
+  // shortcuts section modelled on core Zotero
   for (let label of doc.querySelectorAll(".modifier")) {
     // Display the appropriate modifier keys for the platform
     if (label.classList.contains("optional-shift")) {
@@ -214,10 +220,3 @@ export default {
   onSpeakOrResume,
   onPrefsLoad,
 }
-
-
-// Shortcut - play selected annotation
-// let currentReader = await ztoolkit.Reader.getReader()
-// if (currentReader) {
-//     ztoolkit.Reader.getSelectedAnnotationData(currentReader)
-// }

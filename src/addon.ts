@@ -19,6 +19,7 @@ class Addon {
       current: string
       // TODO: future - need to add engine change hooks to gracefully cancel and
       //   change state if paused when engine changes
+      // each engine is responsible for managing changes to this state internally
       state: "idle" | "playing" | "paused"
       engines: {
         [key: string]: {

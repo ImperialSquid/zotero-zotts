@@ -1,25 +1,30 @@
 import { getPref, setPref } from "../utils/prefs"
 
 function speak(text: string) {
-    ztoolkit.log(`Speaking: ${text}`)
-
-    if (getPref("newItemBehaviour") === "cancel" &&
-        (window.speechSynthesis.speaking || window.speechSynthesis.pending)) {
+    // cancel is safe to call even when not speaking
+    if (getPref("newItemBehaviour") === "cancel") {
       window.speechSynthesis.cancel()
     }
 
     let utt = new window.SpeechSynthesisUtterance(text)
 
+    // set attributes for utterance
     utt.pitch = (getPref("webSpeech.pitch") as number)/100
     utt.rate = (getPref("webSpeech.rate") as number)/100
     utt.volume = (getPref("webSpeech.volume") as number)/100
-
     utt.voice = getVoice(getPref("webSpeech.voice") as string)
 
+    // manage reflecting state into addon
     utt.onstart = () => {addon.data.tts.state = "playing"}
     utt.onend = () => {addon.data.tts.state = "idle"}
     utt.onpause = () => {addon.data.tts.state = "paused"}
     utt.onresume = () => {addon.data.tts.state = "playing"}
+
+    // TODO: future - add "highlight as you hear" feature to highlight text as it's spoken?
+    // utt.onmark triggers on word and sentence boundaries
+    // text selection popup params contain rects used to draw selected text
+    // very vaguely possible but might be quite janky...
+    // currently deemed more work than it's worth, but happy to revisit
 
     window.speechSynthesis.speak(utt)
 }
