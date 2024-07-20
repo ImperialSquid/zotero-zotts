@@ -7,17 +7,17 @@ export function registerShortcuts() {
     ztoolkit.Keyboard.register((ev, data) => {
         if (data.type === "keyup") {
             if (ev.ctrlKey &&
-                ev.key === (getPref("shortcuts.speak") as string).toLowerCase()) {
+                ev.key.toLowerCase() === (getPref("shortcuts.speak") as string).toLowerCase()) {
                 addon.hooks.onContextualSpeak()
             }
 
             if (ev.ctrlKey && ev.shiftKey &&
-                ev.key === (getPref("shortcuts.pause") as string).toLowerCase()) {
+                ev.key.toLowerCase() === (getPref("shortcuts.pause") as string).toLowerCase()) {
                 addon.hooks.onPause()
             }
 
             if (ev.ctrlKey && ev.shiftKey &&
-                ev.key === (getPref("shortcuts.cancel") as string).toLowerCase()) {
+                ev.key.toLowerCase() === (getPref("shortcuts.cancel") as string).toLowerCase()) {
                 addon.hooks.onStop()
             }
         }
