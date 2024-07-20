@@ -17,10 +17,12 @@ This plugin is still a work in progress, these jobs need completion before first
   - [x] Speak
     - [x] Pause/resume checking
   - [x] Cancel
-- [ ] Preferences menu
-  - [ ] General settings
+- [x] Preferences menu
+  - [x] General settings
+  - [x] Keyboard shortcuts
   - [x] WSA specific settings
 - [x] Keyboard shortcuts
+- [ ] Final touches
 
 These features will be added soon after
 - [ ] Locale text
