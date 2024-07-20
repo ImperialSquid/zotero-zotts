@@ -13,10 +13,10 @@ This plugin is still a work in progress, these jobs need completion before first
 - [x] Add notes sidebar UI
   - [x] Speak selection
   - [x] Speak comment
-- [ ] Add reader toolbar UI
-  - [ ] Speak
-    - [ ] Pause/resume checking
-  - [ ] Cancel
+- [x] Add reader toolbar UI
+  - [x] Speak
+    - [x] Pause/resume checking
+  - [x] Cancel
 - [ ] Preferences menu
   - [ ] General settings
   - [x] WSA specific settings
@@ -25,5 +25,6 @@ This plugin is still a work in progress, these jobs need completion before first
 These features will be added soon after
 - [ ] Locale text
 - [ ] Ability to skip 1 as well as cancel all
-- [ ] Style
-  - [ ] Add hover effects for buttons
+- [x] Style
+  - [x] Add hover effects for buttons
+    - Built in due to reusing Zotero css classes
