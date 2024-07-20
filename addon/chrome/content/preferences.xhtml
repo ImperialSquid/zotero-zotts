@@ -16,54 +16,6 @@
     </vbox>
   </groupbox>
 
-  <groupbox id="__addonRef__-shortcuts">
-    <label><html:h2>Shortcuts</html:h2></label>
-
-    <vbox>
-      <label>Shift modifier</label>
-      <label>Modify what ZoTTs does when you hold Shift when speaking (the unselected option will be done when not holding Shift)</label>
-
-      <label>When speaking a library item:</label>
-      <radiogroup preference="__prefsPrefix__.shortcuts.swapLibraryItem" style="padding-left:20px">
-        <radio label="Speak title" value="false"/>
-        <radio label="Speak abstract" value="true"/>
-      </radiogroup>
-
-      <label>When speaking an annotation:</label>
-      <radiogroup preference="__prefsPrefix__.shortcuts.swapAnnotation" style="padding-left:20px">
-        <radio label="Speak annotated text" value="false"/>
-        <radio label="Speak attached comment" value="true"/>
-      </radiogroup>
-    </vbox>
-
-    <html:div style="display: grid;align-items: center;grid-template-columns: 1fr max-content max-content;">
-      <html:label for="__addonRed__-textbox-speak">Speak</html:label>
-      <html:label class="modifier optional-shift"/>
-      <html:input type="text"
-                  id="__addonRed__-textbox-speak"
-                  maxlength="1"
-                  size="1"
-                  preference="__prefsPrefix__.shortcuts.speak"/>
-
-      <html:label for="__addonRed__-textbox-pause">Pause</html:label>
-      <html:label class="modifier required-shift"/>
-      <html:input type="text"
-                  id="__addonRed__-textbox-pause"
-                  maxlength="1"
-                  size="1"
-                  preference="__prefsPrefix__.shortcuts.pause"/>
-
-      <html:label for="__addonRed__-textbox-cancel">Cancel</html:label>
-      <html:label class="modifier required-shift"/>
-      <html:input type="text"
-                  id="__addonRed__-textbox-cancel"
-                  maxlength="1"
-                  size="1"
-                  preference="__prefsPrefix__.shortcuts.cancel"/>
-    </html:div>
-
-  </groupbox>
-
   <groupbox id="__addonRef__-webspeech">
     <label><html:h2>Web Speech</html:h2></label>
 
@@ -149,29 +101,69 @@
 
   </groupbox>
 
-    <!--<vbox>-->
-    <!--  <label-->
-    <!--    value="&zotero.__addonRef__.help.version.label;  &zotero.__addonRef__.help.releasetime.label;"-->
-    <!--  ></label>-->
-    <!--</vbox>-->
+  <groupbox id="__addonRef__-shortcuts">
+    <label><html:h2>Shortcuts</html:h2></label>
 
+    <label for="__addonRef__-shortcuts-grid">
+      <html:h4 style="margin-bottom:1px">Shortcut Keys</html:h4>
+    </label>
+    <html:div
+            id="__addonRef__-shortcuts-grid"
+            style="display: grid;align-items: center;grid-template-columns: 1fr max-content max-content;"
+    >
+      <html:label for="__addonRed__-textbox-speak">Speak</html:label>
+      <html:label class="modifier optional-shift"/>
+      <html:input type="text"
+                  id="__addonRed__-textbox-speak"
+                  maxlength="1"
+                  size="1"
+                  preference="__prefsPrefix__.shortcuts.speak"/>
 
-    <!--    <checkbox-->
-    <!--      id="zotero-prefpane-__addonRef__-enable"-->
-    <!--      label="&zotero.__addonRef__.pref.enable.label;"-->
-    <!--      preference="extensions.zotero.__addonRef__.enable"-->
-    <!--    />-->
-    <!--    <hbox>-->
-    <!--      <html:label for="zotero-prefpane-__addonRef__-input"-->
-    <!--        >&zotero.__addonRef__.pref.input.label;</html:label-->
-    <!--      >-->
-    <!--      <html:input-->
-    <!--        type="text"-->
-    <!--        id="zotero-prefpane-__addonRef__-input"-->
-    <!--        preference="extensions.zotero.__addonRef__.input"-->
-    <!--      ></html:input>-->
-    <!--    </hbox>-->
-    <!--    <hbox class="virtualized-table-container" flex="1" height="300px">-->
-    <!--      <html:div id="__addonRef__-table-container" />-->
-    <!--    </hbox>-->
+      <html:label for="__addonRed__-textbox-pause">Pause</html:label>
+      <html:label class="modifier required-shift"/>
+      <html:input type="text"
+                  id="__addonRed__-textbox-pause"
+                  maxlength="1"
+                  size="1"
+                  preference="__prefsPrefix__.shortcuts.pause"/>
+
+      <html:label for="__addonRed__-textbox-cancel">Cancel</html:label>
+      <html:label class="modifier required-shift"/>
+      <html:input type="text"
+                  id="__addonRed__-textbox-cancel"
+                  maxlength="1"
+                  size="1"
+                  preference="__prefsPrefix__.shortcuts.cancel"/>
+    </html:div>
+
+    <label for="__addonRef__-shortcuts-shift">
+      <html:h4 style="margin-bottom:1px">Shift Modifier</html:h4>
+    </label>
+    <html:div id="__addonRef__-shortcuts-shift">
+      <html:p style="margin-left:20px;">You can change whether ZoTTS will read the title/abstract of library items and the text/comment of annotations by holding Shift.</html:p>
+
+      <html:p style="margin-left:20px;">Select what ZoTTS should do when <html:em>not</html:em> holding Shift</html:p>
+
+      <label>When speaking a library item:</label>
+      <radiogroup
+              preference="__prefsPrefix__.shortcuts.swapLibraryItem"
+              style="padding-left:30px;"
+              orient="horizontal"
+      >
+        <radio label="Speak title" value="false"/>
+        <radio label="Speak abstract" value="true"/>
+      </radiogroup>
+
+      <label>When speaking an annotation:</label>
+      <radiogroup
+              preference="__prefsPrefix__.shortcuts.swapAnnotation"
+              style="padding-left:30px;"
+              orient="horizontal"
+      >
+        <radio label="Speak annotated text" value="false"/>
+        <radio label="Speak attached comment" value="true"/>
+      </radiogroup>
+    </html:div>
+
+  </groupbox>
 </vbox>
