@@ -241,7 +241,10 @@ export async function registerReaderListeners() {
                                 }
                             ]
                         },
-                    ]
+                    ],
+                    styles: {
+                        display: "flex",
+                    }
                 }
             )
 
