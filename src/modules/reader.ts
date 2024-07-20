@@ -13,6 +13,11 @@ export async function registerReaderListeners() {
         .then((res) => res.text())
         .then((text) => {playIcon = text})
 
+    let pauseIcon: string
+    await fetch(`chrome://${config.addonRef}/content/icons/pause@16.svg`)
+        .then((res) => res.text())
+        .then((text) => {pauseIcon = text})
+
     let cancelIcon: string
     await fetch(`chrome://${config.addonRef}/content/icons/cancel@16.svg`)
         .then((res) => res.text())
@@ -196,6 +201,24 @@ export async function registerReaderListeners() {
                                     listener: (e) => {
                                         // ztoolkit.log(`${reader.itemID}`)
                                         addon.hooks.onContextualSpeak()
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            tag: "button",
+                            namespace: "html",
+                            properties: {
+                                innerHTML: `${pauseIcon}`,
+                                // innerHTML: "PAUSE"
+                            },
+                            classList: ["toolbar-button",],
+                            listeners: [
+                                {
+                                    type: "click",
+                                    listener: (e) => {
+                                        // ztoolkit.log(`${reader.itemID}`)
+                                        addon.hooks.onPause()
                                     }
                                 }
                             ]
