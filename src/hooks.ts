@@ -167,6 +167,10 @@ function onPrefsLoad(type: string, doc: Document) {
       label.textContent = Zotero.isMac ?
           "Cmd (+ Shift) +" :
           "Ctrl (+ Shift) +"
+    } else {
+      label.textContent = Zotero.isMac ?
+          "Cmd +" :
+          "Ctrl +"
     }
   }
 }
