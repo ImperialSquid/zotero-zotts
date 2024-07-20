@@ -147,6 +147,14 @@ function onContextualSpeak() {
   }
 }
 
+function onSpeakOrResume(text?: string) {
+  if (addon.data.tts.state === "paused") {
+    onResume()
+  } else {
+    onSpeak(text || "")
+  }
+}
+
 function onPrefsLoad(type: string, doc: Document) {
   let voices = (addon.data.tts.engines.webSpeech.extras.getVoices() as Array<string>)
   let menu = (doc.getElementById("webspeech-voice") as MenuList)
@@ -162,8 +170,9 @@ export default {
   onStop,
   onPause,
   onResume,
+  onContextualSpeak,
+  onSpeakOrResume,
   onPrefsLoad,
-  onContextualSpeak
 }
 
 
