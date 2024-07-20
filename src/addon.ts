@@ -1,40 +1,39 @@
-import ZoteroToolkit from "zotero-plugin-toolkit/dist/index";
-import { ColumnOptions } from "zotero-plugin-toolkit/dist/helpers/virtualizedTable";
-import hooks from "./hooks";
-import { initEngines } from "./modules/tts";
+import ZoteroToolkit from "zotero-plugin-toolkit/dist/index"
+import hooks from "./hooks"
+import { initEngines } from "./modules/tts"
 
 class Addon {
   public data: {
-    alive: boolean;
+    alive: boolean
     // Env type, see build.js
-    env: "development" | "production";
-    // ztoolkit: MyToolkit;
-    ztoolkit: ZoteroToolkit;
+    env: "development" | "production"
+    // ztoolkit: MyToolkit
+    ztoolkit: ZoteroToolkit
     locale?: {
-      current: any;
-    };
+      current: any
+    }
     ui: {
-      toolbars: Array<HTMLDivElement>;
-    };
+      toolbars: Array<HTMLDivElement>
+    }
     tts: {
-      current: string;
+      current: string
       engines: {
         [key: string]: {
-          name: string;
-          canPause: boolean;
-          speak: (input: string) => void;
-          stop: () => void;
-          pause?: () => void;
-          resume?: () => void;
+          name: string
+          canPause: boolean
+          speak: (input: string) => void
+          stop: () => void
+          pause?: () => void
+          resume?: () => void
           extras: {[key: string]: any}
         }
       }
     }
-  };
+  }
   // Lifecycle hooks
-  public hooks: typeof hooks;
+  public hooks: typeof hooks
   // APIs
-  public api: {};
+  public api: {}
 
   constructor() {
     this.data = {
@@ -49,9 +48,9 @@ class Addon {
         current: "",
         engines: {}
       }
-    };
-    this.hooks = hooks;
-    this.api = {};
+    }
+    this.hooks = hooks
+    this.api = {}
 
     initEngines(this)
   }
@@ -73,23 +72,23 @@ class Addon {
  */
 
 // TODO: optim - create custom toolkit to minify
-// import { BasicTool, unregister } from "zotero-plugin-toolkit/dist/basic";
-// import { UITool } from "zotero-plugin-toolkit/dist/tools/ui";
-// import { PreferencePaneManager } from "zotero-plugin-toolkit/dist/managers/preferencePane";
+// import { BasicTool, unregister } from "zotero-plugin-toolkit/dist/basic"
+// import { UITool } from "zotero-plugin-toolkit/dist/tools/ui"
+// import { PreferencePaneManager } from "zotero-plugin-toolkit/dist/managers/preferencePane"
 //
 // export class MyToolkit extends BasicTool {
-//   UI: UITool;
-//   PreferencePane: PreferencePaneManager;
+//   UI: UITool
+//   PreferencePane: PreferencePaneManager
 //
 //   constructor() {
-//     super();
-//     this.UI = new UITool(this);
-//     this.PreferencePane = new PreferencePaneManager(this);
+//     super()
+//     this.UI = new UITool(this)
+//     this.PreferencePane = new PreferencePaneManager(this)
 //   }
 //
 //   unregisterAll() {
-//     unregister(this);
+//     unregister(this)
 //   }
 // }
 
-export default Addon;
+export default Addon

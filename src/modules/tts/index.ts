@@ -1,11 +1,12 @@
-import Addon from "../../addon";
+import Addon from "../../addon"
 
 export function initEngines(addon: Addon) {
-    addon.data.tts.current = "webSpeech";
+    addon.data.tts.current = "webSpeech"
 
     import("./webSpeech").then(
         (e) => {
-            e.setDefaultPrefs();
+            e.setDefaultPrefs()
+
             addon.data.tts.engines["webSpeech"] = {
                 name: "Web Speech API",
                 speak: e.speak,
@@ -13,7 +14,9 @@ export function initEngines(addon: Addon) {
                 canPause: true,
                 pause: e.pause,
                 resume: e.resume,
-                extras: {getVoices: e.getVoices}
+                extras: {
+                    getVoices: e.getVoices
+                }
             }
         }
     )

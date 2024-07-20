@@ -1,22 +1,22 @@
-import {getPref, setPref} from "../utils/prefs";
+import { getPref, setPref } from "../utils/prefs"
 
 function speak(text: string) {
-    ztoolkit.log(`Speaking: ${text}`);
+    ztoolkit.log(`Speaking: ${text}`)
 
     if (getPref("newItemBehaviour") === "cancel" &&
         (window.speechSynthesis.speaking || window.speechSynthesis.pending)) {
-      window.speechSynthesis.cancel();
+      window.speechSynthesis.cancel()
     }
 
-    let utt = new window.SpeechSynthesisUtterance(text);
+    let utt = new window.SpeechSynthesisUtterance(text)
 
-    utt.pitch = (getPref("webSpeech.pitch") as number)/100;
-    utt.rate = (getPref("webSpeech.rate") as number)/100;
-    utt.volume = (getPref("webSpeech.volume") as number)/100;
+    utt.pitch = (getPref("webSpeech.pitch") as number)/100
+    utt.rate = (getPref("webSpeech.rate") as number)/100
+    utt.volume = (getPref("webSpeech.volume") as number)/100
 
     utt.voice = getVoice(getPref("webSpeech.voice") as string)
 
-    window.speechSynthesis.speak(utt);
+    window.speechSynthesis.speak(utt)
 }
 
 function stop() {
@@ -32,24 +32,21 @@ function resume() {
 }
 
 function setDefaultPrefs() {
-    // TODO: WSA - implement
-    ztoolkit.log("Setting default prefs");
-
     if (!getPref("webSpeech.pitch")) {
-        setPref("webSpeech.pitch", 1);
+        setPref("webSpeech.pitch", 1)
     }
 
     if (!getPref("webSpeech.rate")) {
-        setPref("webSpeech.rate", 1);
+        setPref("webSpeech.rate", 1)
     }
 
     if (!getPref("webSpeech.volume")) {
-        setPref("webSpeech.volume", 1);
+        setPref("webSpeech.volume", 1)
     }
 
     if (!getPref("webSpeech.voice")) {
         let voice = window.speechSynthesis.getVoices()[0].name
-        setPref("webSpeech.voice", voice);
+        setPref("webSpeech.voice", voice)
     }
 }
 
