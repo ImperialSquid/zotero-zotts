@@ -42,13 +42,13 @@
      id="layer1"
      transform="translate(1e-4)">
     <path
-       d="M 0.28896251,0.28906251 V 3.9433596 H 1.828849 V 0.28906251 Z m 0.3734173,0.45550446 H 1.4182854 V 3.4922836 H 0.66237981 Z"
-       style="fill:#2a7fff;stroke-width:0.560513"
+       d="M 0.47167736,0.47177736 V 3.7606447 H 1.8575752 V 0.47177736 Z M 0.80775293,0.88173138 H 1.488068 V 3.3546763 H 0.80775293 Z"
+       style="fill:#2a7fff;stroke-width:0.504462"
        id="path1"
        sodipodi:nodetypes="cccccccccc" />
     <path
-       d="M 2.4033731,0.2890625 V 3.9433596 H 3.9432596 V 0.2890625 Z M 2.7767904,0.74456695 H 3.532696 V 3.4922837 H 2.7767904 Z"
-       style="fill:#2a7fff;stroke-width:0.560513"
+       d="M 2.3746469,0.47177735 V 3.7606447 H 3.7605447 V 0.47177735 Z m 0.3360756,0.40995401 h 0.680315 V 3.3546764 h -0.680315 z"
+       style="fill:#2a7fff;stroke-width:0.504462"
        id="path1-7"
        sodipodi:nodetypes="cccccccccc" />
   </g>
