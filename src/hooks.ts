@@ -167,10 +167,10 @@ function onPrefsLoad(type: string, doc: Document) {
       label.textContent = Zotero.isMac ?
           "Cmd (+ Shift) +" :
           "Ctrl (+ Shift) +"
-    } else {
+    } else if (label.classList.contains("required-shift")) {
       label.textContent = Zotero.isMac ?
-          "Cmd +" :
-          "Ctrl +"
+          "Cmd + Shift +" :
+          "Ctrl + Shift +"
     }
   }
 }

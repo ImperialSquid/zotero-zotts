@@ -11,12 +11,12 @@ export function registerShortcuts() {
                 addon.hooks.onContextualSpeak()
             }
 
-            if (ev.ctrlKey &&
+            if (ev.ctrlKey && ev.shiftKey &&
                 ev.key === (getPref("shortcuts.pause") as string).toLowerCase()) {
                 addon.hooks.onPause()
             }
 
-            if (ev.ctrlKey &&
+            if (ev.ctrlKey && ev.shiftKey &&
                 ev.key === (getPref("shortcuts.cancel") as string).toLowerCase()) {
                 addon.hooks.onStop()
             }
