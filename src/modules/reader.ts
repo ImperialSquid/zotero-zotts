@@ -245,6 +245,10 @@ export async function registerReaderListeners() {
                 }
             )
 
+            // TODO: future - need to add check for addon.tts.engines[add.tts.current].canPause
+            //   WSA makes pausing easy to do, future TTS engines might not have the feature,
+            //   this button should be hidden in that case
+
             append(readerToolbarUI)
             addon.data.ui.toolbars.push(readerToolbarUI)
         }

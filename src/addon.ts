@@ -17,6 +17,8 @@ class Addon {
     }
     tts: {
       current: string
+      // TODO: future - need to add engine change hooks to gracefully cancel and
+      //   change state if paused when engine changes
       state: "idle" | "playing" | "paused"
       engines: {
         [key: string]: {
