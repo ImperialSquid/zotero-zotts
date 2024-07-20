@@ -7,5 +7,5 @@ pref("__prefsPrefix__.webSpeech.volume", 50);
 pref("__prefsPrefix__.shortcuts.speak", "S");
 pref("__prefsPrefix__.shortcuts.pause", "P");
 pref("__prefsPrefix__.shortcuts.cancel", "C");
-pref("__prefsPrefix__.shortcuts.swapLibraryItem", false);
-pref("__prefsPrefix__.shortcuts.swapAnnotation", false);
+pref("__prefsPrefix__.shortcuts.swapLibraryItem", "false");
+pref("__prefsPrefix__.shortcuts.swapAnnotation", "false");

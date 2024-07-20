@@ -113,7 +113,7 @@ function onContextualSpeak(shiftHeld?: boolean) {
     if (shiftHeld === undefined) {
       swap = false
     } else {
-      swap = shiftHeld !== (getPref("shortcuts.swapLibraryItem") as boolean)
+      swap = shiftHeld !== (getPref("shortcuts.swapLibraryItem") === "true")
     }
 
     if (items.length === 0) {
@@ -153,7 +153,7 @@ function onContextualSpeak(shiftHeld?: boolean) {
     if (shiftHeld === undefined) {
       swap = false
     } else {
-      swap = shiftHeld !== (getPref("shortcuts.swapAnnotation") as boolean)
+      swap = shiftHeld !== (getPref("shortcuts.swapAnnotation") === "true")
     }
 
     if ((selectedAnnos.length === 1) ||
