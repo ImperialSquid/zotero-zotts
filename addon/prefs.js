@@ -4,3 +4,4 @@ pref("__prefsPrefix__.webSpeech.voice", "");
 pref("__prefsPrefix__.webSpeech.pitch", 100);
 pref("__prefsPrefix__.webSpeech.rate", 100);
 pref("__prefsPrefix__.webSpeech.volume", 50);
+pref("__prefsPrefix__.shortcuts.speak", "S")
