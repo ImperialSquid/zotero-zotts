@@ -159,6 +159,16 @@ function onPrefsLoad(type: string, doc: Document) {
   let voices = (addon.data.tts.engines.webSpeech.extras.getVoices() as Array<string>)
   let menu = (doc.getElementById("webspeech-voice") as MenuList)
   voices.forEach((v) => menu.appendItem(v, v))
+
+  // shortcuts section moddelled on core Zotero
+  for (let label of doc.querySelectorAll(".modifier")) {
+    // Display the appropriate modifier keys for the platform
+    if (label.classList.contains("optional-shift")) {
+      label.textContent = Zotero.isMac ?
+          "Cmd (+ Shift) +" :
+          "Ctrl (+ Shift) +"
+    }
+  }
 }
 
 export default {
