@@ -103,13 +103,18 @@ function onResume() {
 
 // for speaking using shortcuts and UI elements not specifically tied to any text (eg text selection popup)
 // TODO: prefs - implement toggle between title/abstract and annotation/comment reading
-function onContextualSpeak(shiftHeld: boolean) {
+function onContextualSpeak(shiftHeld?: boolean) {
   if (Zotero_Tabs.selectedType == "library") {
     // library tab context
     let items = Zotero.getActiveZoteroPane().getSelectedItems()
     // TODO: future - add extra handling for other item types?
 
-    let swap = shiftHeld !== (getPref("shortcuts.swapLibraryItem") as boolean)
+    let swap: boolean
+    if (shiftHeld === undefined) {
+      swap = false
+    } else {
+      swap = shiftHeld !== (getPref("shortcuts.swapLibraryItem") as boolean)
+    }
 
     if (items.length === 0) {
       // if none selected, skip
@@ -144,7 +149,12 @@ function onContextualSpeak(shiftHeld: boolean) {
     let selectedAnnos = annos.filter((anno) =>
         reader._internalReader._state.selectedAnnotationIDs.includes(anno.id))
 
-    let swap = shiftHeld !== (getPref("shortcuts.swapAnnotation") as boolean)
+    let swap: boolean
+    if (shiftHeld === undefined) {
+      swap = false
+    } else {
+      swap = shiftHeld !== (getPref("shortcuts.swapAnnotation") as boolean)
+    }
 
     if ((selectedAnnos.length === 1) ||
         (selectedAnnos.length > 1 && getPref("newItemBehaviour") === "cancel")) {
@@ -163,7 +173,7 @@ function onContextualSpeak(shiftHeld: boolean) {
   }
 }
 
-function onSpeakOrResume(shiftHeld: boolean) {
+function onSpeakOrResume(shiftHeld?: boolean) {
   if (addon.data.tts.state === "paused") {
     onResume()
   } else {
