@@ -7,8 +7,8 @@ Thanks for expressing an interest in contributing to ZoTTS!
 4. Clone and build a local version of the plugin:
 
 ```shell
-git clone https://github.com/windingwind/zotero-pdf-translate.git
-cd zotero-pdf-translate
+git clone https://github.com/ImperialSquid/zotero-zotts.git
+cd zotero-zotts
 npm install
 npm run build
 ```
