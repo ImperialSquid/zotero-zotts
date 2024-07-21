@@ -33,6 +33,10 @@ In Reader tabs, `Ctrl/Cmd (+ Shift) + S` will speak any selected text within the
 You can swap the behaviour of `Ctrl/Cmd + S` and `Ctrl/Cmd + Shift + S` in the preferences.
 
 ### UI Elements
+In the Library tab, right clicking an item will bring up a context menu, you can tell ZoTTS to speak the title or abstract from here.
+
+![](docs/resources/right-click-buttons.png)
+
 In Reader tabs there's also buttons for playing/pausing/cancelling in the top right. These will act the same as using the speak/pause/cancel shortcuts in terms of speaking selected text/annotations, however, when speaking annotations it will default to speaking the annotated text.
 
 ![](docs/resources/play-pause-cancel-buttons.png)
