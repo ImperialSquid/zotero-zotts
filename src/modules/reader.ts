@@ -1,4 +1,5 @@
 import { config } from "../../package.json"
+import {getString} from "./utils/locale";
 
 export async function registerReaderListeners() {
     // fetching the icons rather than hard coding it allows for better stylistic
@@ -46,7 +47,7 @@ export async function registerReaderListeners() {
                         {
                             tag: "div",
                             properties: {
-                                innerHTML: `Speak Selection`
+                                innerHTML: getString("textPopup-selection")
                             },
                             styles: {
                                 display: "inline-block",
@@ -99,7 +100,7 @@ export async function registerReaderListeners() {
                                 {
                                     tag: "div",
                                     properties: {
-                                        innerHTML: `Anno.`
+                                        innerHTML: getString("anno-annotation")
                                     },
                                     styles: {
                                         display: "inline-block",
@@ -140,7 +141,7 @@ export async function registerReaderListeners() {
                                 {
                                     tag: "div",
                                     properties: {
-                                        innerHTML: `Comm.`
+                                        innerHTML: getString("anno-comment")
                                     },
                                     styles: {
                                         display: "inline-block",

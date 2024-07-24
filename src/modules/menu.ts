@@ -1,4 +1,5 @@
 import { config } from "../../package.json"
+import { getString } from "./utils/locale"
 
 
 export function registerMenu() {
@@ -8,8 +9,7 @@ export function registerMenu() {
     })
     ztoolkit.Menu.register("item", {
         tag: "menuitem",
-        // TODO: l10n - implement locale
-        label: "Read Title",
+        label: getString("itemMenu-title"),
         commandListener: (ev) => {
             let item = Zotero.Items.get(ZoteroPane.getSelectedItems(true)[0])
             let title = item.getField("title") as string
@@ -20,8 +20,7 @@ export function registerMenu() {
 
     ztoolkit.Menu.register("item", {
         tag: "menuitem",
-        // TODO: l10n - implement locale
-        label: "Read Abstract",
+        label: getString("itemMenu-abstract"),
         commandListener: (ev) => {
             let item = Zotero.Items.get(ZoteroPane.getSelectedItems(true)[0])
             let title = item.getField("abstractNote") as string

@@ -6,6 +6,7 @@ import { registerPrefsWindow } from "./modules/prefsWindow"
 import { registerShortcuts } from "./modules/shortcuts"
 import { registerReaderListeners } from "./modules/reader"
 import MenuList = XUL.MenuList
+import { initLocale } from "./modules/utils/locale";
 
 async function onStartup() {
   await Promise.all([
@@ -14,8 +15,7 @@ async function onStartup() {
     Zotero.uiReadyPromise,
   ])
 
-  // TODO: l10n - implement locale initialization
-  // initLocale()
+  initLocale()
 
   setDefaultPrefs()
 
