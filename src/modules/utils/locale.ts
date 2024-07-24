@@ -70,6 +70,14 @@ function _getString(
       args?: Record<string, unknown>
     } = {},
 ): string {
+  switch (localeString) {
+    case "alt":
+      return Zotero.isMac ? "⌥" : "Alt"
+    case "ctrl":
+      return Zotero.isMac ? "⌘" : "Ctrl"
+    case "shift":
+      return Zotero.isMac ? "⇧" : "Shift"
+  }
   const localStringWithPrefix = `${config.addonRef}-${localeString}`
   const { branch, args } = options
   const pattern = addon.data.locale?.current.formatMessagesSync([
@@ -79,11 +87,6 @@ function _getString(
     return localStringWithPrefix
   }
   if (branch && pattern.attributes) {
-    for (const attr of pattern.attributes) {
-      if (attr.name === branch) {
-        return attr.value
-      }
-    }
     return pattern.attributes[branch] || localStringWithPrefix
   } else {
     return pattern.value || localStringWithPrefix
