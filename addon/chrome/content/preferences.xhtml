@@ -1,17 +1,22 @@
+<linkset>
+  <html:link rel="localization" href="__addonRef__-preferences.ftl" />
+</linkset>
 <vbox
   id="zotero-prefpane-__addonRef__"
   onload="Zotero.__addonInstance__.hooks.onPrefsLoad('load', window.document)"
   xmlns:html="http://www.w3.org/1999/xhtml"
 >
   <groupbox id="__addonRef__-general">
-    <label><html:h2>General</html:h2></label>
+    <label><html:h2 data-l10n-id="pref-sect-general"></html:h2></label>
 
     <!-- queue or cancel on playing new items -->
     <vbox>
-      <label>When attempting to play multiple items:</label>
+      <label data-l10n-id="pref-general-queue-label"></label>
       <radiogroup preference="__prefsPrefix__.newItemBehaviour" style="padding-left:20px">
-        <radio label="Cancel anything currently playing" value="cancel"/>
-        <radio label="Add new item to a queue" value="queue"/>
+        <radio data-l10n-id="pref-general-queue-disable"
+               value="cancel"/>
+        <radio data-l10n-id="pref-general-queue-enable"
+               value="queue"/>
       </radiogroup>
     </vbox>
 
@@ -20,11 +25,13 @@
   </groupbox>
 
   <groupbox id="__addonRef__-webspeech">
-    <label><html:h2>Web Speech</html:h2></label>
+    <label><html:h2 data-l10n-id="pref-sect-wsa"></html:h2></label>
 
     <!-- WSA voice -->
     <vbox>
-      <html:label for="webspeech-voice">Current Voice</html:label>
+      <html:label data-l10n-id="pref-wsa-voice"
+                  for="webspeech-voice">
+      </html:label>
       <menulist id="webspeech-voice" preference="__prefsPrefix__.webSpeech.voice">
         <menupopup id="webspeech-voice-popup">
           <!-- populate at runtime -->
@@ -35,7 +42,9 @@
     <!-- volume label and slider -->
     <vbox>
       <hbox align="center">
-        <html:label for="webspeech-volume">Volume</html:label>
+        <html:label data-l10n-id="pref-wsa-volume"
+                    for="webspeech-volume">
+        </html:label>
         <html:input preference="__prefsPrefix__.webSpeech.volume"
                     readonly="true"
                     style="width:30px"
@@ -56,7 +65,9 @@
     <!-- rate label and slider -->
     <vbox>
       <hbox align="center">
-        <html:label for="webspeech-rate">Rate</html:label>
+        <html:label data-l10n-id="pref-wsa-rate"
+                    for="webspeech-rate">
+        </html:label>
         <html:input preference="__prefsPrefix__.webSpeech.rate"
                     readonly="true"
                     style="width:30px"
@@ -78,7 +89,9 @@
     <!-- pitch label and slider -->
     <vbox>
       <hbox align="center">
-        <html:label for="webspeech-pitch">Pitch</html:label>
+        <html:label data-l10n-id="pref-wsa-pitch"
+                    for="webspeech-pitch">
+        </html:label>
         <html:input preference="__prefsPrefix__.webSpeech.pitch"
                     readonly="true"
                     style="width:30px"
@@ -98,8 +111,7 @@
 
     <html:button
             onclick="Zotero.__addonInstance__.hooks.onSpeak('This is an example sentence using the current voice and other settings.')"
-    >
-      Test Voice
+            data-l10n-id="pref-wsa-testVoice">
     </html:button>
 
   </groupbox>
@@ -107,16 +119,20 @@
   <!-- NEW ENGINES HERE -->
 
   <groupbox id="__addonRef__-shortcuts">
-    <label><html:h2>Shortcuts</html:h2></label>
+    <label><html:h2 data-l10n-id="pref-sect-shortcuts"></html:h2></label>
 
     <label for="__addonRef__-shortcuts-grid">
-      <html:h4 style="margin-bottom:1px">Shortcut Keys</html:h4>
+      <html:h4 data-l10n-id="pref-subsect-shortcuts-keys"
+               style="margin-bottom:1px">
+      </html:h4>
     </label>
     <html:div
             id="__addonRef__-shortcuts-grid"
             style="display: grid;align-items: center;grid-template-columns: 1fr max-content max-content;"
     >
-      <html:label for="__addonRed__-textbox-speak">Speak</html:label>
+      <html:label data-l10n-id="pref-shortcuts-speak"
+                  for="__addonRed__-textbox-speak">
+      </html:label>
       <html:label class="modifier optional-shift"/>
       <html:input type="text"
                   id="__addonRed__-textbox-speak"
@@ -124,7 +140,9 @@
                   size="1"
                   preference="__prefsPrefix__.shortcuts.speak"/>
 
-      <html:label for="__addonRed__-textbox-pause">Pause</html:label>
+      <html:label data-l10n-id="pref-shortcuts-pause"
+                  for="__addonRed__-textbox-pause">
+      </html:label>
       <html:label class="modifier required-shift"/>
       <html:input type="text"
                   id="__addonRed__-textbox-pause"
@@ -132,7 +150,9 @@
                   size="1"
                   preference="__prefsPrefix__.shortcuts.pause"/>
 
-      <html:label for="__addonRed__-textbox-cancel">Cancel</html:label>
+      <html:label data-l10n-id="pref-shortcuts-cancel"
+                  for="__addonRed__-textbox-cancel">
+      </html:label>
       <html:label class="modifier required-shift"/>
       <html:input type="text"
                   id="__addonRed__-textbox-cancel"
@@ -142,31 +162,42 @@
     </html:div>
 
     <label for="__addonRef__-shortcuts-shift">
-      <html:h4 style="margin-bottom:1px">Shift Modifier</html:h4>
+      <html:h4 data-l10n-id="pref-subsect-shortcuts-shiftMod"
+               style="margin-bottom:1px">
+      </html:h4>
     </label>
+
     <html:div id="__addonRef__-shortcuts-shift">
-      <html:p style="margin-left:20px;">You can change whether ZoTTS will read the title/abstract of library items and the text/comment of annotations by holding Shift.</html:p>
+      <html:p data-l10n-id="pref-shiftMod-p1"
+              style="margin-left:20px;">
+      </html:p>
 
-      <html:p style="margin-left:20px;">Select what ZoTTS should do when <html:em>not</html:em> holding Shift</html:p>
+      <html:p data-l10n-id="pref-shiftMod-p2"
+              style="margin-left:20px;">
+      </html:p>
 
-      <label>When speaking a library item:</label>
+      <label data-l10n-id="pref-shiftMod-swapLib"></label>
       <radiogroup
               preference="__prefsPrefix__.shortcuts.swapLibraryItem"
               style="padding-left:30px;"
               orient="horizontal"
       >
-        <radio label="Speak title" value="false"/>
-        <radio label="Speak abstract" value="true"/>
+        <radio data-l10n-id="pref-shiftMod-swapLib-false"
+               value="false"/>
+        <radio data-l10n-id="pref-shiftMod-swapLib-true"
+               value="true"/>
       </radiogroup>
 
-      <label>When speaking an annotation:</label>
+      <label data-l10n-id="pref-shiftMod-swapAnno"></label>
       <radiogroup
               preference="__prefsPrefix__.shortcuts.swapAnnotation"
               style="padding-left:30px;"
               orient="horizontal"
       >
-        <radio label="Speak annotated text" value="false"/>
-        <radio label="Speak attached comment" value="true"/>
+        <radio data-l10n-id="pref-shiftMod-swapAnno-false"
+               value="false"/>
+        <radio data-l10n-id="pref-shiftMod-swapAnno-true"
+               value="true"/>
       </radiogroup>
     </html:div>
 
