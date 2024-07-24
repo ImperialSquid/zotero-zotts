@@ -6,7 +6,7 @@ import { registerPrefsWindow } from "./modules/prefsWindow"
 import { registerShortcuts } from "./modules/shortcuts"
 import { registerReaderListeners } from "./modules/reader"
 import MenuList = XUL.MenuList
-import { initLocale } from "./modules/utils/locale";
+import {getString, initLocale} from "./modules/utils/locale";
 
 async function onStartup() {
   await Promise.all([
@@ -187,6 +187,11 @@ function onSpeakOrResume(shiftHeld?: boolean) {
   }
 }
 
+// used in prefs window to test voice without having to switch back and forth
+function onSpeakTest() {
+  onSpeak(getString("speak-testVoice"))
+}
+
 function onPrefsLoad(type: string, doc: Document) {
   let voices = (addon.data.tts.engines.webSpeech.extras.getVoices() as Array<string>)
   let menu = (doc.getElementById("webspeech-voice") as MenuList)
@@ -218,5 +223,6 @@ export default {
   onResume,
   onContextualSpeak,
   onSpeakOrResume,
+  onSpeakTest,
   onPrefsLoad,
 }
