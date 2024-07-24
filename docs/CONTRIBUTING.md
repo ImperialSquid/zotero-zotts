@@ -15,8 +15,6 @@ npm run build
 5. You're ready to start!
 
 ## Adding Translations
-> [!NOTE]
-> Currently this is on hold since the very first version doesn't make use of localisation
 
 1. Navigate to addon > chrome > locale
 2. Copy the en-US folder
