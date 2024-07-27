@@ -1,4 +1,6 @@
 import { getPref, setPref } from "../utils/prefs"
+import { waitUtilAsync } from "../utils/wait";
+import MenuList = XUL.MenuList;
 
 function speak(text: string) {
     // cancel is safe to call even when not speaking
@@ -70,9 +72,11 @@ export {
     pause,
     resume,
     setDefaultPrefs,
-    getVoices
+    getVoices,
+    populateVoiceList
 }
 
+// extras
 function getVoice(voiceName: string) {
     let voices = window.speechSynthesis.getVoices()
     let filteredVoices = voices.filter((v) => v.name === voiceName)
@@ -84,4 +88,37 @@ function getVoice(voiceName: string) {
     }
 
     return filteredVoices[0]
+}
+
+function populateVoiceList (doc: Document) {
+    let menu = (doc.getElementById("webspeech-voice") as MenuList)
+    menu.appendItem(
+        "Loading Voices...",
+        (getPref("webSpeech.voice") as string) // preserve pref while loading
+    )
+
+    waitUtilAsync(
+        () => (getVoices() as Array<string>).length > 0,
+        50,
+        5000
+    ).then(
+        () => {
+            // remove loading item
+            ((menu.children as HTMLCollection)[0].children as HTMLCollection)[0].remove()
+        }
+    ).then(
+        () => {
+            // populate voices list
+            let voices = (getVoices() as Array<string>)
+            voices.forEach((v) => menu.appendItem(v, v))
+        }
+    ).catch(
+        () => {
+            // give user feedback
+            menu.appendItem(
+                "ERROR: Couldn't load voices",
+                (getPref("webSpeech.voice") as string) // still preserve any previous values just in case
+            )
+        }
+    );
 }

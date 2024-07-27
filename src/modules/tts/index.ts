@@ -15,7 +15,9 @@ export function initEngines(addon: Addon) {
                 pause: e.pause,
                 resume: e.resume,
                 extras: {
-                    getVoices: e.getVoices
+                    // technically not needed here since populateVoiceList exists, but could be useful
+                    getVoices: e.getVoices,
+                    populateVoiceList: e.populateVoiceList
                 }
             }
         }
