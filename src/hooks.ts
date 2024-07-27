@@ -7,6 +7,7 @@ import { registerShortcuts } from "./modules/shortcuts"
 import { registerReaderListeners } from "./modules/reader"
 import MenuList = XUL.MenuList
 import {getString, initLocale} from "./modules/utils/locale";
+import {waitUntil, waitUtilAsync} from "./modules/utils/wait";
 
 async function onStartup() {
   await Promise.all([
@@ -195,9 +196,37 @@ function onSpeakTest() {
 }
 
 function onPrefsLoad(type: string, doc: Document) {
-  let voices = (addon.data.tts.engines.webSpeech.extras.getVoices() as Array<string>)
   let menu = (doc.getElementById("webspeech-voice") as MenuList)
-  voices.forEach((v) => menu.appendItem(v, v))
+  menu.appendItem(
+      "Loading Voices...",
+      (getPref("webSpeech.voice") as string) // preserve pref while loading
+  )
+
+  waitUtilAsync(
+      () => (addon.data.tts.engines.webSpeech.extras.getVoices() as Array<string>).length > 0,
+      50,
+      5000
+  ).then(
+      () => {
+        // remove loading item
+        ((menu.children as HTMLCollection)[0].children as HTMLCollection)[0].remove()
+      }
+  ).then(
+      () => {
+        // populate voices list
+        let voices = (addon.data.tts.engines.webSpeech.extras.getVoices() as Array<string>)
+        voices.forEach((v) => menu.appendItem(v, v))
+        ztoolkit.log("2")
+      }
+  ).catch(
+      () => {
+        // give user feedback
+        menu.appendItem(
+            "ERROR: Couldn't load voices",
+            (getPref("webSpeech.voice") as string) // still preserve any previous values just in case
+        )
+      }
+  );
 
   // shortcuts section modelled on core Zotero
   for (let label of doc.querySelectorAll(".modifier")) {
