@@ -20,6 +20,9 @@ ZoTTS is a Zotero plugin to add TTS functionality
 
 The plugin should load straight away, and future updates will be downloaded automatically!
 
+> [!NOTE]
+> Some users report slow initial loads on Linux/Mac devices, please allow a few seconds for the first spoken text and/or preferences loading, subsequent functionality should work without any delays, fixes are currently being investigated
+
 ## Features :sparkles:
 ### Shortcuts
 - `Ctrl/Cmd + S` will begin **s**peaking (extra functionality is available with `Ctrl/Cmd + Shift + S`, discussed below)
