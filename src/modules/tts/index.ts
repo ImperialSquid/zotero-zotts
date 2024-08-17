@@ -3,7 +3,7 @@ import Addon from "../../addon"
 export function initEngines(addon: Addon) {
     addon.data.tts.current = "webSpeech"
 
-    import("./webSpeech").then(
+    let wsaPromise = import("./webSpeech").then(
         (e) => {
             e.setDefaultPrefs()
 
@@ -20,6 +20,16 @@ export function initEngines(addon: Addon) {
                     populateVoiceList: e.populateVoiceList
                 }
             }
+
+            return e
+        }
+    ).then(
+        (e) => {
+            // wsa init
+        }
+    ).catch(
+        ()  => {
+            // report error
         }
     )
 
@@ -28,4 +38,9 @@ export function initEngines(addon: Addon) {
     //   Azure?
     //   OS native (macOS, Windows, Linux) but not WSA?
     //   etc
+
+    return Promise.any([
+        wsaPromise,
+        // TODO: future - other engine promises here
+    ])
 }
