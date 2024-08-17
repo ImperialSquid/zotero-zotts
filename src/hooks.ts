@@ -56,8 +56,6 @@ async function onMainWindowLoad(win: Window): Promise<void> {
   //     `${config.addonRef}-mainWindow.ftl`,
   // )
 
-  addon.data.tts.engines["webSpeech"].speak("")
-
   registerPrefsWindow()
 
   registerMenu()
