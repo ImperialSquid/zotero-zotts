@@ -19,14 +19,6 @@ async function onStartup() {
 
   await initEngines(addon)
 
-  initLocale()
-
-  setDefaultPrefs()
-
-  registerShortcuts()
-
-  await registerReaderListeners()
-
   await onMainWindowLoad(window)
 }
 
@@ -56,9 +48,16 @@ async function onMainWindowLoad(win: Window): Promise<void> {
   //     `${config.addonRef}-mainWindow.ftl`,
   // )
 
-  registerPrefsWindow()
-
-  registerMenu()
+  if (addon.data.tts.status === "ready") {
+    initLocale()
+    setDefaultPrefs()
+    registerPrefsWindow()
+    registerMenu()
+    registerShortcuts()
+    await registerReaderListeners()
+  } else if (addon.data.tts.status === "error") {
+    // report init error
+  }
 }
 
 async function onMainWindowUnload(win: Window): Promise<void> {
