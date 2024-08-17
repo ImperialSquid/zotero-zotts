@@ -1,6 +1,6 @@
 import Addon from "../../addon"
 
-export function initEngines(addon: Addon) {
+export async function initEngines(addon: Addon) {
     addon.data.tts.current = "webSpeech"
 
     let wsaPromise = import("./webSpeech").then(
@@ -31,7 +31,7 @@ export function initEngines(addon: Addon) {
             addon.data.tts.engines["webSpeech"].status = "ready"
         }
     ).catch(
-        ()  => {
+        () => {
             addon.data.tts.engines["webSpeech"].status = "error"
         }
     )
@@ -42,16 +42,13 @@ export function initEngines(addon: Addon) {
     //   OS native (macOS, Windows, Linux) but not WSA?
     //   etc
 
-    return Promise.any([
-        wsaPromise,
-        // TODO: future - other engine promises here
-    ]).then(
-        () => {
-            addon.data.tts.status = "ready"
-        }
-    ).catch(
-        () => {
-            addon.data.tts.status = "error"
-        }
-    )
+    try {
+        await Promise.any([
+            wsaPromise,
+            // TODO: future - other engines promises here
+        ])
+        addon.data.tts.status = "ready"
+    } catch {
+        addon.data.tts.status = "error"
+    }
 }
