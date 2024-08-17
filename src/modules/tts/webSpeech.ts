@@ -66,7 +66,7 @@ async function initEngine() {
     let initAttempt = () => {
         return new Promise<Error | void>((resolve, reject) => {
             if (window.speechSynthesis.getVoices().length < 1 ) {
-                ztoolkit.log("WSA init fail - no voices")
+                // ztoolkit.log("WSA init fail - no voices")
                 reject("no voices")  // reject on no voices
 
             }
@@ -75,11 +75,11 @@ async function initEngine() {
             utt.volume = 0  // prevent unnecessary noise
 
             utt.onerror = () => {
-                ztoolkit.log("WSA init fail - errored utterance")
+                // ztoolkit.log("WSA init fail - errored utterance")
                 reject("errored utterance")
             }  // reject on errored utterance
             utt.onend = () => {
-                ztoolkit.log("WSA init success!")
+                // ztoolkit.log("WSA init success!")
                 resolve()
             }  // voices are present and utterance succeeds, resolve
 
