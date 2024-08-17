@@ -17,6 +17,10 @@ async function onStartup() {
 
   await initEngines(addon)
 
+  initLocale()
+
+  setDefaultPrefs()
+
   await onMainWindowLoad(window)
 }
 
@@ -47,8 +51,6 @@ async function onMainWindowLoad(win: Window): Promise<void> {
   // )
 
   if (addon.data.tts.status === "ready") {
-    initLocale()
-    setDefaultPrefs()
     registerPrefsWindow()
     registerMenu()
     registerShortcuts()
