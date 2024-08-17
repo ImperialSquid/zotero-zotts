@@ -33,3 +33,34 @@ export function waitUtilAsync(
     }, interval);
   });
 }
+
+// adapted from https://stackoverflow.com/questions/38213668/promise-retry-design-patterns
+export function retryUntilAsync(
+    func: () => Promise<any>,
+    tries: number,
+    delay: 100
+) {
+  return new Promise<Error | void>((resolve, reject) => {
+    let error: Error
+    let attempt = function() {
+      if (tries == 0) {
+        reject(error)
+      } else {
+        func()
+            .then(
+                () => {
+                  resolve()
+                }
+            ).catch(
+                (e) => {
+                  tries--
+                  error = e
+                  setTimeout(() => {
+                    attempt()
+                  }, delay)
+            })
+      }
+    }
+    attempt()
+  })
+}
