@@ -55,35 +55,42 @@ export async function initEngines(addon: Addon) {
     }
 }
 
-export function reportStatus() {
+export function checkAndReportStatus() {
     const popup = new Zotero.ProgressWindow({closeOnClick: true})
     popup.changeHeadline("ZoTTS")
 
     let text = ""
     let icon = ""
     let timer = 0
+    let statusGood = true
 
     // TODO: l10n - add status reporting localisation
     if (addon.data.tts.status === "error") {
         text = "ERROR: ZoTTS failed to load TTS engines. Please submit a bug report for assistance."
         icon = ""  // TODO: UI - Add error SVG
         timer = 10000
+        statusGood = false
     } else if (addon.data.tts.status === "loading") {
         text = "NOTICE: ZoTTS is still loading TTS engines, please be patient or submit a bug report if error persists."
         icon = ""  // TODO: UI - Add notice SVG
         timer = 5000
+        statusGood = false
     } else if (addon.data.tts.engines[addon.data.tts.current]?.status === "error") {
         text = `ERROR: TTS engine ${addon.data.tts.engines[addon.data.tts.current]?.name} failed to load. Please submit a bug report.`
         icon = ""  // TODO: UI - Add error SVG
         timer = 10000
+        statusGood = false
     } else if (addon.data.tts.engines[addon.data.tts.current]?.status === "loading") {
         text = `NOTICE: TTS engine ${addon.data.tts.engines[addon.data.tts.current]?.name} is still loading, please be patient or submit a bug report if error persists.`
         icon = ""  // TODO: UI - Add notice SVG
         timer = 5000
+        statusGood = false
     }
 
     popup.addLines(text, icon)
 
     popup.show()
     popup.startCloseTimer(timer)
+
+    return statusGood
 }
