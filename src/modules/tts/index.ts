@@ -25,13 +25,15 @@ export async function initEngines(addon: Addon) {
             return e
         }
     ).then(
-        (e) => {
-            // wsa init
-
+        async (e) => {
+            ztoolkit.log("WSA Initing")
+            await e.initEngine()
+            ztoolkit.log("WSA init success")
             addon.data.tts.engines["webSpeech"].status = "ready"
         }
     ).catch(
-        () => {
+        (e) => {
+            ztoolkit.log(`WSA init fail - ${e}`)
             addon.data.tts.engines["webSpeech"].status = "error"
         }
     )

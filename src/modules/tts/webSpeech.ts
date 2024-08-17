@@ -1,5 +1,5 @@
 import { getPref, setPref } from "../utils/prefs"
-import { waitUtilAsync } from "../utils/wait";
+import {retryUntilAsync, waitUntil, waitUtilAsync} from "../utils/wait";
 import MenuList = XUL.MenuList;
 
 function speak(text: string) {
@@ -62,12 +62,41 @@ function setDefaultPrefs() {
     }
 }
 
+async function initEngine() {
+    let initAttempt = () => {
+        return new Promise<Error | void>((resolve, reject) => {
+            if (window.speechSynthesis.getVoices().length < 1 ) {
+                ztoolkit.log("WSA init fail - no voices")
+                reject("no voices")  // reject on no voices
+
+            }
+
+            let utt = new window.SpeechSynthesisUtterance("initialised")
+            utt.volume = 0  // prevent unnecessary noise
+
+            utt.onerror = () => {
+                ztoolkit.log("WSA init fail - errored utterance")
+                reject("errored utterance")
+            }  // reject on errored utterance
+            utt.onend = () => {
+                ztoolkit.log("WSA init success!")
+                resolve()
+            }  // voices are present and utterance succeeds, resolve
+
+            window.speechSynthesis.speak(utt)
+        })
+    }
+
+    await retryUntilAsync(initAttempt, 5, 100)
+}
+
 export {
     speak,
     stop,
     pause,
     resume,
     setDefaultPrefs,
+    initEngine,
     getVoices,
     populateVoiceList
 }
