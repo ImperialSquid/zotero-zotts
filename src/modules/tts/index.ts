@@ -9,6 +9,7 @@ export function initEngines(addon: Addon) {
 
             addon.data.tts.engines["webSpeech"] = {
                 name: "Web Speech API",
+                status: "loading",
                 speak: e.speak,
                 stop: e.stop,
                 canPause: true,
@@ -26,10 +27,12 @@ export function initEngines(addon: Addon) {
     ).then(
         (e) => {
             // wsa init
+
+            addon.data.tts.engines["webSpeech"].status = "ready"
         }
     ).catch(
         ()  => {
-            // report error
+            addon.data.tts.engines["webSpeech"].status = "error"
         }
     )
 
@@ -42,5 +45,13 @@ export function initEngines(addon: Addon) {
     return Promise.any([
         wsaPromise,
         // TODO: future - other engine promises here
-    ])
+    ]).then(
+        () => {
+            addon.data.tts.status = "ready"
+        }
+    ).catch(
+        () => {
+            addon.data.tts.status = "error"
+        }
+    )
 }

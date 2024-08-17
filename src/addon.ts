@@ -21,9 +21,11 @@ class Addon {
       //   change state if paused when engine changes
       // each engine is responsible for managing changes to this state internally
       state: "idle" | "playing" | "paused"
+      status: "loading" | "ready" | "error"
       engines: {
         [key: string]: {
           name: string
+          status: "loading" | "ready" | "error"
           canPause: boolean
           speak: (input: string) => void
           stop: () => void
@@ -51,6 +53,7 @@ class Addon {
       tts: {
         current: "",
         state: "idle",
+        status: "loading",
         engines: {}
       }
     }
