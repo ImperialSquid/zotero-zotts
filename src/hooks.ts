@@ -8,6 +8,7 @@ import { registerReaderListeners } from "./modules/reader"
 import MenuList = XUL.MenuList
 import {getString, initLocale} from "./modules/utils/locale";
 import {waitUntil, waitUtilAsync} from "./modules/utils/wait";
+import {initEngines} from "./modules/tts";
 
 async function onStartup() {
   await Promise.all([
@@ -15,6 +16,8 @@ async function onStartup() {
     Zotero.unlockPromise,
     Zotero.uiReadyPromise,
   ])
+
+  await initEngines(addon)
 
   initLocale()
 

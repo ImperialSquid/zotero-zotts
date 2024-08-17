@@ -56,8 +56,6 @@ class Addon {
     }
     this.hooks = hooks
     this.api = {}
-
-    initEngines(this)
   }
 }
 
