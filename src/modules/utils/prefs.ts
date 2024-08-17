@@ -13,7 +13,7 @@ export function clearPref(key: string) {
 }
 
 export function setDefaultPrefs() {
-    if (!getPref("ttsEngine")) {
-        setPref("ttsEngine", "webSpeech")
+    if (!getPref("ttsEngine.current")) {
+        setPref("ttsEngine.current", "webSpeech")
     }
 }
