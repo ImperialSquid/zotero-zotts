@@ -1,5 +1,5 @@
 import { config } from "../../package.json"
-import {getString} from "./utils/locale";
+import { getString } from "./utils/locale";
 
 export async function registerReaderListeners() {
     // fetching the icons rather than hard coding it allows for better stylistic

@@ -5,10 +5,8 @@ import { registerMenu } from "./modules/menu"
 import { registerPrefsWindow } from "./modules/prefsWindow"
 import { registerShortcuts } from "./modules/shortcuts"
 import { registerReaderListeners } from "./modules/reader"
-import MenuList = XUL.MenuList
-import {getString, initLocale} from "./modules/utils/locale";
-import {waitUntil, waitUtilAsync} from "./modules/utils/wait";
-import { checkAndReportStatus, initEngines } from "./modules/tts";
+import { getString, initLocale } from "./modules/utils/locale"
+import { checkAndReportStatus, initEngines } from "./modules/tts"
 
 async function onStartup() {
   await Promise.all([

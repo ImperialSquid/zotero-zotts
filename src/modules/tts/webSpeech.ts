@@ -1,5 +1,5 @@
 import { getPref, setPref } from "../utils/prefs"
-import {retryUntilAsync, waitUntil, waitUtilAsync} from "../utils/wait";
+import { retryUntilAsync, waitUtilAsync } from "../utils/wait";
 import MenuList = XUL.MenuList;
 
 function speak(text: string) {
