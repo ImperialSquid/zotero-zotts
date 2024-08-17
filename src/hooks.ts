@@ -8,7 +8,7 @@ import { registerReaderListeners } from "./modules/reader"
 import MenuList = XUL.MenuList
 import {getString, initLocale} from "./modules/utils/locale";
 import {waitUntil, waitUtilAsync} from "./modules/utils/wait";
-import {initEngines} from "./modules/tts";
+import { checkAndReportStatus, initEngines } from "./modules/tts";
 
 async function onStartup() {
   await Promise.all([
@@ -56,7 +56,7 @@ async function onMainWindowLoad(win: Window): Promise<void> {
     registerShortcuts()
     await registerReaderListeners()
   } else if (addon.data.tts.status === "error") {
-    // report init error
+    checkAndReportStatus()
   }
 }
 
@@ -84,26 +84,34 @@ function onShutdown(): void {
 //   WSA on windows can be a little rough (eg pronouncing "a/b" as "a forward slash b", etc)
 //   might be nice to reformat text into a better form, might have to be managed by each engine internally
 function onSpeak(text: string) {
-  addon.data.tts.engines[addon.data.tts.current].speak(text)
+  if (checkAndReportStatus()) {
+    addon.data.tts.engines[addon.data.tts.current].speak(text)
+  }
 }
 
 function onStop() {
-  addon.data.tts.engines[addon.data.tts.current].stop()
+  if (checkAndReportStatus()) {
+    addon.data.tts.engines[addon.data.tts.current].stop()
+  }
 }
 
 // TODO: future - implement skipping to next as well as cancelling all
 
 function onPause() {
-  if (addon.data.tts.engines[addon.data.tts.current].canPause) {
-    // @ts-ignore
-    addon.data.tts.engines[addon.data.tts.current].pause()
+  if (checkAndReportStatus()) {
+    if (addon.data.tts.engines[addon.data.tts.current].canPause) {
+      // @ts-ignore
+      addon.data.tts.engines[addon.data.tts.current].pause()
+    }
   }
 }
 
 function onResume() {
-  if (addon.data.tts.engines[addon.data.tts.current].canPause) {
-    // @ts-ignore
-    addon.data.tts.engines[addon.data.tts.current].resume()
+  if (checkAndReportStatus()) {
+    if (addon.data.tts.engines[addon.data.tts.current].canPause) {
+      // @ts-ignore
+      addon.data.tts.engines[addon.data.tts.current].resume()
+    }
   }
 }
 
