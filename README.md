@@ -4,9 +4,8 @@ ZoTTS is a Zotero plugin to add TTS functionality
 ## Install :rocket:
 
 > [!NOTE]
-> ZoTTS is only available for Zotero 7+ due to major differences between the two versions.
-> If you want to use ZoTTS and need to download Zotero 7, it's available [here](https://www.zotero.org/support/beta_builds).
-> Be aware that Zotero 7 in still in beta version right now.
+> ZoTTS is only available for Zotero 7+ due to major differences between 6/7
+> If you're still using Zotero 6, you'll need to download Zotero 7, it's available [here](https://www.zotero.org/download/).
 
 > The latest stable version is available [here](https://github.com/ImperialSquid/zotero-zotts/releases/latest)
 > The full version list, including prerelease versions is [here](https://github.com/ImperialSquid/zotero-zotts/releases)
