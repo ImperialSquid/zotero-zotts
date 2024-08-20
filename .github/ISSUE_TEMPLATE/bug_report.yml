@@ -1,0 +1,77 @@
+name: Bug Report
+description: Create a report to describe a problem.
+title: "[Bug]: "
+labels: ["bug"]
+assignees:
+  - ImperialSquid
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have used the search function for [**OPEN**](https://github.com/ImperialSquid/zotero-zotts/issues) issues to see if someone else has already submitted the same bug report.
+          required: true
+        - label: I have **also** used the search function for [**CLOSED**](https://github.com/ImperialSquid/zotero-zotts/issues?q=is%3Aissue+is%3Aclosed) issues to see if the problem is already solved and just waiting to be released.
+          required: true
+        - label: I have described the problem with as much detail as possible.
+          required: true
+        - label: If the bug only to occurs with a certain paper, I will include its details.
+          required: true
+  - type: input
+    id: zotero-version
+    attributes:
+      label: Zotero version
+      description: What version of Zotero did the problem occur on? This information can be found in on `Help > About Zotero`
+      placeholder: x.y.z
+    validations:
+      required: true
+  - type: input
+    id: zotts-version
+    attributes:
+      label: ZoTTS version
+      description: What version of ZoTTS did the problem occur on? This information can be found in on ``
+      placeholder: x.y.z
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: OS
+      multiple: false
+      options:
+        - Windows
+        - Mac
+        - Linux
+    validations:
+      required: true
+  - type: input
+    id: os-specific
+    attributes:
+      label: OS (specific)
+      description: Add specific details about the operating system (eg "Windows 10", "Linux Mint")
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. This
+        2. Then that
+        3. Then this
+        4. Etc.
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+      description: After following the steps, what did you think ZoTTS would do?
+  - type: textarea
+    id: current
+    attributes:
+      label: Actual behaviour
+      description: What did ZoTTS do instead? Screenshots can be added if needed.
