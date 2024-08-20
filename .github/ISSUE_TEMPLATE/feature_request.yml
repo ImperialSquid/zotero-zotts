@@ -1,6 +1,9 @@
 name: Feature Request
 description: Request a new feature or enhancement!
+title: "[FR]: "
 labels: ["feature request"]
+assignees: 
+  - ImperialSquid
 body:
   - type: checkboxes
     id: checklist
