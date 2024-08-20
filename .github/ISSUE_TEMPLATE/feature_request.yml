@@ -13,7 +13,7 @@ body:
           required: true
         - label: I have read through the [changelog](https://github.com/ImperialSquid/zotero-zotts/blob/main/docs/CHANGELOG.md) to confirm the feature doesn't already exist. 
           required: true
-        - label: I have read through the [roadmap](https://github.com/ImperialSquid/zotero-zotts/blob/main/docs/ROADMAP.md) to confirm the feature isn't already planned. (Note: you can still open a feature request if you think the feature should have a higher priority/should be implemented differently/etc!)
+        - label: I have read through the [roadmap](https://github.com/ImperialSquid/zotero-zotts/blob/main/docs/ROADMAP.md) to confirm the feature isn't already planned. (Note - you can still open a feature request if you think the feature should have a higher priority/should be implemented differently/etc!)
           required: true
         - label: I have described the feature request with as much detail as possible.
           required: true
