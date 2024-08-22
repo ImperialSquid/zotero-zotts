@@ -7,7 +7,7 @@ import { registerShortcuts } from "./modules/shortcuts"
 import { registerReaderListeners } from "./modules/reader"
 import { getString, initLocale } from "./modules/utils/locale"
 import { checkAndReportStatus, initEngines } from "./modules/tts"
-import { getSelectedText } from "./modules/utils/readerUtils";
+import { getSelectedText, getSelectedAnnotations } from "./modules/utils/readerUtils";
 
 async function onStartup() {
   await Promise.all([
@@ -165,9 +165,7 @@ function onContextualSpeak(shiftHeld?: boolean) {
       addon.hooks.onSpeak(text)
     }
 
-    let annos = reader._internalReader._annotationManager._annotations
-    let selectedAnnos = annos.filter((anno) =>
-        reader._internalReader._state.selectedAnnotationIDs.includes(anno.id))
+    let selectedAnnos = getSelectedAnnotations(reader)
 
     let swap: boolean
     if (shiftHeld === undefined) {
