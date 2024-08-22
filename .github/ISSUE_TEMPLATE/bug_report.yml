@@ -70,8 +70,12 @@ body:
     attributes:
       label: Expected behaviour
       description: After following the steps, what did you think ZoTTS would do?
+    validations: 
+      required: true
   - type: textarea
     id: current
     attributes:
       label: Actual behaviour
       description: What did ZoTTS do instead? Screenshots can be added if needed.
+    validations: 
+      required: true
