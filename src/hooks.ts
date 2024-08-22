@@ -7,6 +7,7 @@ import { registerShortcuts } from "./modules/shortcuts"
 import { registerReaderListeners } from "./modules/reader"
 import { getString, initLocale } from "./modules/utils/locale"
 import { checkAndReportStatus, initEngines } from "./modules/tts"
+import { getSelectedText } from "./modules/utils/readerUtils";
 
 async function onStartup() {
   await Promise.all([
@@ -159,7 +160,9 @@ function onContextualSpeak(shiftHeld?: boolean) {
 
     if (ztoolkit.Reader.getSelectedText(reader) !== "") {
       // if text selected, read
-      addon.hooks.onSpeak(ztoolkit.Reader.getSelectedText(reader))
+
+      let text = getSelectedText(reader)
+      addon.hooks.onSpeak(text)
     }
 
     let annos = reader._internalReader._annotationManager._annotations
