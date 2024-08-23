@@ -1,7 +1,8 @@
 import ReaderInstance = _ZoteroTypes.ReaderInstance;
 
 export function getSelectedText(reader: ReaderInstance) {
-    return ztoolkit.Reader.getSelectedText(reader)
+    // @ts-ignore
+    return reader._internalReader._primaryView._iframeWindow?.getSelection()?.getRangeAt(0).toString() || ""
 }
 
 export function getSelectedAnnotations(reader: ReaderInstance) {
