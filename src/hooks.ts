@@ -157,36 +157,36 @@ function onContextualSpeak(shiftHeld?: boolean) {
     if (reader === undefined) {
       return
     }
+    let selectedAnnos = getSelectedAnnotations(reader)
 
     if (ztoolkit.Reader.getSelectedText(reader) !== "") {
       // if text selected, read
-
       let text = getSelectedText(reader)
       addon.hooks.onSpeak(text)
-    }
 
-    let selectedAnnos = getSelectedAnnotations(reader)
+    } else if (selectedAnnos.length > 0) {
+      // if annos selected, read them instead
+      let swap: boolean
+      if (shiftHeld === undefined) {
+        swap = false
+      } else {
+        swap = shiftHeld !== (getPref("shortcuts.swapAnnotation") === "true")
+      }
 
-    let swap: boolean
-    if (shiftHeld === undefined) {
-      swap = false
-    } else {
-      swap = shiftHeld !== (getPref("shortcuts.swapAnnotation") === "true")
-    }
+      if ((selectedAnnos.length === 1) ||
+          (selectedAnnos.length > 1 && getPref("newItemBehaviour") === "cancel")) {
+        // if single anno, or if multiple anno and queue disabled, just read first
 
-    if ((selectedAnnos.length === 1) ||
-        (selectedAnnos.length > 1 && getPref("newItemBehaviour") === "cancel")) {
-      // if single anno, or if multiple anno and queue disabled, just read first
-
-      let text = swap ? selectedAnnos[0].comment : selectedAnnos[0].text
-      addon.hooks.onSpeak(text || "")
-    } else {
-      // if multiple annotation and queue enabled, read all
-
-      selectedAnnos.forEach((a) => {
-        let text = swap ? a.comment: a.text
+        let text = swap ? selectedAnnos[0].comment : selectedAnnos[0].text
         addon.hooks.onSpeak(text || "")
-      })
+      } else {
+        // if multiple annotation and queue enabled, read all
+
+        selectedAnnos.forEach((a) => {
+          let text = swap ? a.comment : a.text
+          addon.hooks.onSpeak(text || "")
+        })
+      }
     }
   }
 }
