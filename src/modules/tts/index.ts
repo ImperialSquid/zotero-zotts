@@ -1,4 +1,5 @@
 import Addon from "../../addon"
+import { getString } from "../utils/locale";
 
 export async function initEngines(addon: Addon) {
     addon.data.tts.current = "webSpeech"
@@ -70,23 +71,31 @@ export function reportStatus() {
 
     // TODO: l10n - add status reporting localisation
     if (addon.data.tts.status === "error") {
-        text = "ERROR: ZoTTS failed to load TTS engines. Please submit a bug report for assistance."
+        text = getString("status-ttsError")
         icon = ""  // TODO: UI - Add error SVG
         timer = 10000
     } else if (addon.data.tts.status === "loading") {
-        text = "NOTICE: ZoTTS is still loading TTS engines, please be patient or submit a bug report if error persists."
+        text = getString("status-ttsLoading")
         icon = ""  // TODO: UI - Add notice SVG
         timer = 5000
     } else if (addon.data.tts.engines[addon.data.tts.current]?.status === "error") {
-        text = `ERROR: TTS engine ${addon.data.tts.engines[addon.data.tts.current]?.name} failed to load. Please submit a bug report.`
+        text = getString("status-addonError",  {
+            args: {
+                engineName: addon.data.tts.engines[addon.data.tts.current]?.name
+            }
+        })
         icon = ""  // TODO: UI - Add error SVG
         timer = 10000
     } else if (addon.data.tts.engines[addon.data.tts.current]?.status === "loading") {
-        text = `NOTICE: TTS engine ${addon.data.tts.engines[addon.data.tts.current]?.name} is still loading, please be patient or submit a bug report if error persists.`
+        text = getString("status-addonLoading",  {
+            args: {
+                engineName: addon.data.tts.engines[addon.data.tts.current]?.name
+            }
+        })
         icon = ""  // TODO: UI - Add notice SVG
         timer = 5000
     } else if (addon.data.tts.status === "ready" && addon.data.tts.engines[addon.data.tts.current]?.status === "ready") {
-        text = "Loaded and initialised successfully"
+        text = getString("status-allGood")
         icon = "" // TODO: UI - Add ready SVG
         timer = 1500
     }
