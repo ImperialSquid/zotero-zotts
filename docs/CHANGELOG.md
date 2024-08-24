@@ -30,3 +30,8 @@ This file is intended as a human-readable non-technical summary of the changes i
 - A more major stability overhaul, both to reduce buggy behaviour, and to reduce user confusion
 - ZoTTS shouldn't load any UI elements/shortcuts/menu items/etc *until* it's ready to speak
 - Added notifications in case ZoTTS fails to load so the user isn't left wondering
+
+## v1.2.1
+*Released 24/08/2024*
+- Fixes a bug where selected text with diacritics might not be spoken correctly
+- Lots of documentation changes, should make knowing the state of development and reporting issues much easier.
