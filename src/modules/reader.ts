@@ -1,5 +1,6 @@
 import { config } from "../../package.json"
 import { getString } from "./utils/locale";
+import { getSelectedText } from "./utils/readerUtils";
 
 export async function registerReaderListeners() {
     // fetching the icons rather than hard coding it allows for better stylistic
@@ -58,7 +59,7 @@ export async function registerReaderListeners() {
                     listeners: [
                         {
                             type: "click",
-                            listener: (e) => {addon.hooks.onSpeak(params.annotation.text.trim())}
+                            listener: (e) => {addon.hooks.onSpeak(getSelectedText(reader))}
                         }
                     ],
                     styles: {
