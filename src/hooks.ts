@@ -56,9 +56,9 @@ async function onMainWindowLoad(win: Window): Promise<void> {
     registerMenu()
     registerShortcuts()
     await registerReaderListeners()
-  } else {
-    reportStatus()
   }
+
+  reportStatus()  // report ready or error status as soon as possible
 }
 
 async function onMainWindowUnload(win: Window): Promise<void> {

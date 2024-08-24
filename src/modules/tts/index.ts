@@ -85,6 +85,10 @@ export function reportStatus() {
         text = `NOTICE: TTS engine ${addon.data.tts.engines[addon.data.tts.current]?.name} is still loading, please be patient or submit a bug report if error persists.`
         icon = ""  // TODO: UI - Add notice SVG
         timer = 5000
+    } else if (addon.data.tts.status === "ready" && addon.data.tts.engines[addon.data.tts.current]?.status === "ready") {
+        text = "Loaded and initialised successfully"
+        icon = "" // TODO: UI - Add ready SVG
+        timer = 1500
     }
 
     popup.addLines(text, icon)
