@@ -1,4 +1,4 @@
-import { checkAndReportStatus } from "."
+import { checkStatus, reportStatus } from "."
 import { getString } from "../utils/locale"
 import { getPref } from "../utils/prefs"
 import { getSelectedAnnotations, getSelectedText } from "../utils/readerUtils"
@@ -8,34 +8,42 @@ import { getSelectedAnnotations, getSelectedText } from "../utils/readerUtils"
 
 //   might be nice to reformat text into a better form, might have to be managed by each engine internally
 function speak(text: string) {
-    if (checkAndReportStatus()) {
+    if (checkStatus()) {
         addon.data.tts.engines[addon.data.tts.current].speak(text)
+    } else {
+        reportStatus()
     }
 }
 
 function stop() {
-    if (checkAndReportStatus()) {
+    if (checkStatus()) {
         addon.data.tts.engines[addon.data.tts.current].stop()
+    } else {
+        reportStatus()
     }
 }
 
 // TODO: future - implement skipping to next as well as cancelling all
 
 function pause() {
-    if (checkAndReportStatus()) {
+    if (checkStatus()) {
         if (addon.data.tts.engines[addon.data.tts.current].canPause) {
             // @ts-ignore
             addon.data.tts.engines[addon.data.tts.current].pause()
         }
+    } else {
+        reportStatus()
     }
 }
 
 function resume() {
-    if (checkAndReportStatus()) {
+    if (checkStatus()) {
         if (addon.data.tts.engines[addon.data.tts.current].canPause) {
             // @ts-ignore
             addon.data.tts.engines[addon.data.tts.current].resume()
         }
+    } else {
+        reportStatus()
     }
 }
 

@@ -6,7 +6,7 @@ import { registerPrefsWindow } from "./modules/prefsWindow"
 import { registerShortcuts } from "./modules/shortcuts"
 import { registerReaderListeners } from "./modules/reader"
 import { initLocale } from "./modules/utils/locale"
-import { checkAndReportStatus, initEngines } from "./modules/tts"
+import { initEngines, checkStatus, reportStatus } from "./modules/tts"
 import { speak, stop, pause, resume, speakOrResume, speakTest } from "./modules/tts/ttsHooks";
 
 async function onStartup() {
@@ -51,13 +51,13 @@ async function onMainWindowLoad(win: Window): Promise<void> {
   //     `${config.addonRef}-mainWindow.ftl`,
   // )
 
-  if (addon.data.tts.status === "ready") {
+  if (checkStatus()) {
     registerPrefsWindow()
     registerMenu()
     registerShortcuts()
     await registerReaderListeners()
-  } else if (addon.data.tts.status === "error") {
-    checkAndReportStatus()
+  } else {
+    reportStatus()
   }
 }
 
