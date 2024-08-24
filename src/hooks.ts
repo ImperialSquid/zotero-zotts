@@ -1,13 +1,12 @@
 import { config } from "../package.json"
-import { getPref, setDefaultPrefs } from "./modules/utils/prefs"
+import { setDefaultPrefs } from "./modules/utils/prefs"
 import ZoteroToolkit from "zotero-plugin-toolkit/dist/index"
 import { registerMenu } from "./modules/menu"
 import { registerPrefsWindow } from "./modules/prefsWindow"
 import { registerShortcuts } from "./modules/shortcuts"
 import { registerReaderListeners } from "./modules/reader"
-import { getString, initLocale } from "./modules/utils/locale"
+import { initLocale } from "./modules/utils/locale"
 import { checkAndReportStatus, initEngines } from "./modules/tts"
-import { getSelectedText, getSelectedAnnotations } from "./modules/utils/readerUtils";
 import { speak, stop, pause, resume, speakOrResume, speakTest } from "./modules/tts/ttsHooks";
 
 async function onStartup() {

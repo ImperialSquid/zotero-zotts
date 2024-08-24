@@ -1,6 +1,5 @@
 import ZoteroToolkit from "zotero-plugin-toolkit/dist/index"
 import hooks from "./hooks"
-import { initEngines } from "./modules/tts"
 
 class Addon {
   public data: {
