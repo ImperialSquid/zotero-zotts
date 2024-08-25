@@ -9,6 +9,8 @@ export function preprocessText(text: string) {
 // preprocessing that should occur on every piece of text to ensure consistency
 // stuff like unicode encoding, removing double newlines, etc
 function universalPreprocess(text: string) {
+    text = text.normalize("NFC")
+
     return text
 }
 
