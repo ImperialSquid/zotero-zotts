@@ -2,13 +2,13 @@ import { checkStatus, reportStatus } from "."
 import { getString } from "../utils/locale"
 import { getPref } from "../utils/prefs"
 import { getSelectedAnnotations, getSelectedText } from "../utils/readerUtils"
-
-// TODO: future: preformat text before speaking?
-//   WSA on windows can be a little rough (eg pronouncing "a/b" as "a forward slash b", etc)
+import { preprocessText } from "../utils/text";
 
 //   might be nice to reformat text into a better form, might have to be managed by each engine internally
 function speak(text: string) {
     if (checkStatus()) {
+        text = preprocessText(text)
+
         addon.data.tts.engines[addon.data.tts.current].speak(text)
     } else {
         reportStatus()
