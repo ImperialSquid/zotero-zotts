@@ -1,4 +1,6 @@
+# === General
 pref-sect-general = General
+
 pref-general-queue-label =
     .value = When attempting to play multiple items:
 pref-general-queue-disable =
@@ -6,21 +8,28 @@ pref-general-queue-disable =
 pref-general-queue-enable =
     .label = Add new item to a queue
 
+# === WSA
 pref-sect-wsa = Web Speech
+
 pref-wsa-voice = Current Voice
 pref-wsa-volume = Volume
 pref-wsa-rate = Rate
 pref-wsa-pitch = Pitch
 pref-wsa-testVoice = Test Voice
 
+# === Shortcuts
 pref-sect-shortcuts = Shortcuts
+
+# --- Keys
 pref-subsect-shortcuts-keys = Shortcut Keys
+
 pref-shortcuts-speak = Speak
 pref-shortcuts-pause = Pause
 pref-shortcuts-cancel = Cancel
 
-
+# --- Shift Modifier
 pref-subsect-shortcuts-shiftMod = Shift Modifier
+
 pref-shiftMod-p1 = You can change whether ZoTTS will read the title/abstract of library items and the text/comment of annotations by holding Shift.
 pref-shiftMod-p2 = Select what ZoTTS should do when <em>not</em> holding Shift
 
