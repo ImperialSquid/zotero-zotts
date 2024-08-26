@@ -1,7 +1,7 @@
 import { checkStatus, reportStatus } from "."
 import { getString } from "../utils/locale"
 import { getPref } from "../utils/prefs"
-import { getSelectedAnnotations, getSelectedText } from "../utils/readerUtils"
+import {getFullText, getSelectedAnnotations, getSelectedText} from "../utils/readerUtils"
 import { preprocessText } from "../utils/text";
 
 //   might be nice to reformat text into a better form, might have to be managed by each engine internally
@@ -48,7 +48,7 @@ function resume() {
 }
 
 // for speaking using shortcuts and UI elements not specifically tied to any text (eg text selection popup)
-function contextualSpeak(shiftHeld?: boolean) {
+async function contextualSpeak(shiftHeld?: boolean) {
     if (Zotero_Tabs.selectedType == "library") {
         // library tab context
 
@@ -118,6 +118,10 @@ function contextualSpeak(shiftHeld?: boolean) {
                     speak(text || "")
                 })
             }
+        } else {
+            // no selected text and no selected annos, speak full text
+
+            speak(await getFullText(reader) || "")
         }
     }
 }
