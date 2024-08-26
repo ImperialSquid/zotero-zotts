@@ -2,7 +2,7 @@ import { config } from "../package.json"
 import { setDefaultPrefs } from "./modules/utils/prefs"
 import ZoteroToolkit from "zotero-plugin-toolkit/dist/index"
 import { registerMenu } from "./modules/menu"
-import { registerPrefsWindow } from "./modules/prefsWindow"
+import { prefsLoadHook, registerPrefsWindow } from "./modules/prefsWindow"
 import { registerShortcuts } from "./modules/shortcuts"
 import { registerReaderListeners } from "./modules/reader"
 import { initLocale } from "./modules/utils/locale"
@@ -92,24 +92,7 @@ const onSpeakOrResume = speakOrResume
 
 const onSpeakTest = speakTest
 
-function onPrefsLoad(type: string, doc: Document) {
-  // populate voices list
-  addon.data.tts.engines.webSpeech.extras.populateVoiceList(doc)
-
-  // shortcuts section modelled on core Zotero
-  for (let label of doc.querySelectorAll(".modifier")) {
-    // Display the appropriate modifier keys for the platform
-    if (label.classList.contains("optional-shift")) {
-      label.textContent = Zotero.isMac ?
-          "Cmd (+ Shift) +" :
-          "Ctrl (+ Shift) +"
-    } else if (label.classList.contains("required-shift")) {
-      label.textContent = Zotero.isMac ?
-          "Cmd + Shift +" :
-          "Ctrl + Shift +"
-    }
-  }
-}
+const onPrefsLoad = prefsLoadHook
 
 export default {
   onStartup,
