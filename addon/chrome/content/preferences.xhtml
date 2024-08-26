@@ -6,8 +6,8 @@
   onload="Zotero.__addonInstance__.hooks.onPrefsLoad('load', window.document)"
   xmlns:html="http://www.w3.org/1999/xhtml"
 >
-  <groupbox id="__addonRef__-general">
-    <label><html:h2 data-l10n-id="pref-sect-general"></html:h2></label>
+  <vbox class="main-section" id="__addonRef__-general">
+    <label><html:h1 data-l10n-id="pref-sect-general"></html:h1></label>
 
     <!-- queue or cancel on playing new items -->
     <vbox>
@@ -22,10 +22,10 @@
 
     <!--// TODO: future add dropdown to select TTS engine
              needs to call hook to gracefully transfer (cancel if playing/paused, etc)-->
-  </groupbox>
+  </vbox>
 
-  <groupbox id="__addonRef__-webspeech">
-    <label><html:h2 data-l10n-id="pref-sect-wsa"></html:h2></label>
+  <vbox class="main-section" id="__addonRef__-webspeech">
+    <label><html:h1 data-l10n-id="pref-sect-wsa"></html:h1></label>
 
     <!-- WSA voice -->
     <vbox>
@@ -114,12 +114,12 @@
             data-l10n-id="pref-wsa-testVoice">
     </html:button>
 
-  </groupbox>
+  </vbox>
 
   <!-- NEW ENGINES HERE -->
 
-  <groupbox id="__addonRef__-shortcuts">
-    <label><html:h2 data-l10n-id="pref-sect-shortcuts"></html:h2></label>
+  <vbox class="main-section" id="__addonRef__-shortcuts">
+    <label><html:h1 data-l10n-id="pref-sect-shortcuts"></html:h1></label>
 
     <label for="__addonRef__-shortcuts-grid">
       <html:h4 data-l10n-id="pref-subsect-shortcuts-keys"
@@ -201,5 +201,5 @@
       </radiogroup>
     </html:div>
 
-  </groupbox>
+  </vbox>
 </vbox>
