@@ -201,5 +201,38 @@
       </radiogroup>
     </html:div>
 
+  </vbox><vbox class="main-section" id="__addonRef__-advanced">
+    <label><html:h1 data-l10n-id="pref-sect-advanced"></html:h1></label>
+
+    <label for="__addonRef__-advanced-subs">
+      <html:h4 data-l10n-id="pref-subsect-advanced-subs"
+               style="margin-bottom:1px">
+      </html:h4>
+    </label>
+    <html:div id="__addonRef__-advanced-subs">
+      <html:p data-l10n-id="pref-subs-p1"
+              style="margin-left:20px;">
+      </html:p>
+
+      <html:p data-l10n-id="pref-subs-p2"
+              style="margin-left:20px;">
+      </html:p>
+
+      <html:textarea
+              id="__addonRef__-advanced-subs-input"
+              style="height:150px; width:100%;"
+              data-l10n-id="pref-subs-placeholder"
+              onkeypress="Zotero.__addonInstance__.hooks.onPrefsRefresh('subs', window.document)"
+      >
+      </html:textarea>
+
+      <html:p
+              id="__addonRef__-advanced-subs-warning"
+              data-l10n-id="pref-subs-warning"
+              style="margin-left:20px; color:tomato !important; margin-top:0px; visibility:hidden;"
+      >
+      </html:p>
+    </html:div>
+
   </vbox>
 </vbox>
