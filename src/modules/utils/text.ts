@@ -1,3 +1,6 @@
+import { validateSubs } from "../prefsWindow"
+import { getPref } from "./prefs";
+
 export function preprocessText(text: string) {
     text = universalPreprocess(text)
 
@@ -17,7 +20,19 @@ function universalPreprocess(text: string) {
 // user defined preprocessing, will include substitutions and anything else that uses
 // inputs defined by the user as well as text from the paper
 function userPreprocess(text: string) {
-    // TODO: future: preformat text before speaking?
-    //   WSA on windows can be a little rough (eg pronouncing "a/b" as "a forward slash b", etc)
+    let subs = validateSubs(getPref("substitutions") as string).subs
+    ztoolkit.log(subs)
+
+    for (let sub of subs) {
+        let pattern: string | RegExp
+        if (sub[2] === "regex") {
+            pattern = new RegExp(sub[0], "g")
+        } else {
+            pattern = sub[0]
+        }
+
+        text = text.replaceAll(pattern, sub[1])
+    }
+
     return text
 }
