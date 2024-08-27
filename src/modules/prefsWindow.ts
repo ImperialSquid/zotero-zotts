@@ -75,7 +75,7 @@ export function prefsRefreshHook(type: string, doc: Document) {
     }, 10)
 }
 
-function validateSubs(subs: string): SubsValidation {
+export function validateSubs(subs: string): SubsValidation {
     let lines: string[] = subs.split("\n")
     let validation: SubsValidation = {
         valid: true,
@@ -94,15 +94,15 @@ function validateSubs(subs: string): SubsValidation {
             return
         }
 
-        let results = /^(\/.+?\/|".+?"):(".*?")$/.exec(value)
+        let results = /^([\/"])(.+?)\1:(".*?")$/.exec(value)
         if (! results) {
             validation.valid = false
             validation.errors.push(index + 1)
         } else {
             validation.subs.push([
-                results[1],
                 results[2],
-                results[1].charAt(0) === "/" ? "regex" : "string"
+                results[3],
+                results[1] === "/" ? "regex" : "string"
             ])
         }
     })
