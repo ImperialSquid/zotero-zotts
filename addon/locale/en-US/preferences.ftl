@@ -44,3 +44,28 @@ pref-shiftMod-swapAnno-false =
     .label = Speak annotated text
 pref-shiftMod-swapAnno-true =
     .label = Speak attached comment
+
+# === Advanced
+pref-sect-advanced = Advanced
+
+# --- Substitutions
+pref-subsect-advanced-subs = Substitutions
+
+pref-subs-p1 = Specify substitutions for the text to be spoken to allow for better listening.
+pref-subs-p2 = Substitutions are specified as <em>"pattern":"substitution"</em>. Users wishing to use regex can use <em>/pattern/:"substitution"</em>.
+
+pref-subs-placeholder =
+    .placeholder = For example:
+              You can replace symbols
+                  ">":"greater than"
+              Or do more complex matching, eg to remove email adresses
+                  /\S*?@\S*/:""
+              You can also use regex capture groups
+                  /\d*?\/\d*/:"$1 divided $2"
+
+pref-subs-save = Save Substitutions
+
+pref-subs-warning = { $count ->
+    [1] Found error on line: { $lines }
+   *[other] Found error on lines: { $lines }
+}
