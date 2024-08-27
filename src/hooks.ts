@@ -2,7 +2,7 @@ import { config } from "../package.json"
 import { setDefaultPrefs } from "./modules/utils/prefs"
 import ZoteroToolkit from "zotero-plugin-toolkit/dist/index"
 import { registerMenu } from "./modules/menu"
-import { prefsLoadHook, registerPrefsWindow } from "./modules/prefsWindow"
+import {prefsLoadHook, prefsRefreshHook, registerPrefsWindow} from "./modules/prefsWindow"
 import { registerShortcuts } from "./modules/shortcuts"
 import { registerReaderListeners } from "./modules/reader"
 import { initLocale } from "./modules/utils/locale"
@@ -94,6 +94,8 @@ const onSpeakTest = speakTest
 
 const onPrefsLoad = prefsLoadHook
 
+const onPrefsRefresh = prefsRefreshHook
+
 export default {
   onStartup,
   onShutdown,
@@ -106,4 +108,5 @@ export default {
   onSpeakOrResume,
   onSpeakTest,
   onPrefsLoad,
+  onPrefsRefresh
 }
