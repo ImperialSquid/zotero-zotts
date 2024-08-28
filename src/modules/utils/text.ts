@@ -19,10 +19,11 @@ function universalPreprocess(text: string) {
 function userPreprocess(text: string) {
     // TODO: future: preformat text before speaking?
     //   WSA on windows can be a little rough (eg pronouncing "a/b" as "a forward slash b", etc)
-    return text
-
+    
     // TODO: implement some kind of preference for this
     // if (getPref("webSpeech.noParenthesis") as Boolean == false){
     text = text.replace(/ *\([^)]*\) */g, "");
     // }
-}
+    
+    return text
+    }
