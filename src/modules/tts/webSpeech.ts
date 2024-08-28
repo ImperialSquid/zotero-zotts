@@ -107,7 +107,7 @@ export {
 // extras
 // also exported functions but not required to exist
 function getVoices() {
-    return window.speechSynthesis.getVoices().map((v) => v.name)
+    return window.speechSynthesis.getVoices().map((v) => v.name).sort()
 }
 
 function populateVoiceList (doc: Document) {
