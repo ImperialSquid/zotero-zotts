@@ -27,4 +27,9 @@ function userPreprocess(text: string) {
     text = text.replace(/ *\([^)]*\) */g, "");
     // }
     return text
+
+    // TODO: implement some kind of preference for this
+    // if (getPref("webSpeech.noParenthesis") as Boolean == false){
+    text = text.replace(/ *\([^)]*\) */g, "");
+    // }
 }
