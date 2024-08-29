@@ -1,4 +1,6 @@
-const audioContext = new window.AudioContext();
+var audioContext = new window.AudioContext();
+var playbackLoop = setInterval(() => {}, 1000)
+clearInterval(playbackLoop)
 
 async function getAudio(text: string) {
     return Zotero.HTTP.request("GET", `http://localhost:5002/api/tts?text=${encodeURI(text)}`, {"responseType": "arraybuffer", "timeout":120000})
@@ -8,8 +10,8 @@ async function getAudio(text: string) {
 
 
 async function speak(text: string) {
-    var sentences = text.match( /[^\.!\?]+[\.!\?]+/g ) ?? []
-    
+    if (audioContext.state == "closed") audioContext = new window.AudioContext();
+    var sentences = text.match( /[^\.!\?]+[\.!\?]+/g ) ?? [text]
     var sentences_buff: Record<number, AudioBuffer> = []
     sentences.forEach((v, i) => {getAudio(v.trim()).then((buff) => sentences_buff[i]=buff)})
 
@@ -18,12 +20,12 @@ async function speak(text: string) {
     const qued_idxs: number[] = []
     
     var current_idx = 0 
-    const playingInterval = setInterval(() => {
+    playbackLoop = setInterval(() => {
         // Zotero.log(`end: ${endTime}`)
         // Zotero.log(`now: ${audioContext.currentTime}`)
 
-        if (current_idx > sentences.length - 1) {
-            clearInterval(playingInterval)
+        if (current_idx >= sentences.length - 1) {
+            clearInterval(playbackLoop)
             // Zotero.log("done.")
         }
 
@@ -49,7 +51,8 @@ async function speak(text: string) {
 }
 
 function stop() {
-    audioContext.suspend()
+    audioContext.close()
+    clearInterval(playbackLoop)
 }
 
 function pause() {
