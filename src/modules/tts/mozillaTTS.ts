@@ -6,22 +6,8 @@ async function getAudio(text: string) {
     .then((buff) => audioContext.decodeAudioData(buff))
 }
 
-function breakAllCapsString(text: string) {
-    // is Upper?
-    if (/^[A-Z]*$/.test(text)) {
-        text = text.split("").join(".")
-    }
-    return text
-}
-
-
 async function speak(text: string) {
     if (audioContext.state == "closed") audioContext = new window.AudioContext();
-    var words = text.split(" ")
-    Zotero.log(words)
-    words = words.map(breakAllCapsString);
-    text = words.join(" ")
-    Zotero.log(words)
     var sentences = text.match( /[^\.!\?]+[\.!\?]+/g ) ?? [text]
     var sentences_buff: Record<number, AudioBuffer> = []
     sentences.forEach((v, i) => {getAudio(v.trim()).then((buff) => sentences_buff[i]=buff)})
