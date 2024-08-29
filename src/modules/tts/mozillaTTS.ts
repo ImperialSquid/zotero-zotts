@@ -1,6 +1,4 @@
 var audioContext = new window.AudioContext();
-var playbackLoop = setInterval(() => {}, 1000)
-clearInterval(playbackLoop)
 
 async function getAudio(text: string) {
     return Zotero.HTTP.request("GET", `http://localhost:5002/api/tts?text=${encodeURI(text)}`, {"responseType": "arraybuffer", "timeout":120000})
@@ -20,13 +18,13 @@ async function speak(text: string) {
     const qued_idxs: number[] = []
     
     var current_idx = 0 
-    playbackLoop = setInterval(() => {
+    const playbackLoop = setInterval(() => {
         // Zotero.log(`end: ${endTime}`)
         // Zotero.log(`now: ${audioContext.currentTime}`)
 
-        if (current_idx >= sentences.length - 1) {
+        if (current_idx > sentences.length - 1) {
             clearInterval(playbackLoop)
-            // Zotero.log("done.")
+            Zotero.log("done.")
         }
 
         if ((current_idx in sentences_buff) && !(current_idx in qued_idxs)) {
@@ -46,13 +44,12 @@ async function speak(text: string) {
 
     }, 500)
 
-    // Zotero.log("intervalling")
+    Zotero.log("intervalling")
     
 }
 
 function stop() {
     audioContext.close()
-    clearInterval(playbackLoop)
 }
 
 function pause() {
