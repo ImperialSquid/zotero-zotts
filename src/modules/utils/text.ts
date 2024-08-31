@@ -22,6 +22,37 @@ function universalPreprocess(text: string) {
 function userPreprocess(text: string) {
     let subs = validateSubs(getPref("subs.customSubs") as string).subs
 
+    if (getPref("subs.removeParenCitations")) {
+        // taken from https://stackoverflow.com/a/16826935/7416433
+        const author = "(?:[A-Z][A-Za-z'`-]+)"
+        const etal = "(?:et al.?)"
+        const additional = "(?:,? (?:(?:and |& )?" + author + "|" + etal + "))"
+        const year_num = "(?:19|20)[0-9][0-9]"
+        const page_num = "(?:, p.? [0-9]+)?"  // Always optional
+        const year = "(?:, *"+year_num+page_num+"| *\("+year_num+page_num+"\))"
+        const regex = "(" + author + additional+"*" + year + ")"
+
+        subs.push([
+            regex,
+            "",
+            "regex"
+        ])
+    }
+    if (getPref("subs.removeNumericCitations")) {
+        subs.push([
+            "\\[\\d+\\]",
+            "",
+            "regex"
+        ])
+    }
+    if (getPref("subs.removeEmails")) {
+        subs.push([
+            "\\S+?@\\S*",
+            "",
+            "regex"
+        ])
+    }
+
     for (let sub of subs) {
         let pattern: string | RegExp
         if (sub[2] === "regex") {
