@@ -20,8 +20,7 @@ function universalPreprocess(text: string) {
 // user defined preprocessing, will include substitutions and anything else that uses
 // inputs defined by the user as well as text from the paper
 function userPreprocess(text: string) {
-    let subs = validateSubs(getPref("substitutions") as string).subs
-    ztoolkit.log(subs)
+    let subs = validateSubs(getPref("subs.customSubs") as string).subs
 
     for (let sub of subs) {
         let pattern: string | RegExp

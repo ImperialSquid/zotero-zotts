@@ -41,7 +41,7 @@ function prefsLoadHook(type: string, doc: Document) {
     // since subs aren't bound directly, it's value must be set manually on load
     (doc.getElementById(`${config.addonRef}-advanced-subs-input`) as
         // @ts-ignore
-        HTMLParagraphElement).value = getPref("substitutions")
+        HTMLParagraphElement).value = getPref("subs.customSubs")
 
     // do refresh to set warning if needed
     prefsRefreshHook("load", doc)
@@ -78,7 +78,7 @@ function setSubsTextareaWarning (doc: Document){
             // rather than bind preference to element, only store valid subs
             // direct binding would mean risking loading bad subs on startup
             // this way they're always valid
-            setPref("substitutions", subs)
+            setPref("subs.customSubs", subs)
         } else {
             warn.textContent = getString("pref-subs-warning", {
                 args: {
