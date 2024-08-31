@@ -74,6 +74,44 @@ export function prefsRefreshHook(type: string, doc: Document) {
                 warn.style.visibility = "visible"
             }
         }, 10)
+    } else if (type === "subs-cite-overall") {
+        let overall = (doc.getElementById(`${config.addonRef}-pref-subs-citationsOverall`) as
+            HTMLInputElement)
+        let subitems = (doc.querySelectorAll(`.${config.addonRef}-pref-subs-citations-subitems input`) as
+            NodeListOf<HTMLInputElement>)
+
+        subitems.forEach((item) => {
+            item.checked = overall.checked
+            }
+        )
+    } else if (type === "subs-cite-subitem") {
+        setTimeout(()=> {
+            let overall = (doc.getElementById(`${config.addonRef}-pref-subs-citationsOverall`) as
+                HTMLInputElement)
+            let subitems = (doc.querySelectorAll(`.${config.addonRef}-pref-subs-citations-subitems input`) as
+                NodeListOf<HTMLInputElement>)
+
+            let checkedCount = 0
+            for (let item of subitems) {
+                if (item.checked) {
+                    checkedCount++
+                }
+            }
+
+            ztoolkit.log(checkedCount)
+            ztoolkit.log(subitems)
+
+            if (checkedCount === 0) {
+                overall.indeterminate = false
+                overall.checked = false
+            } else if (checkedCount === subitems.length) {
+                overall.indeterminate = false
+                overall.checked = true
+            } else {
+                overall.indeterminate = true
+                overall.checked = false
+            }
+        }, 10)
     }
 }
 
