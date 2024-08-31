@@ -47,32 +47,34 @@ export function prefsLoadHook(type: string, doc: Document) {
 }
 
 export function prefsRefreshHook(type: string, doc: Document) {
-    setTimeout( () => {
-        let warn = (doc.getElementById(`${config.addonRef}-advanced-subs-warning`) as
-            HTMLParagraphElement)
-        let subs = (doc.getElementById(`${config.addonRef}-advanced-subs-input`) as
-            // @ts-ignore
-            HTMLParagraphElement).value
+    if (type === "load" || type === "subs-text") {
+        setTimeout(() => {  // use timeout to allow for prefs to process first
+            let warn = (doc.getElementById(`${config.addonRef}-advanced-subs-warning`) as
+                HTMLParagraphElement)
+            let subs = (doc.getElementById(`${config.addonRef}-advanced-subs-input`) as
+                // @ts-ignore
+                HTMLParagraphElement).value
 
-        let validation = validateSubs(subs)
+            let validation = validateSubs(subs)
 
-        if (validation.valid) {
-            warn.style.visibility = "hidden"
+            if (validation.valid) {
+                warn.style.visibility = "hidden"
 
-            // rather than bind preference to element, only store valid subs
-            // direct binding would mean risking loading bad subs on startup
-            // this way they're always valid
-            setPref("substitutions", subs)
-        } else {
-            warn.textContent = getString("pref-subs-warning", {
-                args: {
-                    count: validation.errors.length,
-                    lines: validation.errors.join(", ")
-                }
-            })
-            warn.style.visibility = "visible"
-        }
-    }, 10)
+                // rather than bind preference to element, only store valid subs
+                // direct binding would mean risking loading bad subs on startup
+                // this way they're always valid
+                setPref("substitutions", subs)
+            } else {
+                warn.textContent = getString("pref-subs-warning", {
+                    args: {
+                        count: validation.errors.length,
+                        lines: validation.errors.join(", ")
+                    }
+                })
+                warn.style.visibility = "visible"
+            }
+        }, 10)
+    }
 }
 
 export function validateSubs(subs: string): SubsValidation {
