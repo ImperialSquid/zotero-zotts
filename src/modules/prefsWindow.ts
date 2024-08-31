@@ -51,8 +51,10 @@ function prefsLoadHook(type: string, doc: Document) {
 // dispatch to other functions based on passed in type
 function prefsRefreshHook(type: string, doc: Document) {
     if (type === "load") {
-        setSubsTextareaWarning(doc)
-        setSubsCiteOverall(doc)
+        setTimeout(() => {
+            setSubsTextareaWarning(doc)
+            setSubsCiteOverall(doc)
+        },10)
     } else if (type === "subs-text") {
         setSubsTextareaWarning(doc)
     } else if (type === "subs-cite-overall") {
