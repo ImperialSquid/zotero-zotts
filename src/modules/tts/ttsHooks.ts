@@ -1,7 +1,7 @@
 import { checkStatus, reportStatus } from "."
 import { getString } from "../utils/locale"
 import { getPref } from "../utils/prefs"
-import {getFullText, getSelectedAnnotations, getSelectedText} from "../utils/readerUtils"
+import { getFullText, getSelectedAnnotations, getSelectedText } from "../utils/readerUtils"
 import { preprocessText } from "../utils/text";
 
 //   might be nice to reformat text into a better form, might have to be managed by each engine internally
@@ -130,7 +130,7 @@ function speakOrResume(shiftHeld?: boolean) {
     if (addon.data.tts.state === "paused") {
         resume()
     } else {
-        contextualSpeak(shiftHeld)
+        void contextualSpeak(shiftHeld)
     }
 }
 

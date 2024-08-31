@@ -75,9 +75,7 @@ pref-subs-placeholder =
               Or do more complex matching, eg to remove email adresses
                   /\S*?@\S*/:""
               You can also use regex capture groups
-                  /\d*?\/\d*/:"$1 divided $2"
-
-pref-subs-save = Save Substitutions
+                  /(\d*?)\/(\d*)/:"$1 over $2"
 
 pref-subs-warning = { $count ->
     [1] Found error on line: { $lines }
