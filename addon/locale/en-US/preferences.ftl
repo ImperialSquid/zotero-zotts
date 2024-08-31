@@ -51,8 +51,22 @@ pref-sect-advanced = Advanced
 # --- Substitutions
 pref-subsect-advanced-subs = Substitutions
 
-pref-subs-p1 = Specify substitutions for the text to be spoken to allow for better listening.
-pref-subs-p2 = Substitutions are specified as <em>"pattern":"substitution"</em>. Users wishing to use regex can use <em>/pattern/:"substitution"</em>.
+pref-subs-p1 = Specify substitutions/removals for the text to be spoken to allow for better listening.
+
+pref-subs-citationsOverall = Remove citations
+pref-subs-citationsParenthetical =
+    Remove "parenthetical" style citations <br>
+    <small><i>(In the form of (Author, Year, PageNo), used by APA, MLA, etc)</i></small>
+pref-subs-citationsNumeric =
+    Remove "numeric" style citations <br>
+    <small><i>(In the form of [Number], used by IEEE, etc)</i></small>
+pref-subs-emails = Remove email addresses
+
+pref-subs-p2 =
+    You can also manually specify substitutions.
+    Substitutions are specified as <b>"pattern":"substitution"</b>.
+    Users wishing to use regex can use <b>/pattern/:"substitution"</b>.
+    Empty lines or those beginning with a hash (#) are ignored.
 
 pref-subs-placeholder =
     .placeholder = For example:
