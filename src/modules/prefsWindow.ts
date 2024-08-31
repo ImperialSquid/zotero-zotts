@@ -2,7 +2,7 @@ import { config, repository } from "../../package.json"
 import { getString } from "./utils/locale";
 import { getPref, setPref } from "./utils/prefs";
 
-export function registerPrefsWindow() {
+function registerPrefsWindow() {
     Zotero.PreferencePanes.register(
         {
             pluginID: config.addonID,
@@ -19,7 +19,8 @@ export function registerPrefsWindow() {
     ).then((e) => {})
 }
 
-export function prefsLoadHook(type: string, doc: Document) {
+// one time call on prefs pane loading
+function prefsLoadHook(type: string, doc: Document) {
     // populate voices list
     addon.data.tts.engines.webSpeech.extras.populateVoiceList(doc)
 
@@ -46,76 +47,51 @@ export function prefsLoadHook(type: string, doc: Document) {
     prefsRefreshHook("load", doc)
 }
 
-export function prefsRefreshHook(type: string, doc: Document) {
-    if (type === "load" || type === "subs-text") {
-        setTimeout(() => {  // use timeout to allow for prefs to process first
-            let warn = (doc.getElementById(`${config.addonRef}-advanced-subs-warning`) as
-                HTMLParagraphElement)
-            let subs = (doc.getElementById(`${config.addonRef}-advanced-subs-input`) as
-                // @ts-ignore
-                HTMLParagraphElement).value
-
-            let validation = validateSubs(subs)
-
-            if (validation.valid) {
-                warn.style.visibility = "hidden"
-
-                // rather than bind preference to element, only store valid subs
-                // direct binding would mean risking loading bad subs on startup
-                // this way they're always valid
-                setPref("substitutions", subs)
-            } else {
-                warn.textContent = getString("pref-subs-warning", {
-                    args: {
-                        count: validation.errors.length,
-                        lines: validation.errors.join(", ")
-                    }
-                })
-                warn.style.visibility = "visible"
-            }
-        }, 10)
+// called whenever prefs pane needs to respond interactively to input,
+// dispatch to other functions based on passed in type
+function prefsRefreshHook(type: string, doc: Document) {
+    if (type === "load") {
+        setSubsTextareaWarning(doc)
+        setSubsCiteOverall(doc)
+    } else if (type === "subs-text") {
+        setSubsTextareaWarning(doc)
     } else if (type === "subs-cite-overall") {
-        let overall = (doc.getElementById(`${config.addonRef}-pref-subs-citationsOverall`) as
-            HTMLInputElement)
-        let subitems = (doc.querySelectorAll(`.${config.addonRef}-pref-subs-citations-subitems input`) as
-            NodeListOf<HTMLInputElement>)
-
-        subitems.forEach((item) => {
-            item.checked = overall.checked
-            }
-        )
+        setSubsCiteSubitems(doc)
     } else if (type === "subs-cite-subitem") {
-        setTimeout(()=> {
-            let overall = (doc.getElementById(`${config.addonRef}-pref-subs-citationsOverall`) as
-                HTMLInputElement)
-            let subitems = (doc.querySelectorAll(`.${config.addonRef}-pref-subs-citations-subitems input`) as
-                NodeListOf<HTMLInputElement>)
-
-            let checkedCount = 0
-            for (let item of subitems) {
-                if (item.checked) {
-                    checkedCount++
-                }
-            }
-
-            ztoolkit.log(checkedCount)
-            ztoolkit.log(subitems)
-
-            if (checkedCount === 0) {
-                overall.indeterminate = false
-                overall.checked = false
-            } else if (checkedCount === subitems.length) {
-                overall.indeterminate = false
-                overall.checked = true
-            } else {
-                overall.indeterminate = true
-                overall.checked = false
-            }
-        }, 10)
+        setSubsCiteOverall(doc)
     }
 }
 
-export function validateSubs(subs: string): SubsValidation {
+function setSubsTextareaWarning (doc: Document){
+    setTimeout(() => {  // use timeout to allow for prefs to process first
+        let warn = (doc.getElementById(`${config.addonRef}-advanced-subs-warning`) as
+            HTMLParagraphElement)
+        let subs = (doc.getElementById(`${config.addonRef}-advanced-subs-input`) as
+            // @ts-ignore
+            HTMLParagraphElement).value
+
+        let validation = validateSubs(subs)
+
+        if (validation.valid) {
+            warn.style.visibility = "hidden"
+
+            // rather than bind preference to element, only store valid subs
+            // direct binding would mean risking loading bad subs on startup
+            // this way they're always valid
+            setPref("substitutions", subs)
+        } else {
+            warn.textContent = getString("pref-subs-warning", {
+                args: {
+                    count: validation.errors.length,
+                    lines: validation.errors.join(", ")
+                }
+            })
+            warn.style.visibility = "visible"
+        }
+    }, 10)
+}
+
+function validateSubs(subs: string): SubsValidation {
     let lines: string[] = subs.split("\n")
     let validation: SubsValidation = {
         valid: true,
@@ -156,6 +132,50 @@ type SubsValidation = {
     subs: [
         string,  // pattern
         string,  // replacement
-        "string" | "regex"
+            "string" | "regex"
     ][]
+}
+
+function setSubsCiteSubitems(doc: Document) {
+    let overall = (doc.getElementById(`${config.addonRef}-pref-subs-citationsOverall`) as
+        HTMLInputElement)
+    let subitems = (doc.querySelectorAll(`.${config.addonRef}-pref-subs-citations-subitems input`) as
+        NodeListOf<HTMLInputElement>)
+
+    subitems.forEach((item) => {
+            item.checked = overall.checked
+        }
+    )
+}
+
+function setSubsCiteOverall(doc: Document) {
+    let overall = (doc.getElementById(`${config.addonRef}-pref-subs-citationsOverall`) as
+        HTMLInputElement)
+    let subitems = (doc.querySelectorAll(`.${config.addonRef}-pref-subs-citations-subitems input`) as
+        NodeListOf<HTMLInputElement>)
+
+    let checkedCount = 0
+    for (let item of subitems) {
+        if (item.checked) {
+            checkedCount++
+        }
+    }
+
+    if (checkedCount === 0) {
+        overall.indeterminate = false
+        overall.checked = false
+    } else if (checkedCount === subitems.length) {
+        overall.indeterminate = false
+        overall.checked = true
+    } else {
+        overall.indeterminate = true
+        overall.checked = false
+    }
+}
+
+export {
+    registerPrefsWindow,
+    prefsLoadHook,
+    prefsRefreshHook,
+    validateSubs
 }
