@@ -1,14 +1,13 @@
 # ![](addon/chrome/content/icons/favicon@48.svg) ZoTTS
 ZoTTS is a Zotero plugin to add TTS functionality
 
+[![Zotero target version 7](https://img.shields.io/badge/Zotero-7-green?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
+[![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?style=flat-square&logo=github)](https://github.com/windingwind/zotero-plugin-template)
+
 ## Install :rocket:
 
-> [!NOTE]
-> ZoTTS is only available for Zotero 7+ due to major differences between 6/7
-> If you're still using Zotero 6, you'll need to download Zotero 7, it's available [here](https://www.zotero.org/download/).
-
 > The latest stable version is available [here](https://github.com/ImperialSquid/zotero-zotts/releases/latest)
-> The full version list, including prerelease versions is [here](https://github.com/ImperialSquid/zotero-zotts/releases)
+> The full version list, including any prerelease versions is [here](https://github.com/ImperialSquid/zotero-zotts/releases)
 
 1. Download the .xpi file from the [latest release](https://github.com/ImperialSquid/zotero-zotts/releases)
    - If you're using firefox, right click and select "Save as..."
@@ -20,7 +19,7 @@ ZoTTS is a Zotero plugin to add TTS functionality
 The plugin should load straight away, and future updates will be downloaded automatically!
 
 > [!NOTE]
-> Some users report slow initial loads on Linux/Mac devices, please allow a few seconds for the first spoken text and/or preferences loading, subsequent functionality should work without any delays, fixes are currently being investigated
+> ZoTTS might fail to init the TTS engine for Linux users who use Zotero in sandboxed environments (flatpak/snap/etc) due to a long-standing non-trivial bug, a workaround might be possible but you might find it easier to use a non-sandboxed Zotero if you can, feel free to open a bug report for further assistance
 
 ## Features :sparkles:
 ### Shortcuts
