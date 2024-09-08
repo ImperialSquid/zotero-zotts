@@ -112,7 +112,7 @@ function validateSubs(subs: string): SubsValidation {
             return
         }
 
-        let results = /^([\/"])(.+?)\1:(".*?")$/.exec(value)
+        let results = /^([\/"])(.+?)\1:"(.*?)"$/.exec(value)
         if (! results) {
             validation.valid = false
             validation.errors.push(index + 1)
