@@ -65,42 +65,44 @@ export function reportStatus() {
     const popup = new Zotero.ProgressWindow({closeOnClick: true})
     popup.changeHeadline("ZoTTS")
 
-    let text = ""
+    let texts: string[] = []
     let icon = ""
     let timer = 0
 
     // TODO: l10n - add status reporting localisation
     if (addon.data.tts.status === "error") {
-        text = getString("status-ttsError")
+        texts.push(getString("status-ttsError"))
         icon = ""  // TODO: UI - Add error SVG
         timer = 10000
     } else if (addon.data.tts.status === "loading") {
-        text = getString("status-ttsLoading")
+        texts.push(getString("status-ttsLoading"))
         icon = ""  // TODO: UI - Add notice SVG
         timer = 5000
     } else if (addon.data.tts.engines[addon.data.tts.current]?.status === "error") {
-        text = getString("status-addonError",  {
+        texts.push(getString("status-addonError",  {
             args: {
                 engineName: addon.data.tts.engines[addon.data.tts.current]?.name
             }
-        })
+        }))
         icon = ""  // TODO: UI - Add error SVG
         timer = 10000
     } else if (addon.data.tts.engines[addon.data.tts.current]?.status === "loading") {
-        text = getString("status-addonLoading",  {
+        texts.push(getString("status-addonLoading",  {
             args: {
                 engineName: addon.data.tts.engines[addon.data.tts.current]?.name
             }
-        })
+        }))
         icon = ""  // TODO: UI - Add notice SVG
         timer = 5000
     } else if (addon.data.tts.status === "ready" && addon.data.tts.engines[addon.data.tts.current]?.status === "ready") {
-        text = getString("status-allGood")
+        texts.push(getString("status-allGood"))
         icon = "" // TODO: UI - Add ready SVG
         timer = 1500
     }
 
-    popup.addLines(text, icon)
+    popup.addLines(texts.shift() ?? "", icon)  // first line gets the icon
+
+    texts.forEach((text) => {popup.addLines(text, "")})  // any remaining lines don't
 
     popup.show()
     popup.startCloseTimer(timer)
