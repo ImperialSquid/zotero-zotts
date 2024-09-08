@@ -35,3 +35,10 @@ This file is intended as a human-readable non-technical summary of the changes i
 *Released 24/08/2024*
 - Fixes a bug where selected text with diacritics might not be spoken correctly
 - Lots of documentation changes, should make knowing the state of development and reporting issues much easier.
+
+## v1.3.0
+*Released 08/09/2024*
+- Added the ability to read the full text of a paper (done when no annotations and no text are selected)
+- Added the ability to specify substitutions for the text to be spoken in the preferences (can be either a raw string or a regex pattern)
+- Added status reporting, including better error reporting for WSA
+- Added voice list sorting for readability (thanks to contributor @flightmansam!)

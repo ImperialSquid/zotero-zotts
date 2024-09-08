@@ -8,11 +8,6 @@ That said, if you are a developer and would like to contribute with any of these
 # Priority Features
 These are features I'm very keen on adding, either because of my own use cases, user requests, or both. 
 
-## Speaking a Paper's Full Text
-Currently, it's only possible to speak the text within a paper by selecting it first, and when no text or annotations are selected, ZoTTS won't respond to clicking UI elements/pressing shortcuts.
-
-When no text/annotations are selected, ZoTTS should begin speaking a paper from the beginning (possibly from the top of the currently viewed area as a future enhancement.
-
 ## Highlighting
 ZoTTS currently doesn't show what text it's reading within the paper, however in other programs with TTS capabilities they will highlight both the *whole text* being spoken as well as the *specific word*.
 
@@ -23,15 +18,6 @@ These are features I want to add but that aren't immediate priorities.
 
 ## Add "Refresh Voices" Button to Preferences
 Rarely the users might want to refresh the available voices without restarting Zotero, this would be useful for that. 
-
-## Spoken Substitutions
-Currently the words the TTS speaks are directly defined by the text of the paper. Normally this is fine, however TTS on some systems can be overly verbose/stumbling at odd sections.
-
-For example, on Windows "a/b" would be spoken as "a forward slash b", whereas "a over b" (for maths equations), "a or b" (for options), etc all sound preferable.
-
-There should be a box in the preferences where users can define patterns for text to locate and what to replace it with (optionally using regex for technical users).
-
-Note: Due to the fact that this will create differences between the text being spoken and the raw text of the document, implementing this as well as **Highlighting** will be challenging, as such, it's very likely I'll partially tackle both at the same time to avoid one causing awkward implementation details for the other.
 
 ## Implement Skipping
 Currently there's no way to skip the current utterance and start the next one (so long as queueing is enabled), the user can only cancel the whole queue. It would be better to maintain an internal queue instead.
