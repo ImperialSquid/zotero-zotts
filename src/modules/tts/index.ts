@@ -84,6 +84,12 @@ export function reportStatus() {
                 engineName: addon.data.tts.engines[addon.data.tts.current]?.name
             }
         }))
+        texts.push(getString("status-errorCause",  {
+            args: {
+                engine: addon.data.tts.current,
+                cause: addon.data.tts.engines[addon.data.tts.current]?.errorMsg
+            }
+        }))
         icon = ""  // TODO: UI - Add error SVG
         timer = 10000
     } else if (addon.data.tts.engines[addon.data.tts.current]?.status === "loading") {
