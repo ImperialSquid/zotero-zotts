@@ -29,7 +29,7 @@ The plugin should load straight away, and future updates will be downloaded auto
 
 In the Library tab, by default `Ctrl/Cmd + S` will speak a paper's title, `Ctrl/Cmd + Shift + S` will speak its abstract.
 
-In Reader tabs, `Ctrl/Cmd (+ Shift) + S` will speak any selected text within the document. If no text is selected but some annotations are selected `Ctrl/Cmd + S` will speak their annotated text, `Ctrl/Cmd + Shift + S` will speak the attached comment if there is one.
+In Reader tabs, `Ctrl/Cmd (+ Shift) + S` will speak the full text of a paper. If you have any text selected within the document, it will read that instead. If no text is selected but some annotations are selected `Ctrl/Cmd + S` will speak their annotated text, `Ctrl/Cmd + Shift + S` will speak the attached comment if there is one.
 
 You can swap the behaviour of `Ctrl/Cmd + S` and `Ctrl/Cmd + Shift + S` in the preferences.
 
@@ -55,6 +55,9 @@ In the preferences you can:
 - **Tweak shortcuts**
   - Rebind the speak, pause and cancel shortcuts to use other letters
   - Change what happens when you're holding `Ctrl/Cmd` vs `Ctrl/Cmd + Shift`
+- **Specify substitutions**
+   - A lot of TTS engines don't pronouce things how you might want, you can tell ZoTTS text to look out for and what to replace it with
+   - Patterns to be replaced can be either raw strings or regex patterns
 
 ## Contributing :wrench:
 Refer to the [contribution guide](docs/CONTRIBUTING.md) for details on setting up your environment and places to start!
