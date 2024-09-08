@@ -31,6 +31,7 @@ class Addon {
           pause?: () => void
           resume?: () => void
           extras: {[key: string]: any}
+          errorMsg?: string
         }
       }
     }

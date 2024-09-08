@@ -66,22 +66,20 @@ async function initEngine() {
     let initAttempt = () => {
         return new Promise<Error | void>((resolve, reject) => {
             if (window.speechSynthesis.getVoices().length < 1 ) {
-                // ztoolkit.log("WSA init fail - no voices")
+                addon.data.tts.engines["webSpeech"].errorMsg = "no-voices-found"
                 reject("no voices")  // reject on no voices
-
             }
 
             let utt = new window.SpeechSynthesisUtterance("initialised")
             utt.volume = 0  // prevent unnecessary noise
 
-            utt.onerror = () => {
-                // ztoolkit.log("WSA init fail - errored utterance")
-                reject("errored utterance")
-            }  // reject on errored utterance
+            utt.onerror = (event) => {
+                addon.data.tts.engines["webSpeech"].errorMsg = event.error
+                reject("errored utterance")  // reject on errored utterance
+            }
             utt.onend = () => {
-                // ztoolkit.log("WSA init success!")
-                resolve()
-            }  // voices are present and utterance succeeds, resolve
+                resolve()  // voices are present and utterance succeeds, resolve
+            }
 
             window.speechSynthesis.speak(utt)
         })
