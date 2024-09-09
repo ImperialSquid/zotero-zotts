@@ -38,6 +38,12 @@ Each engine needs to register the following details:
 - `pause` - To be called when pausing, must be defined if `canPause` is true, can be left undefined otherwise
 - `resume` - To be called when resuming, must be defined if `canPause` is true, can be left undefined otherwise
 - `extras` - Any extra functions/data to be used throughout ZoTTS (eg for listing available voices in preferences pane), can be empty
+- `status` - A string value representing the engine's status set during initialisation, can be:
+   - `"loading"` - Engine is still initialised
+   - `"ready"` - Engine initialised successfully
+   - `"error"` - Engine ran into an error while initialising
+- `errorMsg` - An error code representing the reason for the initialisation error, can left undefined
+   - If defined, it should correspond to a user-friendly error message registered in the [locale files](../addon/locale/en-US/addon.ftl)
 
 Engines shouldn't store data outside of `extras` for simplicity, any data that needs to be persisted (like voice settings) should be registered and stored in the preference ([prefs utils](../src/modules/utils/prefs.ts))
 
