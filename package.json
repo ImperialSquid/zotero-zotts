@@ -28,7 +28,7 @@
   },
   "homepage": "",
   "dependencies": {
-    "zotero-plugin-toolkit": "^3.0.0"
+    "zotero-plugin-toolkit": "^3.0.2"
   },
   "devDependencies": {
     "@types/node": "^20.14.10",
