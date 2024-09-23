@@ -14,7 +14,7 @@ body:
     attributes:
       label: Checklist
       options:
-        - label: I have used the search function for [**OPEN**](https://github.com/ImperialSquid/zotero-zotts/issues) issues to see if someone else has already submitted the same bug report.
+        - label: I have used the search function for [**OPEN**](https://github.com/ImperialSquid/zotero-zotts/issues) issues to see if someone else has already submitted the same bug report. (Note - if the bug report is about ZoTTS failing to start, please ignore this step and open a report anyway, start up failures can have various causes so it's easier to have separate issues for each, *especially* Linux users)
           required: true
         - label: I have **also** used the search function for [**CLOSED**](https://github.com/ImperialSquid/zotero-zotts/issues?q=is%3Aissue+is%3Aclosed) issues to see if the problem is already solved and just waiting to be released.
           required: true
