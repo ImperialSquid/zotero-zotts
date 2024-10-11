@@ -134,7 +134,7 @@ type SubsValidation = {
     subs: [
         string,  // pattern
         string,  // replacement
-            "string" | "regex"
+        "string" | "regex"  // type of pattern
     ][]
 }
 

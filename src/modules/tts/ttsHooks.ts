@@ -82,8 +82,6 @@ async function contextualSpeak(shiftHeld?: boolean) {
     } else {
         // reader tab context
 
-        // TODO: future - add code for reading paper text if no selection or annotation?
-
         let reader = Zotero.Reader.getByTabID(Zotero_Tabs.selectedID)
         if (reader === undefined) {
             return
