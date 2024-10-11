@@ -100,7 +100,8 @@ export function reportStatus() {
         }))
         icon = ""  // TODO: UI - Add notice SVG
         timer = 5000
-    } else if (addon.data.tts.status === "ready" && addon.data.tts.engines[addon.data.tts.current]?.status === "ready") {
+    } else if (addon.data.tts.status === "ready" &&
+            addon.data.tts.engines[addon.data.tts.current]?.status === "ready") {
         texts.push(getString("status-allGood"))
         icon = "" // TODO: UI - Add ready SVG
         timer = 1500

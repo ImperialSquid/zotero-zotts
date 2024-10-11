@@ -12,6 +12,8 @@ export function preprocessText(text: string) {
 // preprocessing that should occur on every piece of text to ensure consistency
 // stuff like unicode encoding, removing double newlines, etc
 function universalPreprocess(text: string) {
+    // Zotero stores text in NFD form (decomposes characters with accent marks into separate chars)
+    // however some TTS engines won't process this correctly, so we force re-normalise here
     text = text.normalize("NFC")
 
     text.replaceAll(new RegExp("(\s)\s+", "g"), "$1")
@@ -54,6 +56,7 @@ function userPreprocess(text: string) {
             "regex"
         ])
     }
+    // TODO: subs - remove http(s) addresses
 
     for (let sub of subs) {
         let pattern: string | RegExp

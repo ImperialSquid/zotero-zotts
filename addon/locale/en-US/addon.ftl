@@ -23,6 +23,7 @@ status-addonError =
     ERROR: TTS engine "{ $engineName }" failed to load.
     Please submit a bug report.
 
+# TODO: future - new engine error reporting needs to go here
 status-errorCause =
     Cause: { $engine ->
         *[other] { $cause ->
