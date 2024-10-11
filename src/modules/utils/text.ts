@@ -14,6 +14,8 @@ export function preprocessText(text: string) {
 function universalPreprocess(text: string) {
     text = text.normalize("NFC")
 
+    text.replaceAll(new RegExp("(\s)\s+", "g"), "$1")
+
     return text
 }
 
