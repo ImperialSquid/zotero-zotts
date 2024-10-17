@@ -283,5 +283,39 @@
       </html:p>
     </html:div>
 
+    <label for="__addonRef__-advanced-faves">
+      <html:h4 data-l10n-id="pref-subsect-advanced-faves"
+               style="margin-bottom:1px">
+      </html:h4>
+    </label>
+    <html:div id="__addonRef__-advanced-faves">
+      <html:p data-l10n-id="pref-faves-p1"
+              style="margin-left:20px;">
+      </html:p>
+
+      <html:button
+              onclick="Zotero.__addonInstance__.hooks.onPrefsRefresh('faves-add-voice', window.document)"
+              data-l10n-id="pref-faves-addVoice"
+              style="width:100%">
+      </html:button>
+
+      <!-- faves box -->
+      <vbox>
+        <html:label data-l10n-id="pref-faves-list"
+                    for="faves-list">
+        </html:label>
+        <html:select id="faves-list"
+                     size="4">
+        </html:select>
+      </vbox>
+
+      <html:button
+              onclick="Zotero.__addonInstance__.hooks.onPrefsRefresh('faves-remove-voice', window.document)"
+              data-l10n-id="pref-faves-removeVoice"
+              style="width:50%">
+      </html:button>
+
+    </html:div>
+
   </vbox>
 </vbox>
