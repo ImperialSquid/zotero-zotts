@@ -8,9 +8,11 @@ pref("__prefsPrefix__.webSpeech.volume", 50);
 pref("__prefsPrefix__.shortcuts.speak", "S");
 pref("__prefsPrefix__.shortcuts.pause", "P");
 pref("__prefsPrefix__.shortcuts.cancel", "C");
+pref("__prefsPrefix__.shortcuts.cycleFavourite", "Q")
 pref("__prefsPrefix__.shortcuts.swapLibraryItem", "false");
 pref("__prefsPrefix__.shortcuts.swapAnnotation", "false");
 pref("__prefsPrefix__.subs.removeParenCitations", false)
 pref("__prefsPrefix__.subs.removeNumericCitations", false)
 pref("__prefsPrefix__.subs.removeEmails", false)
 pref("__prefsPrefix__.subs.customSubs", "")
+pref("__prefsPrefix__.favouritesList", "[]");
