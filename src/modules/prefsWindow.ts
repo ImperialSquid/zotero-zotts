@@ -182,43 +182,40 @@ function setSubsCiteOverall(doc: Document) {
 function addNewFavourite(doc: Document) {
     addFavourite()
 
+    let favesListElement = (doc.getElementById("faves-list") as HTMLSelectElement)
+
     const faves = JSON.parse(getPref("favouritesList") as string)
-    let favesList = (doc.getElementById("faves-list") as HTMLSelectElement)
+    const newFaves = faves
+        .map((fav : {[key: string]: string | number| boolean}) => {
+            const text = Object.keys(fav)
+                .map(key => {
+                    let v: string
+                    if (key === "engine") {
+                        // use user-friendly engine name
+                        v = addon.data.tts.engines[fav[key] as string].name
+                    } else {
+                        v = fav[key].toString()
+                    }
+                    return key + ": " + v
+                })
+                .join(" // ")
+            const value = JSON.stringify(fav)
 
-    for (const child of favesList.children) {
-        child.remove()
-    }
-
-    waitUtilAsync(
-        () => { return favesList.length === 0 },
-        ).then(
-            () => {
-                for (const fav of faves) {
-                    const text = Object.keys(fav)
-                        .map(key => {
-                            let v: string
-                            if (key === "engine") {
-                                // use user-friendly engine name
-                                v = addon.data.tts.engines[fav[key]].name
-                            } else {
-                                v = fav[key]
-                            }
-                            return key + ": " + v
-                        })
-                        .join(" // ")
-                    const value = JSON.stringify(fav)
-
-                    const elem = ztoolkit.UI.createElement(
-                        doc, "option",
-                        {
-                            properties: {innerHTML: text},
-                            attributes: {value: value}
-                        }
-                    )
-
-                    favesList.add(elem)
+            const elem = ztoolkit.UI.createElement(
+                doc, "option",
+                {
+                    properties: {innerHTML: text},
+                    attributes: {value: value}
                 }
-            })
+            )
+
+            return elem
+        })
+
+    // removing and adding manually often resulted in incorrect visual output
+    // use much more modern replaceChildren call instead
+    // thanks to https://stackoverflow.com/a/65413839/7416433 for the heads up
+    favesListElement.replaceChildren(...newFaves)
 }
 
 export {
