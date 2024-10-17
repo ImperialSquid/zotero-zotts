@@ -26,6 +26,7 @@ pref-subsect-shortcuts-keys = Shortcut Keys
 pref-shortcuts-speak = Speak
 pref-shortcuts-pause = Pause
 pref-shortcuts-cancel = Cancel
+pref-shortcuts-cycleFav = Cycle favourites
 
 # --- Shift Modifier
 pref-subsect-shortcuts-shiftMod = Shift Modifier
