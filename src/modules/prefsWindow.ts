@@ -1,7 +1,7 @@
 import { config, repository } from "../../package.json"
 import { getString } from "./utils/locale";
 import { getPref, setPref } from "./utils/prefs";
-import { addFavourite } from "./favourites";
+import { addFavourite, removeFavourite } from "./favourites";
 import { waitUtilAsync } from "./utils/wait";
 
 function registerPrefsWindow() {
@@ -65,6 +65,8 @@ function prefsRefreshHook(type: string, doc: Document) {
         setSubsCiteOverall(doc)
     } else if (type === "faves-add-voice") {
         addNewFavourite(doc)
+    } else if (type === "faves-remove-voice") {
+        removeSelectedFavourite(doc)
     }
 }
 
@@ -181,6 +183,19 @@ function setSubsCiteOverall(doc: Document) {
 
 function addNewFavourite(doc: Document) {
     addFavourite()
+
+    refreshFavesList(doc)
+}
+
+function removeSelectedFavourite(doc: Document) {
+    const selected = (doc.getElementById("faves-list") as HTMLSelectElement).selectedOptions
+    if (selected.length === 0) {
+        // no children selected, return out
+        return
+    }
+    
+    const favToRemove = JSON.parse(selected[0].value)
+    removeFavourite(favToRemove)
 
     refreshFavesList(doc)
 }
