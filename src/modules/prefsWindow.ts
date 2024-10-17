@@ -206,18 +206,21 @@ function refreshFavesList(doc: Document) {
     const faves = JSON.parse(getPref("favouritesList") as string)
     const newFaves = faves
         .map((fav : {[key: string]: string | number| boolean}) => {
-            const text = Object.keys(fav)
-                .map(key => {
-                    let v: string
-                    if (key === "engine") {
-                        // use user-friendly engine name
-                        v = addon.data.tts.engines[fav[key] as string].name
-                    } else {
-                        v = fav[key].toString()
-                    }
-                    return key + ": " + v
-                })
-                .join(" // ")
+            const text =
+                "<b>" + fav["voice"] +
+                "</b> - <i>" +
+                addon.data.tts.engines[fav["engine"] as string].name +  // use user-friendly engine name
+                "</i> || " +
+                Object.keys(fav)  // map all other values to an "extra info" section
+                    .map(key => {
+                        if (key === "engine" || key === "voice") {
+                            return ""
+                        } else {
+                            return key + ": " + fav[key]
+                        }
+                    })
+                    .filter(text => text.length > 0)  // filter the empty strings from engine and voice
+                    .join(", ")
             const value = JSON.stringify(fav)
 
             const elem = ztoolkit.UI.createElement(
