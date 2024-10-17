@@ -5,6 +5,7 @@ import { registerMenu } from "./modules/menu"
 import { prefsLoadHook, prefsRefreshHook, registerPrefsWindow } from "./modules/prefsWindow"
 import { registerShortcuts } from "./modules/shortcuts"
 import { registerReaderListeners } from "./modules/reader"
+import { cycleFavourites } from "./modules/favourites";
 import { initLocale } from "./modules/utils/locale"
 import { initEngines, checkStatus, reportStatus } from "./modules/tts"
 import { speak, stop, pause, resume, speakOrResume, speakTest } from "./modules/tts/ttsHooks";
@@ -92,6 +93,8 @@ const onSpeakOrResume = speakOrResume
 
 const onSpeakTest = speakTest
 
+const onCycleFavourite = cycleFavourites
+
 const onPrefsLoad = prefsLoadHook
 
 const onPrefsRefresh = prefsRefreshHook
@@ -107,6 +110,7 @@ export default {
   onResume,
   onSpeakOrResume,
   onSpeakTest,
+  onCycleFavourite,
   onPrefsLoad,
   onPrefsRefresh
 }
