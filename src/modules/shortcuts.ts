@@ -17,6 +17,11 @@ export function registerShortcuts() {
                 ev.key.toLowerCase() === (getPref("shortcuts.cancel") as string).toLowerCase()) {
                 addon.hooks.onStop()
             }
+
+            if (ev.ctrlKey && ev.shiftKey &&
+                ev.key.toLowerCase() === (getPref("shortcuts.cycleFavourite") as string).toLowerCase()) {
+                addon.hooks.onCycleFavourite()
+            }
         }
     })
 }
