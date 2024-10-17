@@ -44,7 +44,7 @@ function removeFavourite(
         = JSON.parse(getPref("favouritesList") as string)
 
     faves = faves.filter(f => {
-        ! compareFav(f, favToRemove)
+        return ! compareFav(f, favToRemove)
     })
 
     setPref("favouritesList", JSON.stringify(faves))
