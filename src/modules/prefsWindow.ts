@@ -1,6 +1,8 @@
 import { config, repository } from "../../package.json"
 import { getString } from "./utils/locale";
 import { getPref, setPref } from "./utils/prefs";
+import { addFavourite } from "./favourites";
+import { waitUtilAsync } from "./utils/wait";
 
 function registerPrefsWindow() {
     Zotero.PreferencePanes.register(
@@ -61,6 +63,8 @@ function prefsRefreshHook(type: string, doc: Document) {
         setSubsCiteSubitems(doc)
     } else if (type === "subs-cite-subitem") {
         setSubsCiteOverall(doc)
+    } else if (type === "faves-add-voice") {
+        addNewFavourite(doc)
     }
 }
 
@@ -173,6 +177,48 @@ function setSubsCiteOverall(doc: Document) {
         overall.indeterminate = true
         overall.checked = false
     }
+}
+
+function addNewFavourite(doc: Document) {
+    addFavourite()
+
+    const faves = JSON.parse(getPref("favouritesList") as string)
+    let favesList = (doc.getElementById("faves-list") as HTMLSelectElement)
+
+    for (const child of favesList.children) {
+        child.remove()
+    }
+
+    waitUtilAsync(
+        () => { return favesList.length === 0 },
+        ).then(
+            () => {
+                for (const fav of faves) {
+                    const text = Object.keys(fav)
+                        .map(key => {
+                            let v: string
+                            if (key === "engine") {
+                                // use user-friendly engine name
+                                v = addon.data.tts.engines[fav[key]].name
+                            } else {
+                                v = fav[key]
+                            }
+                            return key + ": " + v
+                        })
+                        .join(" // ")
+                    const value = JSON.stringify(fav)
+
+                    const elem = ztoolkit.UI.createElement(
+                        doc, "option",
+                        {
+                            properties: {innerHTML: text},
+                            attributes: {value: value}
+                        }
+                    )
+
+                    favesList.add(elem)
+                }
+            })
 }
 
 export {
