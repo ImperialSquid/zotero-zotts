@@ -182,6 +182,10 @@ function setSubsCiteOverall(doc: Document) {
 function addNewFavourite(doc: Document) {
     addFavourite()
 
+    refreshFavesList(doc)
+}
+
+function refreshFavesList(doc: Document) {
     let favesListElement = (doc.getElementById("faves-list") as HTMLSelectElement)
 
     const faves = JSON.parse(getPref("favouritesList") as string)
@@ -216,6 +220,7 @@ function addNewFavourite(doc: Document) {
     // use much more modern replaceChildren call instead
     // thanks to https://stackoverflow.com/a/65413839/7416433 for the heads up
     favesListElement.replaceChildren(...newFaves)
+
 }
 
 export {
