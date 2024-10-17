@@ -81,3 +81,16 @@ pref-subs-warning = { $count ->
     [1] Found error on line: { $lines }
    *[other] Found error on lines: { $lines }
 }
+
+# --- Favourites
+pref-subsect-advanced-faves = Favourites
+
+pref-faves-p1 =
+    Set favourites for quick switching between voices
+    (useful for those who read in multiple languages).
+
+pref-faves-addVoice = Add current voice to favourites
+
+pref-faves-list = Favourites list
+
+pref-faves-removeVoice = Remove selected voice
