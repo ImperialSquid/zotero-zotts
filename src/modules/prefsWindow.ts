@@ -2,7 +2,6 @@ import { config, repository } from "../../package.json"
 import { getString } from "./utils/locale";
 import { getPref, setPref } from "./utils/prefs";
 import { addFavourite, removeFavourite } from "./favourites";
-import { waitUtilAsync } from "./utils/wait";
 
 function registerPrefsWindow() {
     Zotero.PreferencePanes.register(
