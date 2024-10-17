@@ -56,6 +56,7 @@ function prefsRefreshHook(type: string, doc: Document) {
         setTimeout(() => {
             setSubsTextareaWarning(doc)
             setSubsCiteOverall(doc)
+            refreshFavesList(doc)
         },10)
     } else if (type === "subs-text") {
         setSubsTextareaWarning(doc)
