@@ -39,6 +39,36 @@ export async function initEngines(addon: Addon) {
         }
     )
 
+    addon.data.tts.current = "mozillaTTS"
+
+    let mozTTSPromise = import("./mozillaTTS").then(
+        (e) => {
+            addon.data.tts.engines["mozillaTTS"] = {
+                name: "Mozilla Text-to-Speech for all.",
+                status: "loading",
+                speak: e.speak,
+                stop: e.stop,
+                canPause: false,
+                pause: e.pause,
+                resume: e.resume,
+                extras: {
+                }
+            }
+
+            return e
+        }
+    ).then(
+        (e) => {
+            addon.data.tts.engines["mozillaTTS"].status = "ready"
+        }
+    )
+    .catch(
+        (e) => {
+            // ztoolkit.log(`WSA init fail - ${e}`)
+            addon.data.tts.engines["mozillaTTS"].status = "error"
+        }
+    )
+
     // TODO: future - implement more engines
     //   Google?
     //   Azure?
@@ -48,6 +78,7 @@ export async function initEngines(addon: Addon) {
     try {
         await Promise.any([
             wsaPromise,
+            mozTTSPromise
             // TODO: future - other engines promises here
         ])
         addon.data.tts.status = "ready"
