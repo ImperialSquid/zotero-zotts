@@ -56,10 +56,7 @@ function setDefaultPrefs() {
         setPref("webSpeech.volume", 1)
     }
 
-    if (!getPref("webSpeech.voice")) {
-        let voice = window.speechSynthesis.getVoices()[0].name
-        setPref("webSpeech.voice", voice)
-    }
+    trySetVoiceIfNone()
 }
 
 async function initEngine() {
@@ -129,6 +126,9 @@ function populateVoiceList (doc: Document) {
             // populate voices list
             let voices = (getVoices() as Array<string>)
             voices.forEach((v) => menu.appendItem(v, v))
+
+            // if a voice wasn't set during init it might not be here when prefs pane loads, so just to be sure
+            trySetVoiceIfNone()
         }
     ).catch(
         () => {
@@ -154,4 +154,14 @@ function getVoice(voiceName: string) {
     }
 
     return filteredVoices[0]
+}
+
+function trySetVoiceIfNone() {
+    // encased in try block to prevent race condition crashes if speech synthesis isn't fully initialised
+    try {
+        if (!getPref("webSpeech.voice")) {
+            let voice = window.speechSynthesis.getVoices()[0].name
+            setPref("webSpeech.voice", voice)
+        }
+    } catch (e) {}
 }
