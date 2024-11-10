@@ -34,9 +34,14 @@ function speak(text: string) {
         addon.data.tts.engines["webSpeech"].extras.linuxQueue =
             (addon.data.tts.engines["webSpeech"].extras.linuxQueue ?? [] as string[]).concat(strings)
 
-        speakInternal(
-            addon.data.tts.engines["webSpeech"].extras.linuxQueue.shift()
-        )
+        // if WSA is currently speaking that means we're in queueing new items mode,
+        // handleEnd will play the entire queue so we just append but don't play
+        // if we're not speaking, calling speakInternal will kick off playing again
+        if (! window.speechSynthesis.speaking) {
+            speakInternal(
+              addon.data.tts.engines["webSpeech"].extras.linuxQueue.shift()
+            )
+        }
     }
 }
 
