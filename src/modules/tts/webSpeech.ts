@@ -5,7 +5,7 @@ import MenuList = XUL.MenuList;
 function speak(text: string) {
     // cancel is safe to call even when not speaking
     if (getPref("newItemBehaviour") === "cancel") {
-      window.speechSynthesis.cancel()
+        window.speechSynthesis.cancel()
     }
 
     if (Zotero.isMac || Zotero.isWin) {
@@ -28,28 +28,50 @@ function speak(text: string) {
         // this is such janky nonsense lol
 
         const strings = text
-          .split(/(.+?(?:\. |\n|$))/)
-          .filter(t => t.length > 0)
+            .split(/(.+?(?:\. |\n|$))/)
+            .filter(t => t.length > 0)
 
         addon.data.tts.engines["webSpeech"].extras.linuxQueue =
-          (addon.data.tts.engines["webSpeech"].extras.linuxQueue ?? [] as string[]).concat(strings)
+            (addon.data.tts.engines["webSpeech"].extras.linuxQueue ?? [] as string[]).concat(strings)
 
         speakInternal(
-          addon.data.tts.engines["webSpeech"].extras.linuxQueue.shift()
+            addon.data.tts.engines["webSpeech"].extras.linuxQueue.shift()
         )
     }
 }
 
 function stop() {
+    if (Zotero.isLinux) {
+        // clear queue to prevent playing in the future
+        addon.data.tts.engines["webSpeech"].extras.linuxQueue = []
+
+        // cancelling while "paused" on linux won't trigger handleEnd since we
+        // never pause mid-utterance, so we set the state manually
+        addon.data.tts.state = "idle"
+    }
+
     window.speechSynthesis.cancel()
 }
 
 function pause() {
-    window.speechSynthesis.pause()
+    if (Zotero.isMac || Zotero.isWin) {
+        window.speechSynthesis.pause()
+    } else {
+        // set pause flag here and wait for handleEnd to actually pause from it
+        addon.data.tts.state = "paused"
+    }
 }
 
 function resume() {
-    window.speechSynthesis.resume()
+    if (Zotero.isMac || Zotero.isWin) {
+        window.speechSynthesis.resume()
+    } else {
+        // set pause flag here and wait for handleEnd to actually pause from it
+        addon.data.tts.state = "playing"
+        speakInternal(
+            addon.data.tts.engines["webSpeech"].extras.linuxQueue.shift()
+        )
+    }
 }
 
 function setDefaultPrefs() {
