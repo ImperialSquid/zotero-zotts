@@ -5,7 +5,7 @@ import MenuList = XUL.MenuList;
 function speak(text: string) {
     // cancel is safe to call even when not speaking
     if (getPref("newItemBehaviour") === "cancel") {
-        window.speechSynthesis.cancel()
+        stop()
     }
 
     if (Zotero.isMac || Zotero.isWin) {
