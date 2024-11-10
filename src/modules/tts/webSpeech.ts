@@ -8,27 +8,36 @@ function speak(text: string) {
       window.speechSynthesis.cancel()
     }
 
-    let utt = new window.SpeechSynthesisUtterance(text)
+    if (Zotero.isMac || Zotero.isWin) {
+        speakInternal(text)
+    } else {
+        // fix:
+        // speech-dispatcher will "pause" immediately but in reality waits for some kind of mark to resume from
+        // word/sentence boundaries are unsupported in speechd and firefox's WSA has no support for SSML mark tags
+        // so while WSA in firefox for linux apparently has a pause function
+        // in reality it does _absolutely nothing_...
+        // see https://searchfox.org/mozilla-central/source/dom/media/webspeech/synth/speechd/SpeechDispatcherService.cpp#184
+        //
+        // as a result, we fake the ability to pause by splitting the text into sentences
+        // and then manually feeding them into the engine one by one after the last one ends
+        // pausing is handled by using addon.data.tts.state as a flag
+        //
+        // note: splitting the sentences up and them feeding them all in one go also won't work
+        // since the pause function does nothing
+        //
+        // this is such janky nonsense lol
 
-    // set attributes for utterance
-    utt.pitch = (getPref("webSpeech.pitch") as number)/100
-    utt.rate = (getPref("webSpeech.rate") as number)/100
-    utt.volume = (getPref("webSpeech.volume") as number)/100
-    utt.voice = getVoice(getPref("webSpeech.voice") as string)
+        const strings = text
+          .split(/(.+?(?:\. |\n|$))/)
+          .filter(t => t.length > 0)
 
-    // manage reflecting state into addon
-    utt.onstart = () => {addon.data.tts.state = "playing"}
-    utt.onend = () => {addon.data.tts.state = "idle"}
-    utt.onpause = () => {addon.data.tts.state = "paused"}
-    utt.onresume = () => {addon.data.tts.state = "playing"}
+        addon.data.tts.engines["webSpeech"].extras.linuxQueue =
+          (addon.data.tts.engines["webSpeech"].extras.linuxQueue ?? [] as string[]).concat(strings)
 
-    // TODO: future - add "highlight as you hear" feature to highlight text as it's spoken?
-    // utt.onmark triggers on word and sentence boundaries
-    // text selection popup params contain rects used to draw selected text
-    // very vaguely possible but might be quite janky...
-    // currently deemed more work than it's worth, but happy to revisit
-
-    window.speechSynthesis.speak(utt)
+        speakInternal(
+          addon.data.tts.engines["webSpeech"].extras.linuxQueue.shift()
+        )
+    }
 }
 
 function stop() {
@@ -164,4 +173,46 @@ function trySetVoiceIfNone() {
             setPref("webSpeech.voice", voice)
         }
     } catch (e) {}
+}
+
+function speakInternal(text: string) {
+    let utt = new window.SpeechSynthesisUtterance(text)
+
+    // set attributes for utterance
+    utt.pitch = (getPref("webSpeech.pitch") as number)/100
+    utt.rate = (getPref("webSpeech.rate") as number)/100
+    utt.volume = (getPref("webSpeech.volume") as number)/100
+    utt.voice = getVoice(getPref("webSpeech.voice") as string)
+
+    // manage reflecting state into addon
+    utt.onstart = () => {addon.data.tts.state = "playing"}
+    utt.onend = () => {
+        handleEnd()
+    }
+    utt.onpause = () => {addon.data.tts.state = "paused"}
+    utt.onresume = () => {addon.data.tts.state = "playing"}
+
+    // TODO: future - add "highlight as you hear" feature to highlight text as it's spoken?
+    // utt.onmark triggers on word and sentence boundaries
+    // text selection popup params contain rects used to draw selected text
+    // very vaguely possible but might be quite janky...
+    // currently deemed more work than it's worth, but happy to revisit
+
+    window.speechSynthesis.speak(utt)
+}
+
+function handleEnd() {
+    if (Zotero.isMac || Zotero.isWin) {
+        // handleEnd is only needed for queueing on linux
+        addon.data.tts.state = "idle"
+    } else if (addon.data.tts.engines["webSpeech"].extras.linuxQueue.length === 0) {
+        // queue is empty
+        addon.data.tts.state = "idle"
+    } else if (addon.data.tts.state === "paused") {
+        // speaking is paused by user, return to prevent next item playing
+        return
+    } else {
+        // we're on linux, the queue isn't empty, and user hasn't paused, so speak the next item
+        speakInternal(addon.data.tts.engines["webSpeech"].extras.linuxQueue.shift())
+    }
 }
