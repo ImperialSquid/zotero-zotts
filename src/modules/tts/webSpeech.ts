@@ -71,7 +71,6 @@ function resume() {
     if (Zotero.isMac || Zotero.isWin) {
         window.speechSynthesis.resume()
     } else {
-        // set pause flag here and wait for handleEnd to actually pause from it
         addon.data.tts.state = "playing"
         speakInternal(
             addon.data.tts.engines["webSpeech"].extras.linuxQueue.shift()
@@ -81,15 +80,15 @@ function resume() {
 
 function setDefaultPrefs() {
     if (!getPref("webSpeech.pitch")) {
-        setPref("webSpeech.pitch", 1)
+        setPref("webSpeech.pitch", 100)
     }
 
     if (!getPref("webSpeech.rate")) {
-        setPref("webSpeech.rate", 1)
+        setPref("webSpeech.rate", 100)
     }
 
     if (!getPref("webSpeech.volume")) {
-        setPref("webSpeech.volume", 1)
+        setPref("webSpeech.volume", 50)
     }
 
     trySetVoiceIfNone()
