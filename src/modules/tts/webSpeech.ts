@@ -1,6 +1,5 @@
 import { getPref, setPref } from "../utils/prefs"
 import { retryUntilAsync, waitUtilAsync } from "../utils/wait";
-import MenuList = XUL.MenuList;
 
 function speak(text: string) {
     // cancel is safe to call even when not speaking
@@ -141,7 +140,7 @@ function getVoices() {
 }
 
 function populateVoiceList (doc: Document) {
-    let menu = (doc.getElementById("webspeech-voice") as MenuList)
+    let menu = (doc.getElementById("webspeech-voice") as unknown as XULMenuListElement)
     menu.appendItem(
         "Loading Voices...",
         (getPref("webSpeech.voice") as string) // preserve pref while loading

@@ -1,6 +1,6 @@
 import { config } from "../package.json"
 import { setDefaultPrefs } from "./modules/utils/prefs"
-import ZoteroToolkit from "zotero-plugin-toolkit/dist/index"
+import { ZoteroToolkit } from "zotero-plugin-toolkit"
 import { registerMenu } from "./modules/menu"
 import { prefsLoadHook, prefsRefreshHook, registerPrefsWindow } from "./modules/prefsWindow"
 import { registerShortcuts } from "./modules/shortcuts"
