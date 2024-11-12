@@ -42,3 +42,8 @@ This file is intended as a human-readable non-technical summary of the changes i
 - Added the ability to specify substitutions for the text to be spoken in the preferences (can be either a raw string or a regex pattern)
 - Added status reporting, including better error reporting for WSA
 - Added voice list sorting for readability (thanks to contributor @flightmansam!)
+
+## v1.4.0
+*Released 10/11/2024*
+- Added favourites, giving users ability to switch voices quickly (useful for those that read papers in multiple languages)
+- Fixed inability to pause speech on linux machines
