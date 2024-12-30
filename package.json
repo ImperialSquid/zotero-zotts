@@ -34,6 +34,6 @@
     "@types/node": "^20.14.10",
     "typescript": "^5.5.3",
     "zotero-plugin-scaffold": "^0.1.7",
-    "zotero-types": "^3.0.1"
+    "zotero-types": "^3.1.0"
   }
 }
