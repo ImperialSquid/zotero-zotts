@@ -18,6 +18,9 @@ ZoTTS is a Zotero plugin to add TTS functionality
 
 The plugin should load straight away, and future updates will be downloaded automatically!
 
+> [!TIP]
+> If you want some information about finding more voices for ZoTTS, please see [this documentation](docs/BETTER_VOICES.md).
+
 > [!NOTE]
 > ZoTTS might fail to init the TTS engine for Linux users who use Zotero in sandboxed environments (flatpak/snap/etc) due to a long-standing non-trivial bug, a workaround might be possible but you might find it easier to use a non-sandboxed Zotero if you can, feel free to open a bug report for further assistance
 
