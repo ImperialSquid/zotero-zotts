@@ -26,6 +26,7 @@ The plugin should load straight away, and future updates will be downloaded auto
 - `Ctrl/Cmd + S` will begin **s**peaking (extra functionality is available with `Ctrl/Cmd + Shift + S`, discussed below)
 - `Ctrl/Cmd + Shift + P` will **p**ause
 - `Ctrl/Cmd + Shift + C` will **c**ancel
+- `Ctrl/Cmd + Shift + Q` will cycle to the next favourite, if set
 
 In the Library tab, by default `Ctrl/Cmd + S` will speak a paper's title, `Ctrl/Cmd + Shift + S` will speak its abstract.
 
@@ -56,8 +57,12 @@ In the preferences you can:
   - Rebind the speak, pause and cancel shortcuts to use other letters
   - Change what happens when you're holding `Ctrl/Cmd` vs `Ctrl/Cmd + Shift`
 - **Specify substitutions**
-   - A lot of TTS engines don't pronouce things how you might want, you can tell ZoTTS text to look out for and what to replace it with
+   - A lot of TTS engines don't pronounce things how you might want, you can tell ZoTTS text to look out for and what to replace it with
    - Patterns to be replaced can be either raw strings or regex patterns
+- **Create favourites**
+   - Create a set of favourites with specific voices and other settings
+   - You can quickly cycle between favourites with the shortcut
+   - Especially useful for users who might read in multiple languages
 
 ## Contributing :wrench:
 Refer to the [contribution guide](docs/CONTRIBUTING.md) for details on setting up your environment and places to start!
