@@ -118,7 +118,7 @@ async function initEngine() {
 
     await retryUntilAsync(
         initAttempt,
-        (getPref("ttsEngines.reloadTries") as number | undefined) ?? 5,
+        (getPref("ttsEngine.reloadTries") as number | undefined) ?? 5,
         100)
 }
 
