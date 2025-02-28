@@ -68,4 +68,12 @@ In the preferences you can:
    - Especially useful for users who might read in multiple languages
 
 ## Contributing :wrench:
-Refer to the [contribution guide](docs/CONTRIBUTING.md) for details on setting up your environment and places to start!
+### Code and Translations :computer:
+If you want to contribute bug fixes/features/etc or translate the plugin into another language, please refer to the [contribution guide](docs/CONTRIBUTING.md) for details on setting up your environment and places to start.
+
+### Funding :money_with_wings:
+If you want to support me financially, please follow this link: 
+
+<iframe src="https://github.com/sponsors/ImperialSquid/button" title="Sponsor ImperialSquid" height="32" width="114" style="border: 0; border-radius: 6px;"></iframe>
+
+Don't worry if you can't, ZoTTS is always will be *absolutely free*. However, if you do want to send some money, I'd be very grateful!
