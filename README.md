@@ -74,6 +74,7 @@ If you want to contribute bug fixes/features/etc or translate the plugin into an
 ### Funding :money_with_wings:
 If you want to support me financially, please follow this link: 
 
-<iframe src="https://github.com/sponsors/ImperialSquid/button" title="Sponsor ImperialSquid" height="32" width="114" style="border: 0; border-radius: 6px;"></iframe>
+[![Sponsor on GitHub](https://img.shields.io/badge/Sponsor_me-on_GitHub-violet?style=flat-square&logo=github
+)](https://github.com/sponsors/ImperialSquid/)
 
 Don't worry if you can't, ZoTTS is always will be *absolutely free*. However, if you do want to send some money, I'd be very grateful!
