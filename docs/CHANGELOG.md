@@ -46,4 +46,12 @@ This file is intended as a human-readable non-technical summary of the changes i
 ## v1.4.0
 *Released 10/11/2024*
 - Added favourites, giving users ability to switch voices quickly (useful for those that read papers in multiple languages)
-- Fixed inability to pause speech on linux machines
+- Fixed inability to pause speech on linux machine
+
+## 1.4.1
+*Released 03/02/2024*
+- Fixed Zotero version compatibility mismatch
+
+## 1.4.2
+*Released 10/02/2024*
+- Fixed secret setting that allows users to reload TTS engines more times
