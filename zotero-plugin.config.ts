@@ -4,7 +4,7 @@ import pkg from "./package.json";
 
 export default defineConfig({
     source: ["src", "addon"],
-    dist: "build",
+    dist: ".scaffold/build",
     name: pkg.config.addonName,
     id: pkg.config.addonID,
     namespace: pkg.config.addonRef,
@@ -36,7 +36,7 @@ export default defineConfig({
                 },
                 bundle: true,
                 target: "firefox115",
-                outfile: `build/addon/chrome/content/scripts/${pkg.config.addonRef}.js`,
+                outfile: `.scaffold/build/addon/chrome/content/scripts/${pkg.config.addonRef}.js`,
             },
         ],
         // If you want to checkout update.json into the repository, uncomment the following lines:
