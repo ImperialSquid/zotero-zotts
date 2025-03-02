@@ -26,7 +26,7 @@ function prefsLoadHook(type: string, doc: Document) {
     addon.data.tts.engines.webSpeech.extras.populateVoiceList(doc)
 
     // shortcuts section modelled on core Zotero
-    for (let label of doc.querySelectorAll(".modifier")) {
+    for (let label of Array.from(doc.querySelectorAll(".modifier")) as Element[]) {
         // Display the appropriate modifier keys for the platform
         if (label.classList.contains("optional-shift")) {
             label.textContent = Zotero.isMac ?
@@ -157,10 +157,11 @@ function setSubsCiteSubitems(doc: Document) {
 }
 
 function setSubsCiteOverall(doc: Document) {
-    let overall = (doc.getElementById(`${config.addonRef}-pref-subs-citationsOverall`) as
-        HTMLInputElement)
-    let subitems = (doc.querySelectorAll(`.${config.addonRef}-pref-subs-citations-subitems input`) as
-        NodeListOf<HTMLInputElement>)
+    let overall =
+      (doc.getElementById(`${config.addonRef}-pref-subs-citationsOverall`) as HTMLInputElement)
+    let subitems = Array.from(
+      doc.querySelectorAll(`.${config.addonRef}-pref-subs-citations-subitems input`)
+    ) as HTMLInputElement[]
 
     let checkedCount = 0
     for (let item of subitems) {
@@ -193,7 +194,7 @@ function removeSelectedFavourite(doc: Document) {
         // no children selected, return out
         return
     }
-    
+
     const favToRemove = JSON.parse(selected[0].value)
     removeFavourite(favToRemove)
 
