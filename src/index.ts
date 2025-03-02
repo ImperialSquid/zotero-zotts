@@ -4,6 +4,7 @@ import { config } from "../package.json"
 
 const basicTool = new BasicTool()
 
+// @ts-ignore - Plugin instance is not typed
 if (!basicTool.getGlobal("Zotero")[config.addonInstance]) {
   // Set global variables
   _globalThis.Zotero = basicTool.getGlobal("Zotero")
@@ -21,6 +22,7 @@ if (!basicTool.getGlobal("Zotero")[config.addonInstance]) {
     addon.data.env === "development"
   ztoolkit.basicOptions.debug.disableDebugBridgePassword =
     addon.data.env === "development"
+  // @ts-ignore - Plugin instance is not typed
   Zotero[config.addonInstance] = addon
   // Trigger addon hook for initialization
   addon.hooks.onStartup()
