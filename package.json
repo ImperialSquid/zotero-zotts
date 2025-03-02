@@ -28,12 +28,12 @@
   },
   "homepage": "",
   "dependencies": {
-    "zotero-plugin-toolkit": "^4.0.7"
+    "zotero-plugin-toolkit": "^4.1.2"
   },
   "devDependencies": {
-    "@types/node": "^20.14.10",
-    "typescript": "^5.5.3",
-    "zotero-plugin-scaffold": "^0.1.7",
-    "zotero-types": "^3.0.1"
+    "@types/node": "^20.17.22",
+    "typescript": "^5.8.2",
+    "zotero-plugin-scaffold": "^0.2.9",
+    "zotero-types": "^3.1.7"
   }
 }
