@@ -1,5 +1,6 @@
 import { ZoteroToolkit } from "zotero-plugin-toolkit"
 import hooks from "./hooks"
+import { TTSEngine } from "./modules/tts";
 
 class Addon {
   public data: {
@@ -22,17 +23,7 @@ class Addon {
       state: "idle" | "playing" | "paused"
       status: "loading" | "ready" | "error"
       engines: {
-        [key: string]: {
-          name: string
-          status: "loading" | "ready" | "error"
-          canPause: boolean
-          speak: (input: string) => void
-          stop: () => void
-          pause?: () => void
-          resume?: () => void
-          extras: {[key: string]: any}
-          errorMsg?: string
-        }
+        [key: string]: TTSEngine  // see src/modules/tts/index.ts
       }
     }
   }

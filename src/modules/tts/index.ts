@@ -117,8 +117,32 @@ function reportStatus() {
     popup.startCloseTimer(timer)
 }
 
+type TTSEngineWithPause = {
+    speak: (t: string) => void
+    stop: () => void
+    canPause: true
+    pause: () => void
+    resume: () => void
+}
+
+type TTSEngineWithoutPause = {
+    speak: (t: string) => void
+    stop: () => void
+    canPause: false
+}
+
+type TTSEngine = (TTSEngineWithPause | TTSEngineWithoutPause) & {
+    name: string
+    status: "loading" | "ready" | "error"
+    extras: {
+        [key: string]: any
+    }
+    errorMsg?: string
+}
+
 export {
     initEngines,
     checkStatus,
     reportStatus,
+    TTSEngine
 }
