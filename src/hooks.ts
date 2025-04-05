@@ -56,12 +56,12 @@ async function onMainWindowLoad(win: Window): Promise<void> {
   //     `${config.addonRef}-mainWindow.ftl`,
   // )
 
-  if (checkStatus()) {
+  // if (checkStatus()) {
     registerPrefsWindow()
     registerMenu()
     registerShortcuts()
     registerReaderListeners()
-  }
+  // }
 
   notifyStatus()  // report ready or error status as soon as possible
 }
