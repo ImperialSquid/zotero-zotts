@@ -12,10 +12,20 @@ function notifyStatus() {
         const header =  getString("popup-addonErrorTitle")
         const trailer = getString("popup-errorTrailer")
 
+        notifyGeneric(
+          [header, trailer],
+          "critical"
+        )
+
     } else if (addon.data.tts.status === "loading") {
         // ZoTTS is still loading all engines
         const header =  getString("popup-addonLoadingTitle")
         const trailer = getString("popup-loadingTrailer")
+
+        notifyGeneric(
+          [header, trailer],
+          "info"
+        )
 
     } else if (addon.data.tts.engines[addon.data.tts.current]?.status === "error") {
         // ZoTTS has loaded an engine, but the currently selected one has errored
@@ -26,13 +36,17 @@ function notifyStatus() {
 
     } else if (addon.data.tts.engines[addon.data.tts.current]?.status === "loading") {
         // ZoTTS has loaded an engine, but the currently selected one is still loading
-        const header =  getString("")
-        const message = getString("", {
+        const header =  getString("popup-engineLoadingTitle", {
             args: {
-
+                engine: addon.data.tts.current
             }
         })
         const trailer = getString("popup-loadingTrailer")
+
+        notifyGeneric(
+          [header, trailer],
+          "info"
+        )
 
     } else if (addon.data.tts.status === "ready" &&
       addon.data.tts.engines[addon.data.tts.current]?.status === "ready") {
