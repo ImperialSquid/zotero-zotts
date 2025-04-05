@@ -2,7 +2,7 @@ import { config } from "../../package.json"
 import { getString } from "./utils/locale";
 import { getSelectedText } from "./utils/readerUtils";
 
-export async function registerReaderListeners() {
+export function registerReaderListeners() {
     Zotero.Reader.registerEventListener(
         "renderTextSelectionPopup",
         (event) => {
