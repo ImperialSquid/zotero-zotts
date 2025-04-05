@@ -1,8 +1,9 @@
-import { checkStatus, reportStatus } from "."
+import { checkStatus } from "."
 import { getString } from "../utils/locale"
 import { getPref } from "../utils/prefs"
 import { getFullText, getSelectedAnnotations, getSelectedText } from "../utils/readerUtils"
 import { preprocessText } from "../utils/text";
+import { notifyTTSStatus } from "../utils/notify";
 
 //   might be nice to reformat text into a better form, might have to be managed by each engine internally
 function speak(text: string) {
@@ -11,7 +12,7 @@ function speak(text: string) {
 
         addon.data.tts.engines[addon.data.tts.current].speak(text)
     } else {
-        reportStatus()
+        notifyTTSStatus(addon.data.tts.current)
     }
 }
 
@@ -19,7 +20,7 @@ function stop() {
     if (checkStatus()) {
         addon.data.tts.engines[addon.data.tts.current].stop()
     } else {
-        reportStatus()
+        notifyTTSStatus(addon.data.tts.current)
     }
 }
 
@@ -32,7 +33,7 @@ function pause() {
             addon.data.tts.engines[addon.data.tts.current].pause()
         }
     } else {
-        reportStatus()
+        notifyTTSStatus(addon.data.tts.current)
     }
 }
 
@@ -43,7 +44,7 @@ function resume() {
             addon.data.tts.engines[addon.data.tts.current].resume()
         }
     } else {
-        reportStatus()
+        notifyTTSStatus(addon.data.tts.current)
     }
 }
 

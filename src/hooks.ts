@@ -7,9 +7,10 @@ import { registerShortcuts } from "./modules/shortcuts"
 import { registerReaderListeners } from "./modules/reader"
 import { cycleFavourites } from "./modules/favourites";
 import { initLocale } from "./modules/utils/locale"
-import { initEngines, checkStatus, reportStatus } from "./modules/tts"
+import { initEngines, checkStatus } from "./modules/tts"
 import { speak, stop, pause, resume, speakOrResume, speakTest } from "./modules/tts/ttsHooks";
 import { loadIcons } from "./modules/utils/icons";
+import { notifyStatus } from "./modules/utils/notify";
 
 async function onStartup() {
   await Promise.all([
@@ -62,7 +63,7 @@ async function onMainWindowLoad(win: Window): Promise<void> {
     registerReaderListeners()
   }
 
-  reportStatus()  // report ready or error status as soon as possible
+  notifyStatus()  // report ready or error status as soon as possible
 }
 
 async function onMainWindowUnload(win: Window): Promise<void> {
