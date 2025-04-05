@@ -53,6 +53,7 @@ function prefsLoadHook(type: string, doc: Document) {
 function prefsRefreshHook(type: string, doc: Document) {
     if (type === "load") {
         setTimeout(() => {
+            updateTTSEngineStatuses(doc)
             setSubsTextareaWarning(doc)
             setSubsCiteOverall(doc)
             refreshFavesList(doc)
@@ -67,6 +68,34 @@ function prefsRefreshHook(type: string, doc: Document) {
         addNewFavourite(doc)
     } else if (type === "faves-remove-voice") {
         removeSelectedFavourite(doc)
+    }
+}
+
+function updateTTSEngineStatuses(doc: Document) {
+    for (const key in addon.data.tts.engines) {
+        const statusPara = doc.getElementById(`${key}-status`)
+        if (!statusPara) {
+            continue // no status exists for this engine
+        }
+
+        if (addon.data.tts.engines[key]?.status === "ready") {
+            doc.l10n?.setAttributes(
+              statusPara,
+              `${config.addonRef}-pref-status-allGood`,
+              {
+                  "engine": key
+              })
+            statusPara.style.color = "#94bd3a"
+        } else {
+            doc.l10n?.setAttributes(
+              statusPara,
+              `${config.addonRef}-pref-status-error`,
+              {
+                  "engine": key,
+                  "cause": addon.data.tts.engines[key].errorMsg ?? ""
+              })
+            statusPara.style.color = "tomato"
+        }
     }
 }
 

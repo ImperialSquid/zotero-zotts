@@ -8,6 +8,19 @@ pref-general-queue-disable =
 pref-general-queue-enable =
     .label = Add new item to a queue
 
+# === TTS General
+pref-status-unknown =
+    Status: Unknown.<br>
+    Please submit a bug report if you see this message.
+pref-status-allGood =
+    Status: { zotts-ttsEngine-engineName } is loaded and working normally.
+pref-status-error =
+    Status: { zotts-ttsEngine-engineName } encountered an error.<br>
+    Cause: { zotts-ttsEngine-errorCause }
+
+# TODO - remove manual addonRef prefix after updating zotero-plugin-scaffold
+# see https://github.com/windingwind/zotero-plugin-toolkit/issues/77
+
 # === WSA
 pref-sect-wsa = Web Speech
 

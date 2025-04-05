@@ -1,5 +1,6 @@
 <linkset>
   <html:link rel="localization" href="__addonRef__-preferences.ftl" />
+  <html:link rel="localization" href="__addonRef__-tts.ftl" />
 </linkset>
 <vbox
   id="zotero-prefpane-__addonRef__"
@@ -26,6 +27,10 @@
 
   <vbox class="main-section" id="__addonRef__-webspeech">
     <label><html:h1 data-l10n-id="pref-sect-wsa"></html:h1></label>
+    <html:p id="webSpeech-status"
+            data-l10n-id="pref-status-unknown"
+            style="text-align:center; color:tomato !important; font-weight:bold;">
+    </html:p>
 
     <!-- WSA voice -->
     <vbox>
