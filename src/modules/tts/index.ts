@@ -1,5 +1,4 @@
 import Addon from "../../addon"
-import { getString } from "../utils/locale";
 
 async function initEngines(addon: Addon) {
     addon.data.tts.current = "webSpeech"
@@ -61,62 +60,6 @@ function checkStatus() {
       && addon.data.tts.engines[addon.data.tts.current].status === "ready"
 }
 
-function reportStatus() {
-    const popup = new Zotero.ProgressWindow({closeOnClick: true})
-    popup.changeHeadline("ZoTTS")
-
-    let texts: string[] = []
-    let icon = ""
-    let timer = 0
-
-    // TODO: l10n - add status reporting localisation
-    if (addon.data.tts.status === "error") {
-        texts.push(getString("status-ttsError"))
-        icon = ""  // TODO: UI - Add error SVG
-        timer = 10000
-    } else if (addon.data.tts.status === "loading") {
-        texts.push(getString("status-ttsLoading"))
-        icon = ""  // TODO: UI - Add notice SVG
-        timer = 5000
-    } else if (addon.data.tts.engines[addon.data.tts.current]?.status === "error") {
-        texts.push(getString("status-addonError", {
-            args: {
-                engineName: addon.data.tts.engines[addon.data.tts.current]?.name
-            }
-        }))
-        texts.push(getString("status-errorCause", {
-            args: {
-                engine: addon.data.tts.current,
-                cause: addon.data.tts.engines[addon.data.tts.current]?.errorMsg
-            }
-        }))
-        icon = ""  // TODO: UI - Add error SVG
-        timer = 10000
-    } else if (addon.data.tts.engines[addon.data.tts.current]?.status === "loading") {
-        texts.push(getString("status-addonLoading", {
-            args: {
-                engineName: addon.data.tts.engines[addon.data.tts.current]?.name
-            }
-        }))
-        icon = ""  // TODO: UI - Add notice SVG
-        timer = 5000
-    } else if (addon.data.tts.status === "ready" &&
-      addon.data.tts.engines[addon.data.tts.current]?.status === "ready") {
-        texts.push(getString("status-allGood"))
-        icon = "" // TODO: UI - Add ready SVG
-        timer = 1500
-    }
-
-    popup.addLines(texts.shift() ?? "", icon)  // first line gets the icon
-
-    texts.forEach((text) => {
-        popup.addLines(text, "")
-    })  // any remaining lines don't
-
-    popup.show()
-    popup.startCloseTimer(timer)
-}
-
 type TTSEngineWithPause = {
     speak: (t: string) => void
     stop: () => void
@@ -143,6 +86,5 @@ type TTSEngine = (TTSEngineWithPause | TTSEngineWithoutPause) & {
 export {
     initEngines,
     checkStatus,
-    reportStatus,
     TTSEngine
 }
