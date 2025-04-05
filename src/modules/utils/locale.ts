@@ -13,6 +13,7 @@ function initLocale() {
   )([
     `${config.addonRef}-addon.ftl`,
     `${config.addonRef}-preferences.ftl`,
+    `${config.addonRef}-tts.ftl`,
   ], true)
 
   addon.data.locale = {
