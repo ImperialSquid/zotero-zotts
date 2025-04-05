@@ -14,6 +14,9 @@ class Addon {
     }
     ui: {
       toolbars: Array<HTMLDivElement>
+      icons: {
+        [key: string]: string  // see src/modules/tts/index.ts
+      }
     }
     tts: {
       current: string
@@ -39,7 +42,8 @@ class Addon {
       // ztoolkit: new MyToolkit(),
       ztoolkit: new ZoteroToolkit(),
       ui: {
-        toolbars: []
+        toolbars: [],
+        icons: {}
       },
       tts: {
         current: "",

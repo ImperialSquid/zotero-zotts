@@ -3,28 +3,6 @@ import { getString } from "./utils/locale";
 import { getSelectedText } from "./utils/readerUtils";
 
 export async function registerReaderListeners() {
-    // fetching the icons rather than hard coding it allows for better stylistic
-    // changes without massively changing the code every time
-    let speakIcon: string
-    await fetch(`chrome://${config.addonRef}/content/icons/speak@16.svg`)
-        .then((res) => res.text())
-        .then((text) => {speakIcon = text})
-
-    let playIcon: string
-    await fetch(`chrome://${config.addonRef}/content/icons/play@16.svg`)
-        .then((res) => res.text())
-        .then((text) => {playIcon = text})
-
-    let pauseIcon: string
-    await fetch(`chrome://${config.addonRef}/content/icons/pause@16.svg`)
-        .then((res) => res.text())
-        .then((text) => {pauseIcon = text})
-
-    let cancelIcon: string
-    await fetch(`chrome://${config.addonRef}/content/icons/cancel@16.svg`)
-        .then((res) => res.text())
-        .then((text) => {cancelIcon = text})
-
     Zotero.Reader.registerEventListener(
         "renderTextSelectionPopup",
         (event) => {
@@ -35,7 +13,7 @@ export async function registerReaderListeners() {
                         {
                             tag: "div",
                             properties: {
-                                innerHTML: `${speakIcon}`
+                                innerHTML: `${ addon.data.ui.icons.speak }`
                             },
                             styles: {
                                 display: "inline-block",
@@ -88,7 +66,7 @@ export async function registerReaderListeners() {
                                 {
                                     tag: "div",
                                     properties: {
-                                        innerHTML: `${speakIcon}`
+                                        innerHTML: `${ addon.data.ui.icons.speak }`
                                     },
                                     styles: {
                                         display: "inline-block",
@@ -129,7 +107,7 @@ export async function registerReaderListeners() {
                                 {
                                     tag: "div",
                                     properties: {
-                                        innerHTML: `${speakIcon}`
+                                        innerHTML: `${ addon.data.ui.icons.speak }`
                                     },
                                     styles: {
                                         display: "inline-block",
@@ -193,7 +171,7 @@ export async function registerReaderListeners() {
                             tag: "button",
                             namespace: "html",
                             properties: {
-                                innerHTML: `${playIcon}`,
+                                innerHTML: `${ addon.data.ui.icons.play }`,
                                 // innerHTML: "PLAY"
                             },
                             classList: ["toolbar-button",],
@@ -211,7 +189,7 @@ export async function registerReaderListeners() {
                             tag: "button",
                             namespace: "html",
                             properties: {
-                                innerHTML: `${pauseIcon}`,
+                                innerHTML: `${ addon.data.ui.icons.pause }`,
                                 // innerHTML: "PAUSE"
                             },
                             classList: ["toolbar-button",],
@@ -229,7 +207,7 @@ export async function registerReaderListeners() {
                             tag: "button",
                             namespace: "html",
                             properties: {
-                                innerHTML: `${cancelIcon}`,
+                                innerHTML: `${ addon.data.ui.icons.cancel }`,
                                 // innerHTML: "CANCEL"
                             },
                             classList: ["toolbar-button",],

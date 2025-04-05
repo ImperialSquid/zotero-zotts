@@ -9,6 +9,7 @@ import { cycleFavourites } from "./modules/favourites";
 import { initLocale } from "./modules/utils/locale"
 import { initEngines, checkStatus, reportStatus } from "./modules/tts"
 import { speak, stop, pause, resume, speakOrResume, speakTest } from "./modules/tts/ttsHooks";
+import { loadIcons } from "./modules/utils/icons";
 
 async function onStartup() {
   await Promise.all([
@@ -22,6 +23,8 @@ async function onStartup() {
   initLocale()
 
   setDefaultPrefs()
+
+  await loadIcons()
 
   await onMainWindowLoad(window)
 }
@@ -56,7 +59,7 @@ async function onMainWindowLoad(win: Window): Promise<void> {
     registerPrefsWindow()
     registerMenu()
     registerShortcuts()
-    await registerReaderListeners()
+    registerReaderListeners()
   }
 
   reportStatus()  // report ready or error status as soon as possible
