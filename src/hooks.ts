@@ -27,7 +27,9 @@ async function onStartup() {
 
   await loadIcons()
 
-  await onMainWindowLoad(window)
+  await Promise.all(
+    Zotero.getMainWindows().map((win) => onMainWindowLoad(win)),
+  )
 }
 
 async function onMainWindowLoad(win: Window): Promise<void> {
