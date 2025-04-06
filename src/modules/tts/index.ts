@@ -33,6 +33,7 @@ async function initEngines(addon: Addon) {
     ).catch(
       (e) => {
           // ztoolkit.log(`WSA init fail - ${e}`)
+          addon.data.tts.engines["webSpeech"].errorMsg = e
           addon.data.tts.engines["webSpeech"].status = "error"
       }
     )

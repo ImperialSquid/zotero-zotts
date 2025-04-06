@@ -99,16 +99,14 @@ async function initEngine() {
     let initAttempt = () => {
         return new Promise<Error | void>((resolve, reject) => {
             if (window.speechSynthesis.getVoices().length < 1 ) {
-                addon.data.tts.engines["webSpeech"].errorMsg = "no-voices-found"
-                reject("no voices")  // reject on no voices
+                reject("no-voices-found")  // reject on no voices
             }
 
             let utt = new window.SpeechSynthesisUtterance("initialised")
             utt.volume = 0  // prevent unnecessary noise
 
             utt.onerror = (event) => {
-                addon.data.tts.engines["webSpeech"].errorMsg = event.error
-                reject("errored utterance")  // reject on errored utterance
+                reject(event.error)  // reject on errored utterance
             }
             utt.onend = () => {
                 resolve()  // voices are present and utterance succeeds, resolve
@@ -118,7 +116,7 @@ async function initEngine() {
         })
     }
 
-    await retryUntilAsync(
+    return retryUntilAsync(
         initAttempt,
         (getPref("ttsEngine.reloadTries") as number | undefined) ?? 5,
         100)
