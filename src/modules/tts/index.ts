@@ -3,6 +3,7 @@ import Addon from "../../addon"
 async function initEngines(addon: Addon) {
     addon.data.tts.current = "webSpeech"
 
+    // TODO: optim - importing most engines with be similar, abstract this into a function?
     let wsaPromise = import("./webSpeech").then(
       (e) => {
           e.setDefaultPrefs()

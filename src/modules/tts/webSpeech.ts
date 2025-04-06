@@ -201,6 +201,8 @@ function trySetVoiceIfNone() {
 }
 
 function speakInternal(text: string) {
+    // TODO: issue - split really long strings before handing off to OS, GH issue #173
+
     let utt = new window.SpeechSynthesisUtterance(text)
 
     // set attributes for utterance

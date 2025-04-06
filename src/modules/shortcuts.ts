@@ -22,6 +22,8 @@ export function registerShortcuts() {
                 ev.key.toLowerCase() === (getPref("shortcuts.cycleFavourite") as string).toLowerCase()) {
                 addon.hooks.onCycleFavourite()
             }
+
+            // TODO: issue - dynamic speed controls, GH issue #179
         }
     })
 }
