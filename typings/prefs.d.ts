@@ -20,6 +20,7 @@ declare namespace _ZoteroTypes {
       "shortcuts.cycleFavourite": string;
       "shortcuts.swapLibraryItem": string;
       "shortcuts.swapAnnotation": string;
+      "shortcuts.swapSpeakSelection": string;
       "subs.removeParenCitations": boolean;
       "subs.removeNumericCitations": boolean;
       "subs.removeEmails": boolean;

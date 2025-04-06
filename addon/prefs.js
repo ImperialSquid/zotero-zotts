@@ -11,6 +11,7 @@ pref("__prefsPrefix__.shortcuts.cancel", "C");
 pref("__prefsPrefix__.shortcuts.cycleFavourite", "Q")
 pref("__prefsPrefix__.shortcuts.swapLibraryItem", "false");
 pref("__prefsPrefix__.shortcuts.swapAnnotation", "false");
+pref("__prefsPrefix__.shortcuts.swapSpeakSelection", "false");
 pref("__prefsPrefix__.subs.removeParenCitations", false)
 pref("__prefsPrefix__.subs.removeNumericCitations", false)
 pref("__prefsPrefix__.subs.removeEmails", false)

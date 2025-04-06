@@ -44,7 +44,7 @@ pref-shortcuts-cycleFav = Cycle favourites
 # --- Shift Modifier
 pref-subsect-shortcuts-shiftMod = Shift Modifier
 
-pref-shiftMod-p1 = You can change whether ZoTTS will read the title/abstract of library items and the text/comment of annotations by holding Shift.
+pref-shiftMod-p1 = You can change whether ZoTTS will read the title/abstract of library items, the text/comment of annotations, and the selected text/eveything after it in the reader by holding Shift.
 pref-shiftMod-p2 = Select what ZoTTS should do when <em>not</em> holding Shift
 
 pref-shiftMod-swapLib = When speaking a library item:
@@ -58,6 +58,12 @@ pref-shiftMod-swapAnno-false =
     .label = Speak annotated text
 pref-shiftMod-swapAnno-true =
     .label = Speak attached comment
+
+pref-shiftMod-swapSpeakSelection = When speaking a selection:
+pref-shiftMod-swapSpeakSelection-false =
+    .label = Speak just the selected text
+pref-shiftMod-swapSpeakSelection-true =
+    .label = Speak from the selected text to the end
 
 # === Advanced
 pref-sect-advanced = Advanced
