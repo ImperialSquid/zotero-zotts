@@ -8,7 +8,6 @@ async function initEngines(addon: Addon) {
           e.setDefaultPrefs()
 
           addon.data.tts.engines["webSpeech"] = {
-              name: "Web Speech API",
               status: "loading",
               speak: e.speak,
               stop: e.stop,
@@ -75,7 +74,6 @@ type TTSEngineWithoutPause = {
 }
 
 type TTSEngine = (TTSEngineWithPause | TTSEngineWithoutPause) & {
-    name: string
     status: "loading" | "ready" | "error"
     extras: {
         [key: string]: any

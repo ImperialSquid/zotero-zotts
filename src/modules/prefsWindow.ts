@@ -239,7 +239,8 @@ function refreshFavesList(doc: Document) {
             const text =
                 "<b>" + fav["voice"] +
                 "</b> - <i>" +
-                addon.data.tts.engines[fav["engine"] as string].name +  // use user-friendly engine name
+                // use user-friendly engine name from locale files
+                getString("ttsEngine-engineName", {args: {engine: fav["engine"]}}) +
                 "</i> || " +
                 Object.keys(fav)  // map all other values to an "extra info" section
                     .map(key => {
