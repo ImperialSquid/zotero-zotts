@@ -1,7 +1,7 @@
 name: Bug Report
 description: Create a report to describe a problem.
 title: "[Bug]: "
-labels: ["bug"]
+labels: ["type:bug"]
 assignees:
   - ImperialSquid
 body:
