@@ -33,7 +33,10 @@ The plugin should load straight away, and future updates will be downloaded auto
 
 In the Library tab, by default `Ctrl/Cmd + S` will speak a paper's title, `Ctrl/Cmd + Shift + S` will speak its abstract.
 
-In Reader tabs, `Ctrl/Cmd (+ Shift) + S` will speak the full text of a paper. If you have any text selected within the document, it will read that instead. If no text is selected but some annotations are selected `Ctrl/Cmd + S` will speak their annotated text, `Ctrl/Cmd + Shift + S` will speak the attached comment if there is one.
+In Reader tabs:
+- If there's any text selected, `Ctrl/Cmd + S` will speak it, `Ctrl/Cmd + Shift + S` will speak from that selection to the end
+- If there's no text selected, but there are annotations selected, `Ctrl/Cmd + S` will speak their annotated text, `Ctrl/Cmd + Shift + S` will speak their comments (if any)
+- If there's no text and no annotations selected, `Ctrl/Cmd (+ Shift) + S` will default to reading the full text of the paper
 
 You can swap the behaviour of `Ctrl/Cmd + S` and `Ctrl/Cmd + Shift + S` in the preferences.
 
@@ -42,7 +45,9 @@ In the Library tab, right clicking an item will bring up a context menu, you can
 
 ![](docs/resources/right-click-buttons.png)
 
-In Reader tabs there's also buttons for playing/pausing/cancelling in the top right. These will act the same as using the speak/pause/cancel shortcuts in terms of speaking selected text/annotations, however, when speaking annotations it will default to speaking the annotated text.
+In Reader tabs there's also buttons for playing/pausing/cancelling in the top right. These will act the same as using the speak/pause/cancel shortcuts in terms of speaking selected text/annotations/full text.
+
+(Note that doing this ignores whatever Shift Modifier settings you have, and whether you're holding shift when the button is clicked).
 
 ![](docs/resources/play-pause-cancel-buttons.png)
 
@@ -52,7 +57,8 @@ On each annotation there are also buttons to speak the annotated text, and the c
 
 ### Preferences
 In the preferences you can:
-- **Enable/disable queueing** - if you want to speak a new item, should ZoTTS add it to a queue, or cancel the current item and speak the new one?
+- **Enable/disable queueing**
+  - If you want to speak a new item, should ZoTTS add it to a queue, or cancel the current item and speak the new one?
 - **Adjust the current voice and related settings**
   - Voices used are the ones built in to your computer
   - You can also adjust the rate/pitch/volume
@@ -61,7 +67,7 @@ In the preferences you can:
   - Change what happens when you're holding `Ctrl/Cmd` vs `Ctrl/Cmd + Shift`
 - **Specify substitutions**
    - A lot of TTS engines don't pronounce things how you might want, you can tell ZoTTS text to look out for and what to replace it with
-   - Patterns to be replaced can be either raw strings or regex patterns
+   - Patterns to be replaced can be either raw text or regex patterns
 - **Create favourites**
    - Create a set of favourites with specific voices and other settings
    - You can quickly cycle between favourites with the shortcut
