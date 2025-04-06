@@ -49,9 +49,16 @@ This file is intended as a human-readable non-technical summary of the changes i
 - Fixed inability to pause speech on linux machine
 
 ## 1.4.1
-*Released 03/02/2024*
+*Released 03/02/2025*
 - Fixed Zotero version compatibility mismatch
 
 ## 1.4.2
-*Released 10/02/2024*
+*Released 10/02/2025*
 - Fixed secret setting that allows users to reload TTS engines more times
+
+## 1.5.0
+*Released 06/04/2025*
+- Added the ability to "speak from here" in a paper
+- Reverted the decision to not load UI elements if the plugin failed to load
+- Added much better notifications (partly to allow for both of the above in terms of user feedback)
+- WSA now reports its status in the preferences menu (also allows for easier debugging and support on my end)
