@@ -45,8 +45,6 @@ function speak(text: string) {
 }
 
 function stop() {
-    // @ts-expect-error - Zotero.isLinux is always missing,
-    // https://github.com/windingwind/zotero-types/issues/65#issuecomment-2692538262
     if (Zotero.isLinux) {
         // clear queue to prevent playing in the future
         addon.data.tts.engines["webSpeech"].extras.linuxQueue = []
