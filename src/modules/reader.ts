@@ -1,55 +1,97 @@
 import { config } from "../../package.json"
 import { getString } from "./utils/locale";
-import { getSelectedText } from "./utils/readerUtils";
+import { getSelectedText, getSelectedTextToEnd } from "./utils/readerUtils";
 
 export function registerReaderListeners() {
     Zotero.Reader.registerEventListener(
-        "renderTextSelectionPopup",
-        (event) => {
-            const { reader, doc, params, append } = event
-            let speakSelectionButton = ztoolkit.UI.createElement(doc, "div",
-                {
-                    children: [
-                        {
-                            tag: "div",
-                            properties: {
-                                innerHTML: `${ addon.data.ui.icons.speak }`
-                            },
-                            styles: {
-                                display: "inline-block",
-                                verticalAlign: "middle",
-                                height: "16px",
-                                paddingRight: "0.5em",
-                                paddingLeft: "0.2em"
-                            }
+      "renderTextSelectionPopup",
+      (event) => {
+          const { reader, doc, params, append } = event
+          let speakSelectionButton = ztoolkit.UI.createElement(doc, "div",
+            {
+                children: [
+                    {
+                        tag: "div",
+                        properties: {
+                            innerHTML: `${ addon.data.ui.icons.speak }`
                         },
-                        {
-                            tag: "div",
-                            properties: {
-                                innerHTML: getString("textPopup-selection")
-                            },
-                            styles: {
-                                display: "inline-block",
-                                verticalAlign: "middle",
-                            }
+                        styles: {
+                            display: "inline-block",
+                            verticalAlign: "middle",
+                            height: "16px",
+                            paddingRight: "0.5em",
+                            paddingLeft: "0.2em"
                         }
-                    ],
-                    listeners: [
-                        {
-                            type: "click",
-                            listener: (e) => {addon.hooks.onSpeak(getSelectedText(reader))}
+                    },
+                    {
+                        tag: "div",
+                        properties: {
+                            innerHTML: getString("textPopup-selection")
+                        },
+                        styles: {
+                            display: "inline-block",
+                            verticalAlign: "middle",
                         }
-                    ],
-                    styles: {
-                        height: "fit-content",
-                        display: "flex",
                     }
+                ],
+                listeners: [
+                    {
+                        type: "click",
+                        listener: (e) => {addon.hooks.onSpeak(getSelectedText(reader))}
+                    }
+                ],
+                styles: {
+                    height: "fit-content",
+                    display: "flex",
                 }
-            )
+            }
+          )
+          let speakFromHereButton = ztoolkit.UI.createElement(doc, "div",
+            {
+                children: [
+                    {
+                        tag: "div",
+                        properties: {
+                            innerHTML: `${ addon.data.ui.icons.speak }`
+                        },
+                        styles: {
+                            display: "inline-block",
+                            verticalAlign: "middle",
+                            height: "16px",
+                            paddingRight: "0.5em",
+                            paddingLeft: "0.2em"
+                        }
+                    },
+                    {
+                        tag: "div",
+                        properties: {
+                            innerHTML: getString("textPopup-fromHere")
+                        },
+                        styles: {
+                            display: "inline-block",
+                            verticalAlign: "middle",
+                        }
+                    }
+                ],
+                listeners: [
+                    {
+                        type: "click",
+                        listener: async (e) => {
+                            addon.hooks.onSpeak(await getSelectedTextToEnd(reader))
+                        }
+                    }
+                ],
+                styles: {
+                    height: "fit-content",
+                    display: "flex",
+                }
+            }
+          )
 
-            append(speakSelectionButton)
-        },
-        config.addonID
+          append(speakSelectionButton)
+          append(speakFromHereButton)
+      },
+      config.addonID
     )
 
     Zotero.Reader.registerEventListener(

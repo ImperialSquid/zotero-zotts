@@ -3,6 +3,7 @@ itemMenu-title = Speak Title
 itemMenu-abstract = Speak Abstract
 
 textPopup-selection = Speak Selection
+textPopup-fromHere = Speak From Here
 
 anno-annotation = Anno.
 anno-comment = Comm.
