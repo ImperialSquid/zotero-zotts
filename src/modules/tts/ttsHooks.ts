@@ -1,7 +1,12 @@
 import { checkStatus } from "."
 import { getString } from "../utils/locale"
 import { getPref } from "../utils/prefs"
-import { getFullText, getSelectedAnnotations, getSelectedText } from "../utils/readerUtils"
+import {
+    getFullText,
+    getSelectedAnnotations,
+    getSelectedText,
+    getSelectedTextToEnd
+} from "../utils/readerUtils"
 import { preprocessText } from "../utils/text";
 import { notifyTTSStatus } from "../utils/notify";
 
@@ -91,7 +96,14 @@ async function contextualSpeak(shiftHeld?: boolean) {
 
         if (ztoolkit.Reader.getSelectedText(reader) !== "") {
             // if text selected, read
-            let text = getSelectedText(reader)
+            let swap: boolean
+            if (shiftHeld === undefined) {
+                swap = false
+            } else {
+                swap = shiftHeld !== (getPref("shortcuts.swapSpeakSelection") === "true")
+            }
+
+            let text = swap ? await getSelectedTextToEnd(reader) : getSelectedText(reader)
             speak(text)
 
         } else if (selectedAnnos.length > 0) {
