@@ -1,13 +1,8 @@
 {
   "compilerOptions": {
-    "experimentalDecorators": true,
-    "module": "commonjs",
-    "target": "ES2016",
-    "resolveJsonModule": true,
-    "types": ["zotero-types"],
-    "skipLibCheck": true,
     "strict": true
   },
+  "extends": "zotero-types/entries/mainWindow/",
   "include": ["src", "typings"],
-  "exclude": ["builds", "addon"]
+  "exclude": ["build", "addon"]
 }
