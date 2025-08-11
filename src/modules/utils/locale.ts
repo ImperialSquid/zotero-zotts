@@ -1,4 +1,5 @@
 import { config } from "../../../package.json"
+import {FluentMessageId} from "../../../typings/i10n";
 
 export { initLocale, getString }
 
@@ -44,10 +45,10 @@ function initLocale() {
  * getString("addon-dynamic-example", { args: { count: 2 } }); // I have 2 apples
  * ```
  */
-function getString(localString: string): string
-function getString(localString: string, branch: string): string
+function getString(localString: FluentMessageId): string
+function getString(localString: FluentMessageId, branch: string): string
 function getString(
-    localeString: string,
+    localeString: FluentMessageId,
     options: {
       branch?: string | undefined
       args?: Record<string, unknown>
