@@ -19,11 +19,11 @@ async function onStartup() {
     Zotero.uiReadyPromise,
   ])
 
+  setDefaultPrefs()
+
   await initEngines(addon)
 
   initLocale()
-
-  setDefaultPrefs()
 
   await loadIcons()
 
