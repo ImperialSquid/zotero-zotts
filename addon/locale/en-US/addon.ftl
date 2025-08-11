@@ -18,12 +18,10 @@ popup-allGood = Loaded and initialised successfully
 popup-addonLoadingTitle = NOTICE: ZoTTS is still loading
 popup-addonErrorTitle = ERROR: ZoTTS encountered an error
 
-# TODO - remove manual addonRef prefix after updating zotero-plugin-scaffold
-# see https://github.com/windingwind/zotero-plugin-toolkit/issues/77
-popup-engineLoadingTitle = NOTICE: { zotts-ttsEngine-engineName } is still loading
-popup-engineErrorTitle = ERROR: { zotts-ttsEngine-engineName } encountered an error
+popup-engineLoadingTitle = NOTICE: { ttsEngine-engineName } is still loading
+popup-engineErrorTitle = ERROR: { ttsEngine-engineName } encountered an error
 
-popup-engineErrorCause = Cause: { zotts-ttsEngine-errorCause }
+popup-engineErrorCause = Cause: { ttsEngine-errorCause }
 
 popup-loadingTrailer = Please be patient or submit a bug report if error persists
 popup-errorTrailer = Please submit a bug report
