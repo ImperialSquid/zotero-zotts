@@ -16,4 +16,11 @@ export function setDefaultPrefs() {
     if (!getPref("ttsEngine.current")) {
         setPref("ttsEngine.current", "webSpeech")
     }
+
+    // Mac seems to delay loading WSA a lot so set a much higher reload tries value for them specifically
+    if (Zotero.isMac && !getPref("ttsEngine.reloadTries")) {
+        setPref("ttsEngine.reloadTries", 30)
+    } else if (!getPref("ttsEngine.reloadTries")) {
+        setPref("ttsEngine.reloadTries", 5)
+    }
 }
