@@ -1,32 +1,35 @@
 <linkset>
-  <html:link rel="localization" href="__addonRef__-preferences.ftl" />
-  <html:link rel="localization" href="__addonRef__-tts.ftl" />
+    <html:link rel="localization" href="__addonRef__-preferences.ftl"/>
+    <html:link rel="localization" href="__addonRef__-tts.ftl"/>
 </linkset>
-<vbox
-  id="zotero-prefpane-__addonRef__"
-  onload="Zotero.__addonInstance__.hooks.onPrefsLoad('load', window.document)"
-  xmlns:html="http://www.w3.org/1999/xhtml"
+<vbox id="zotero-prefpane-__addonRef__"
+      onload="Zotero.__addonInstance__.hooks.onPrefsLoad('load', window.document)"
+      xmlns:html="http://www.w3.org/1999/xhtml"
 >
-  <vbox class="main-section" id="__addonRef__-general">
-    <label><html:h1 data-l10n-id="pref-sect-general"></html:h1></label>
+<vbox class="main-section" id="__addonRef__-general">
+    <label>
+        <html:h1 data-l10n-id="pref-sect-general"></html:h1>
+    </label>
 
     <!-- queue or cancel on playing new items -->
     <vbox>
-      <label data-l10n-id="pref-general-queue-label"></label>
-      <radiogroup preference="__prefsPrefix__.newItemBehaviour" style="padding-left:20px">
-        <radio data-l10n-id="pref-general-queue-disable"
-               value="cancel"/>
-        <radio data-l10n-id="pref-general-queue-enable"
-               value="queue"/>
-      </radiogroup>
+        <label data-l10n-id="pref-general-queue-label"></label>
+        <radiogroup preference="__prefsPrefix__.newItemBehaviour" style="padding-left:20px">
+            <radio data-l10n-id="pref-general-queue-disable"
+                   value="cancel"/>
+            <radio data-l10n-id="pref-general-queue-enable"
+                   value="queue"/>
+        </radiogroup>
     </vbox>
 
     <!--// TODO: future add dropdown to select TTS engine
              needs to call hook to gracefully transfer (cancel if playing/paused, etc)-->
-  </vbox>
+</vbox>
 
-  <vbox class="main-section" id="__addonRef__-webspeech">
-    <label><html:h1 data-l10n-id="pref-sect-wsa"></html:h1></label>
+<vbox class="main-section" id="__addonRef__-webspeech">
+    <label>
+        <html:h1 data-l10n-id="pref-sect-wsa"></html:h1>
+    </label>
     <html:p id="webSpeech-status"
             data-l10n-id="pref-status-unknown"
             style="text-align:center; color:tomato !important; font-weight:bold;">
@@ -34,84 +37,84 @@
 
     <!-- WSA voice -->
     <vbox>
-      <html:label data-l10n-id="pref-wsa-voice"
-                  for="webspeech-voice">
-      </html:label>
-      <menulist id="webspeech-voice" preference="__prefsPrefix__.webSpeech.voice">
-        <menupopup id="webspeech-voice-popup">
-          <!-- populate at runtime -->
-        </menupopup>
-      </menulist>
+        <html:label data-l10n-id="pref-wsa-voice"
+                    for="webspeech-voice">
+        </html:label>
+        <menulist id="webspeech-voice" preference="__prefsPrefix__.webSpeech.voice">
+            <menupopup id="webspeech-voice-popup">
+                <!-- populate at runtime -->
+            </menupopup>
+        </menulist>
     </vbox>
 
     <!-- volume label and slider -->
     <vbox>
-      <hbox align="center">
-        <html:label data-l10n-id="pref-wsa-volume"
-                    for="webspeech-volume">
-        </html:label>
-        <html:input preference="__prefsPrefix__.webSpeech.volume"
-                    readonly="true"
-                    style="width:30px"
-        />
-        <html:label>%</html:label>
-      </hbox>
+        <hbox align="center">
+            <html:label data-l10n-id="pref-wsa-volume"
+                        for="webspeech-volume">
+            </html:label>
+            <html:input preference="__prefsPrefix__.webSpeech.volume"
+                        readonly="true"
+                        style="width:30px"
+            />
+            <html:label>%</html:label>
+        </hbox>
 
-      <html:input id="webspeech-volume"
-                  type="range"
-                  min="0"
-                  max="100"
-                  value="50"
-                  preference="__prefsPrefix__.webSpeech.volume"
-                  style="width:50%"
-      />
+        <html:input id="webspeech-volume"
+                    type="range"
+                    min="0"
+                    max="100"
+                    value="50"
+                    preference="__prefsPrefix__.webSpeech.volume"
+                    style="width:50%"
+        />
     </vbox>
 
     <!-- rate label and slider -->
     <vbox>
-      <hbox align="center">
-        <html:label data-l10n-id="pref-wsa-rate"
-                    for="webspeech-rate">
-        </html:label>
-        <html:input preference="__prefsPrefix__.webSpeech.rate"
-                    readonly="true"
-                    style="width:30px"
-        />
-        <html:label>%</html:label>
-      </hbox>
+        <hbox align="center">
+            <html:label data-l10n-id="pref-wsa-rate"
+                        for="webspeech-rate">
+            </html:label>
+            <html:input preference="__prefsPrefix__.webSpeech.rate"
+                        readonly="true"
+                        style="width:30px"
+            />
+            <html:label>%</html:label>
+        </hbox>
 
-      <!-- WSA spec allows for x0.1-10 range but that seems excessive for now -->
-      <html:input id="webspeech-rate"
-                  type="range"
-                  min="25"
-                  max="400"
-                  value="100"
-                  preference="__prefsPrefix__.webSpeech.rate"
-                  style="width:50%"
-      />
+        <!-- WSA spec allows for x0.1-10 range but that seems excessive for now -->
+        <html:input id="webspeech-rate"
+                    type="range"
+                    min="25"
+                    max="400"
+                    value="100"
+                    preference="__prefsPrefix__.webSpeech.rate"
+                    style="width:50%"
+        />
     </vbox>
 
     <!-- pitch label and slider -->
     <vbox>
-      <hbox align="center">
-        <html:label data-l10n-id="pref-wsa-pitch"
-                    for="webspeech-pitch">
-        </html:label>
-        <html:input preference="__prefsPrefix__.webSpeech.pitch"
-                    readonly="true"
-                    style="width:30px"
-        />
-        <html:label>%</html:label>
-      </hbox>
+        <hbox align="center">
+            <html:label data-l10n-id="pref-wsa-pitch"
+                        for="webspeech-pitch">
+            </html:label>
+            <html:input preference="__prefsPrefix__.webSpeech.pitch"
+                        readonly="true"
+                        style="width:30px"
+            />
+            <html:label>%</html:label>
+        </hbox>
 
-      <html:input id="webspeech-pitch"
-                  type="range"
-                  min="0"
-                  max="200"
-                  value="100"
-                  preference="__prefsPrefix__.webSpeech.pitch"
-                  style="width:50%"
-      />
+        <html:input id="webspeech-pitch"
+                    type="range"
+                    min="0"
+                    max="200"
+                    value="100"
+                    preference="__prefsPrefix__.webSpeech.pitch"
+                    style="width:50%"
+        />
     </vbox>
 
     <html:button
@@ -119,249 +122,253 @@
             data-l10n-id="pref-wsa-testVoice">
     </html:button>
 
-  </vbox>
+</vbox>
 
-  <!-- NEW ENGINES HERE -->
+<!-- NEW ENGINES HERE -->
 
-  <vbox class="main-section" id="__addonRef__-shortcuts">
-    <label><html:h1 data-l10n-id="pref-sect-shortcuts"></html:h1></label>
+<vbox class="main-section" id="__addonRef__-shortcuts">
+    <label>
+        <html:h1 data-l10n-id="pref-sect-shortcuts"></html:h1>
+    </label>
 
     <label for="__addonRef__-shortcuts-grid">
-      <html:h4 data-l10n-id="pref-subsect-shortcuts-keys"
-               style="margin-bottom:1px">
-      </html:h4>
+        <html:h4 data-l10n-id="pref-subsect-shortcuts-keys"
+                 style="margin-bottom:1px">
+        </html:h4>
     </label>
     <html:div
             id="__addonRef__-shortcuts-grid"
             style="display: grid;align-items: center;grid-template-columns: 1fr max-content max-content;"
     >
-      <html:label data-l10n-id="pref-shortcuts-speak"
-                  for="__addonRed__-textbox-speak">
-      </html:label>
-      <html:label class="modifier optional-shift"/>
-      <html:input type="text"
-                  id="__addonRed__-textbox-speak"
-                  maxlength="1"
-                  size="1"
-                  preference="__prefsPrefix__.shortcuts.speak"/>
+        <html:label data-l10n-id="pref-shortcuts-speak"
+                    for="__addonRed__-textbox-speak">
+        </html:label>
+        <html:label class="modifier optional-shift"/>
+        <html:input type="text"
+                    id="__addonRed__-textbox-speak"
+                    maxlength="1"
+                    size="1"
+                    preference="__prefsPrefix__.shortcuts.speak"/>
 
-      <html:label data-l10n-id="pref-shortcuts-pause"
-                  for="__addonRed__-textbox-pause">
-      </html:label>
-      <html:label class="modifier required-shift"/>
-      <html:input type="text"
-                  id="__addonRed__-textbox-pause"
-                  maxlength="1"
-                  size="1"
-                  preference="__prefsPrefix__.shortcuts.pause"/>
+        <html:label data-l10n-id="pref-shortcuts-pause"
+                    for="__addonRed__-textbox-pause">
+        </html:label>
+        <html:label class="modifier required-shift"/>
+        <html:input type="text"
+                    id="__addonRed__-textbox-pause"
+                    maxlength="1"
+                    size="1"
+                    preference="__prefsPrefix__.shortcuts.pause"/>
 
-      <html:label data-l10n-id="pref-shortcuts-cancel"
-                  for="__addonRed__-textbox-cancel">
-      </html:label>
-      <html:label class="modifier required-shift"/>
-      <html:input type="text"
-                  id="__addonRed__-textbox-cancel"
-                  maxlength="1"
-                  size="1"
-                  preference="__prefsPrefix__.shortcuts.cancel"/>
+        <html:label data-l10n-id="pref-shortcuts-cancel"
+                    for="__addonRed__-textbox-cancel">
+        </html:label>
+        <html:label class="modifier required-shift"/>
+        <html:input type="text"
+                    id="__addonRed__-textbox-cancel"
+                    maxlength="1"
+                    size="1"
+                    preference="__prefsPrefix__.shortcuts.cancel"/>
 
-      <html:label data-l10n-id="pref-shortcuts-cycleFav"
-                  for="__addonRed__-textbox-cycleFav">
-      </html:label>
-      <html:label class="modifier required-shift"/>
-      <html:input type="text"
-                  id="__addonRed__-textbox-cycleFav"
-                  maxlength="1"
-                  size="1"
-                  preference="__prefsPrefix__.shortcuts.cycleFavourite"/>
+        <html:label data-l10n-id="pref-shortcuts-cycleFav"
+                    for="__addonRed__-textbox-cycleFav">
+        </html:label>
+        <html:label class="modifier required-shift"/>
+        <html:input type="text"
+                    id="__addonRed__-textbox-cycleFav"
+                    maxlength="1"
+                    size="1"
+                    preference="__prefsPrefix__.shortcuts.cycleFavourite"/>
     </html:div>
 
     <label for="__addonRef__-shortcuts-shift">
-      <html:h4 data-l10n-id="pref-subsect-shortcuts-shiftMod"
-               style="margin-bottom:1px">
-      </html:h4>
+        <html:h4 data-l10n-id="pref-subsect-shortcuts-shiftMod"
+                 style="margin-bottom:1px">
+        </html:h4>
     </label>
 
     <html:div id="__addonRef__-shortcuts-shift">
-      <html:p data-l10n-id="pref-shiftMod-p1"
-              style="margin-left:20px;">
-      </html:p>
+        <html:p data-l10n-id="pref-shiftMod-p1"
+                style="margin-left:20px;">
+        </html:p>
 
-      <html:p data-l10n-id="pref-shiftMod-p2"
-              style="margin-left:20px;">
-      </html:p>
+        <html:p data-l10n-id="pref-shiftMod-p2"
+                style="margin-left:20px;">
+        </html:p>
 
-      <label data-l10n-id="pref-shiftMod-swapLib"></label>
-      <radiogroup
-              preference="__prefsPrefix__.shortcuts.swapLibraryItem"
-              style="padding-left:30px;"
-              orient="horizontal"
-      >
-        <radio data-l10n-id="pref-shiftMod-swapLib-false"
-               value="false"/>
-        <radio data-l10n-id="pref-shiftMod-swapLib-true"
-               value="true"/>
-      </radiogroup>
+        <label data-l10n-id="pref-shiftMod-swapLib"></label>
+        <radiogroup
+                preference="__prefsPrefix__.shortcuts.swapLibraryItem"
+                style="padding-left:30px;"
+                orient="horizontal"
+        >
+            <radio data-l10n-id="pref-shiftMod-swapLib-false"
+                   value="false"/>
+            <radio data-l10n-id="pref-shiftMod-swapLib-true"
+                   value="true"/>
+        </radiogroup>
 
-      <label data-l10n-id="pref-shiftMod-swapAnno"></label>
-      <radiogroup
-              preference="__prefsPrefix__.shortcuts.swapAnnotation"
-              style="padding-left:30px;"
-              orient="horizontal"
-      >
-        <radio data-l10n-id="pref-shiftMod-swapAnno-false"
-               value="false"/>
-        <radio data-l10n-id="pref-shiftMod-swapAnno-true"
-               value="true"/>
-      </radiogroup>
+        <label data-l10n-id="pref-shiftMod-swapAnno"></label>
+        <radiogroup
+                preference="__prefsPrefix__.shortcuts.swapAnnotation"
+                style="padding-left:30px;"
+                orient="horizontal"
+        >
+            <radio data-l10n-id="pref-shiftMod-swapAnno-false"
+                   value="false"/>
+            <radio data-l10n-id="pref-shiftMod-swapAnno-true"
+                   value="true"/>
+        </radiogroup>
 
-      <label data-l10n-id="pref-shiftMod-swapSpeakSelection"></label>
-      <radiogroup
-              preference="__prefsPrefix__.shortcuts.swapSpeakSelection"
-              style="padding-left:30px;"
-              orient="horizontal"
-      >
-        <radio data-l10n-id="pref-shiftMod-swapSpeakSelection-false"
-               value="false"/>
-        <radio data-l10n-id="pref-shiftMod-swapSpeakSelection-true"
-               value="true"/>
-      </radiogroup>
+        <label data-l10n-id="pref-shiftMod-swapSpeakSelection"></label>
+        <radiogroup
+                preference="__prefsPrefix__.shortcuts.swapSpeakSelection"
+                style="padding-left:30px;"
+                orient="horizontal"
+        >
+            <radio data-l10n-id="pref-shiftMod-swapSpeakSelection-false"
+                   value="false"/>
+            <radio data-l10n-id="pref-shiftMod-swapSpeakSelection-true"
+                   value="true"/>
+        </radiogroup>
     </html:div>
 
-  </vbox>
+</vbox>
 
-  <vbox class="main-section" id="__addonRef__-advanced">
-    <label><html:h1 data-l10n-id="pref-sect-advanced"></html:h1></label>
+<vbox class="main-section" id="__addonRef__-advanced">
+    <label>
+        <html:h1 data-l10n-id="pref-sect-advanced"></html:h1>
+    </label>
 
     <label for="__addonRef__-advanced-subs">
-      <html:h4 data-l10n-id="pref-subsect-advanced-subs"
-               style="margin-bottom:1px">
-      </html:h4>
+        <html:h4 data-l10n-id="pref-subsect-advanced-subs"
+                 style="margin-bottom:1px">
+        </html:h4>
     </label>
     <html:div id="__addonRef__-advanced-subs">
-      <html:p data-l10n-id="pref-subs-p1"
-              style="margin-left:20px;">
-      </html:p>
+        <html:p data-l10n-id="pref-subs-p1"
+                style="margin-left:20px;">
+        </html:p>
 
-      <html:div id="__addonRef__-advanced-subs-builtin">
-        <vbox>
+        <html:div id="__addonRef__-advanced-subs-builtin">
+            <vbox>
 
-          <hbox>
-            <html:input type="checkbox"
-                        id="__addonRef__-pref-subs-citationsOverall"
-                        onclick="Zotero.__addonInstance__.hooks.onPrefsRefresh('subs-cite-overall', window.document)"
-            />
-            <html:label for="__addonRef__-pref-subs-citationsOverall"
-                        data-l10n-id="pref-subs-citationsOverall"
-            />
-          </hbox>
+                <hbox>
+                    <html:input type="checkbox"
+                                id="__addonRef__-pref-subs-citationsOverall"
+                                onclick="Zotero.__addonInstance__.hooks.onPrefsRefresh('subs-cite-overall', window.document)"
+                    />
+                    <html:label for="__addonRef__-pref-subs-citationsOverall"
+                                data-l10n-id="pref-subs-citationsOverall"
+                    />
+                </hbox>
 
-          <hbox>
-            <html:ul style="list-style-type:none; padding-left:20px; margin:5px"
-                     class="__addonRef__-pref-subs-citations-subitems"
-                     onclick="Zotero.__addonInstance__.hooks.onPrefsRefresh('subs-cite-subitem', window.document)"
-            >
-              <html:li>
-              <!-- (<author>, <year>, <pageNo>), etc-->
-                <html:input type="checkbox"
-                            id="__addonRef__-pref-subs-citationsParenthetical"
-                            preference="__prefsPrefix__.subs.removeParenCitations"
-                />
-                <html:label for="__addonRef__-pref-subs-citationsParenthetical"
-                            data-l10n-id="pref-subs-citationsParenthetical"
-                />
-              </html:li>
-              <html:li>
-              <!-- [<number>], etc -->
-                <html:input type="checkbox"
-                            id="__addonRef__-pref-subs-citationsNumeric"
-                            preference="__prefsPrefix__.subs.removeNumericCitations"
-                />
-                <html:label for="__addonRef__-pref-subs-citationsNumeric"
-                            data-l10n-id="pref-subs-citationsNumeric"
-                />
-              </html:li>
-            </html:ul>
+                <hbox>
+                    <html:ul style="list-style-type:none; padding-left:20px; margin:5px"
+                             class="__addonRef__-pref-subs-citations-subitems"
+                             onclick="Zotero.__addonInstance__.hooks.onPrefsRefresh('subs-cite-subitem', window.document)"
+                    >
+                        <html:li>
+                            <!-- (<author>, <year>, <pageNo>), etc-->
+                            <html:input type="checkbox"
+                                        id="__addonRef__-pref-subs-citationsParenthetical"
+                                        preference="__prefsPrefix__.subs.removeParenCitations"
+                            />
+                            <html:label for="__addonRef__-pref-subs-citationsParenthetical"
+                                        data-l10n-id="pref-subs-citationsParenthetical"
+                            />
+                        </html:li>
+                        <html:li>
+                            <!-- [<number>], etc -->
+                            <html:input type="checkbox"
+                                        id="__addonRef__-pref-subs-citationsNumeric"
+                                        preference="__prefsPrefix__.subs.removeNumericCitations"
+                            />
+                            <html:label for="__addonRef__-pref-subs-citationsNumeric"
+                                        data-l10n-id="pref-subs-citationsNumeric"
+                            />
+                        </html:li>
+                    </html:ul>
 
-          </hbox>
+                </hbox>
 
-          <hbox>
-            <html:input type="checkbox"
-                        id="__addonRef__-pref-subs-emails"
-                        preference="__prefsPrefix__.subs.removeEmails"
-            />
-            <html:label for="__addonRef__-pref-subs-emails"
-                        data-l10n-id="pref-subs-emails"
-            />
-          </hbox>
+                <hbox>
+                    <html:input type="checkbox"
+                                id="__addonRef__-pref-subs-emails"
+                                preference="__prefsPrefix__.subs.removeEmails"
+                    />
+                    <html:label for="__addonRef__-pref-subs-emails"
+                                data-l10n-id="pref-subs-emails"
+                    />
+                </hbox>
 
-          <hbox>
-            <html:input type="checkbox"
-                        id="__addonRef__-pref-subs-urls"
-                        preference="__prefsPrefix__.subs.removeURLs"
-            />
-            <html:label for="__addonRef__-pref-subs-urls"
-                        data-l10n-id="pref-subs-urls"
-            />
-          </hbox>
+                <hbox>
+                    <html:input type="checkbox"
+                                id="__addonRef__-pref-subs-urls"
+                                preference="__prefsPrefix__.subs.removeURLs"
+                    />
+                    <html:label for="__addonRef__-pref-subs-urls"
+                                data-l10n-id="pref-subs-urls"
+                    />
+                </hbox>
 
-        </vbox>
-      </html:div>
+            </vbox>
+        </html:div>
 
-      <html:p data-l10n-id="pref-subs-p2"
-              style="margin-left:20px;">
-      </html:p>
+        <html:p data-l10n-id="pref-subs-p2"
+                style="margin-left:20px;">
+        </html:p>
 
-      <html:textarea
-              id="__addonRef__-advanced-subs-input"
-              style="height: auto; width:100%;"
-              rows="9"
-              data-l10n-id="pref-subs-placeholder"
-              onkeypress="Zotero.__addonInstance__.hooks.onPrefsRefresh('subs-text', window.document)"
-      >
-      </html:textarea>
+        <html:textarea
+                id="__addonRef__-advanced-subs-input"
+                style="height: auto; width:100%;"
+                rows="9"
+                data-l10n-id="pref-subs-placeholder"
+                onkeypress="Zotero.__addonInstance__.hooks.onPrefsRefresh('subs-text', window.document)"
+        >
+        </html:textarea>
 
-      <html:p
-              id="__addonRef__-advanced-subs-warning"
-              data-l10n-id="pref-subs-warning"
-              style="margin-left:20px; color:tomato !important; margin-top:0px; visibility:hidden;"
-      >
-      </html:p>
+        <html:p
+                id="__addonRef__-advanced-subs-warning"
+                data-l10n-id="pref-subs-warning"
+                style="margin-left:20px; color:tomato !important; margin-top:0px; visibility:hidden;"
+        >
+        </html:p>
     </html:div>
 
     <label for="__addonRef__-advanced-faves">
-      <html:h4 data-l10n-id="pref-subsect-advanced-faves"
-               style="margin-bottom:1px">
-      </html:h4>
+        <html:h4 data-l10n-id="pref-subsect-advanced-faves"
+                 style="margin-bottom:1px">
+        </html:h4>
     </label>
     <html:div id="__addonRef__-advanced-faves">
-      <html:p data-l10n-id="pref-faves-p1"
-              style="margin-left:20px;">
-      </html:p>
+        <html:p data-l10n-id="pref-faves-p1"
+                style="margin-left:20px;">
+        </html:p>
 
-      <html:button
-              onclick="Zotero.__addonInstance__.hooks.onPrefsRefresh('faves-add-voice', window.document)"
-              data-l10n-id="pref-faves-addVoice"
-              style="width:100%">
-      </html:button>
+        <html:button
+                onclick="Zotero.__addonInstance__.hooks.onPrefsRefresh('faves-add-voice', window.document)"
+                data-l10n-id="pref-faves-addVoice"
+                style="width:100%">
+        </html:button>
 
-      <!-- faves box -->
-      <vbox>
-        <html:label data-l10n-id="pref-faves-list"
-                    for="faves-list">
-        </html:label>
-        <html:select id="faves-list"
-                     size="4">
-        </html:select>
-      </vbox>
+        <!-- faves box -->
+        <vbox>
+            <html:label data-l10n-id="pref-faves-list"
+                        for="faves-list">
+            </html:label>
+            <html:select id="faves-list"
+                         size="4">
+            </html:select>
+        </vbox>
 
-      <html:button
-              onclick="Zotero.__addonInstance__.hooks.onPrefsRefresh('faves-remove-voice', window.document)"
-              data-l10n-id="pref-faves-removeVoice"
-              style="width:50%">
-      </html:button>
+        <html:button
+                onclick="Zotero.__addonInstance__.hooks.onPrefsRefresh('faves-remove-voice', window.document)"
+                data-l10n-id="pref-faves-removeVoice"
+                style="width:50%">
+        </html:button>
 
     </html:div>
 
-  </vbox>
+</vbox>
 </vbox>
