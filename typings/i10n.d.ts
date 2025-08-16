@@ -56,6 +56,7 @@ export type FluentMessageId =
   | 'pref-subs-p1'
   | 'pref-subs-p2'
   | 'pref-subs-placeholder'
+  | 'pref-subs-urls'
   | 'pref-subs-warning'
   | 'pref-subsect-advanced-faves'
   | 'pref-subsect-advanced-subs'

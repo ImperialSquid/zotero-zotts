@@ -244,50 +244,68 @@
       </html:p>
 
       <html:div id="__addonRef__-advanced-subs-builtin">
-        <html:input type="checkbox"
-                    id="__addonRef__-pref-subs-citationsOverall"
-                    onclick="Zotero.__addonInstance__.hooks.onPrefsRefresh('subs-cite-overall', window.document)"
-        />
-        <html:label for="__addonRef__-pref-subs-citationsOverall"
-                    data-l10n-id="pref-subs-citationsOverall"
-        />
+        <vbox>
 
-        <html:ul style="list-style-type:none; padding-left:20px; margin:5px"
-                 class="__addonRef__-pref-subs-citations-subitems"
-                 onclick="Zotero.__addonInstance__.hooks.onPrefsRefresh('subs-cite-subitem', window.document)"
-        >
-          <html:li>
-            <!-- (<author>, <year>, <pageNo>), etc-->
+          <hbox>
             <html:input type="checkbox"
-                        id="__addonRef__-pref-subs-citationsParenthetical"
-                        preference="__prefsPrefix__.subs.removeParenCitations"
+                        id="__addonRef__-pref-subs-citationsOverall"
+                        onclick="Zotero.__addonInstance__.hooks.onPrefsRefresh('subs-cite-overall', window.document)"
             />
-            <html:label for="__addonRef__-pref-subs-citationsParenthetical"
-                        data-l10n-id="pref-subs-citationsParenthetical"
+            <html:label for="__addonRef__-pref-subs-citationsOverall"
+                        data-l10n-id="pref-subs-citationsOverall"
             />
-          </html:li>
+          </hbox>
 
-          <html:li>
-            <!-- [<number>], etc -->
+          <hbox>
+            <html:ul style="list-style-type:none; padding-left:20px; margin:5px"
+                     class="__addonRef__-pref-subs-citations-subitems"
+                     onclick="Zotero.__addonInstance__.hooks.onPrefsRefresh('subs-cite-subitem', window.document)"
+            >
+              <html:li>
+              <!-- (<author>, <year>, <pageNo>), etc-->
+                <html:input type="checkbox"
+                            id="__addonRef__-pref-subs-citationsParenthetical"
+                            preference="__prefsPrefix__.subs.removeParenCitations"
+                />
+                <html:label for="__addonRef__-pref-subs-citationsParenthetical"
+                            data-l10n-id="pref-subs-citationsParenthetical"
+                />
+              </html:li>
+              <html:li>
+              <!-- [<number>], etc -->
+                <html:input type="checkbox"
+                            id="__addonRef__-pref-subs-citationsNumeric"
+                            preference="__prefsPrefix__.subs.removeNumericCitations"
+                />
+                <html:label for="__addonRef__-pref-subs-citationsNumeric"
+                            data-l10n-id="pref-subs-citationsNumeric"
+                />
+              </html:li>
+            </html:ul>
+
+          </hbox>
+
+          <hbox>
             <html:input type="checkbox"
-                        id="__addonRef__-pref-subs-citationsNumeric"
-                        preference="__prefsPrefix__.subs.removeNumericCitations"
+                        id="__addonRef__-pref-subs-emails"
+                        preference="__prefsPrefix__.subs.removeEmails"
             />
-            <html:label for="__addonRef__-pref-subs-citationsNumeric"
-                        data-l10n-id="pref-subs-citationsNumeric"
+            <html:label for="__addonRef__-pref-subs-emails"
+                        data-l10n-id="pref-subs-emails"
             />
-          </html:li>
+          </hbox>
 
-        </html:ul>
+          <hbox>
+            <html:input type="checkbox"
+                        id="__addonRef__-pref-subs-urls"
+                        preference="__prefsPrefix__.subs.removeURLs"
+            />
+            <html:label for="__addonRef__-pref-subs-urls"
+                        data-l10n-id="pref-subs-urls"
+            />
+          </hbox>
 
-        <html:input type="checkbox"
-                    id="__addonRef__-pref-subs-emails"
-                    preference="__prefsPrefix__.subs.removeEmails"
-        />
-        <html:label for="__addonRef__-pref-subs-emails"
-                    data-l10n-id="pref-subs-emails"
-        />
-
+        </vbox>
       </html:div>
 
       <html:p data-l10n-id="pref-subs-p2"

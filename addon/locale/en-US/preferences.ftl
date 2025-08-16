@@ -78,6 +78,7 @@ pref-subs-citationsNumeric =
     Remove "numeric" style citations <br>
     <small><i>(In the form of [Number], used by IEEE, etc)</i></small>
 pref-subs-emails = Remove email addresses
+pref-subs-urls = Remove URLs
 
 pref-subs-p2 =
     You can also manually specify substitutions.

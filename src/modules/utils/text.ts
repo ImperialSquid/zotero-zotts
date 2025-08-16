@@ -56,7 +56,13 @@ function userPreprocess(text: string) {
             "regex"
         ])
     }
-    // TODO: subs - remove http(s) addresses
+    if (getPref("subs.removeURLs")) {
+        subs.push([
+            "((https?|ftp):\\/\\/)?(www\\.)?[-\\w@:%.\\+~#=]{1,256}\\.[\\w()]{1,6}\\b([-\\w()@:%\\+.~#?&\\/=]*)",
+            "",
+            "regex"
+        ])
+    }
 
     for (let sub of subs) {
         let pattern: string | RegExp

@@ -24,6 +24,7 @@ declare namespace _ZoteroTypes {
       "subs.removeParenCitations": boolean;
       "subs.removeNumericCitations": boolean;
       "subs.removeEmails": boolean;
+      "subs.removeURLs": boolean;
       "subs.customSubs": string;
       "favouritesList": string;
     };
