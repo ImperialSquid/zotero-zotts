@@ -1,4 +1,6 @@
 import { getPref, setPref } from "./utils/prefs";
+import { notifyGeneric } from "./utils/notify";
+import { getString } from "./utils/locale";
 
 function cycleFavourites() {
     let faves: { [key: string]: string | number | boolean }[]
@@ -6,6 +8,7 @@ function cycleFavourites() {
 
     if (faves.length === 0) {
         // no faves set, so return out
+        notifyGeneric([getString("popup-faveLoaded-noneSet")], "error")
         return
     }
 
@@ -23,6 +26,11 @@ function cycleFavourites() {
         }
         setPref(`${newSettings["engine"]}.${key}`, newSettings[key])
     })
+
+    notifyGeneric([
+        getString("popup-faveLoaded-title", {args: newSettings}),
+        getString("popup-faveLoaded-body", {args: newSettings}),
+    ], "info")
 }
 
 function addFavourite() {

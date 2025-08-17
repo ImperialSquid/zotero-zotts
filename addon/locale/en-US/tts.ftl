@@ -22,3 +22,13 @@ ttsEngine-errorCause = { $engine ->
         [no-voices-found] No voices are installed
     }
 }
+
+ttsEngine-settingsFormatted = { $engine ->
+    *[other] Unable to list settings
+    [webSpeech]
+        Voice: { $voice },
+        Volume: { $volume },
+        Rate: { $rate },
+        Pitch: { $pitch }
+}
+# TODO: ui - popups seem to not respect newlines, find a way to format this?

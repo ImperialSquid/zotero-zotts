@@ -36,3 +36,11 @@ popup-SFH-unknownSelection2 =
 
 popup-SFH-nonspecificSelection1 = Start point for "Speak From Here" is non-unique.
 popup-SFH-nonspecificSelection2 = Please select more text to start from.
+
+popup-faveLoaded-title = { $engine ->
+    *[other] Favourite loaded from unknown engine
+    [webSpeech] Loaded favourite for { ttsEngine-engineName }
+}
+popup-faveLoaded-body = Settings: { ttsEngine-settingsFormatted }
+
+popup-faveLoaded-noneSet = No favourites have been set

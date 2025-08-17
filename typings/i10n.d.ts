@@ -22,6 +22,9 @@ export type FluentMessageId =
   | 'popup-engineErrorTitle'
   | 'popup-engineLoadingTitle'
   | 'popup-errorTrailer'
+  | 'popup-faveLoaded-body'
+  | 'popup-faveLoaded-noneSet'
+  | 'popup-faveLoaded-title'
   | 'popup-loadingTrailer'
   | 'pref-faves-addVoice'
   | 'pref-faves-list'
@@ -75,4 +78,5 @@ export type FluentMessageId =
   | 'textPopup-fromHere'
   | 'textPopup-selection'
   | 'ttsEngine-engineName'
-  | 'ttsEngine-errorCause';
+  | 'ttsEngine-errorCause'
+  | 'ttsEngine-settingsFormatted';
