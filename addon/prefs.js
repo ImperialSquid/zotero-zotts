@@ -16,5 +16,6 @@ pref("__prefsPrefix__.subs.removeParenCitations", false)
 pref("__prefsPrefix__.subs.removeNumericCitations", false)
 pref("__prefsPrefix__.subs.removeEmails", false)
 pref("__prefsPrefix__.subs.removeURLs", false)
+pref("__prefsPrefix__.subs.fixGreekLetters", false)
 pref("__prefsPrefix__.subs.customSubs", "")
 pref("__prefsPrefix__.favouritesList", "[]");

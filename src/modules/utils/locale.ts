@@ -1,5 +1,5 @@
 import { config } from "../../../package.json"
-import {FluentMessageId} from "../../../typings/i10n";
+import { FluentMessageId } from "../../../typings/i10n";
 
 export { initLocale, getString }
 
@@ -15,6 +15,7 @@ function initLocale() {
     `${config.addonRef}-addon.ftl`,
     `${config.addonRef}-preferences.ftl`,
     `${config.addonRef}-tts.ftl`,
+    `${config.addonRef}-subs-letters.ftl`
   ], true)
 
   addon.data.locale = {

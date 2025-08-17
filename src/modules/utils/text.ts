@@ -1,5 +1,7 @@
 import { validateSubs } from "../prefsWindow"
 import { getPref } from "./prefs";
+import { getString } from "./locale";
+import { FluentMessageId } from "../../../typings/i10n";
 
 export function preprocessText(text: string) {
     text = universalPreprocess(text)
@@ -62,6 +64,27 @@ function userPreprocess(text: string) {
             "",
             "regex"
         ])
+    }
+    if (getPref("subs.fixGreekLetters")) {
+        const greekRaw = ["Α", "α", "Β", "β", "Γ", "γ", "Δ", "δ", "Ε", "ε", "Ζ", "ζ", "Η", "η", "Θ", "θ", "Ι", "ι", "Κ", "κ", "Λ", "λ", "Μ", "μ", "Ν", "ν", "Ξ", "ξ", "Ο", "ο", "Π", "π", "Ρ", "ρ", "Σ", "σ", "Τ", "τ", "Υ", "υ", "Φ", "φ", "Χ", "χ", "Ψ", "ψ", "Ω", "ω"]
+        // Fluent keys for localisation at runtime
+        const greekKey = ["alpha", "alpha", "beta", "beta", "gamma", "gamma", "delta", "delta", "epsilon", "epsilon", "zeta", "zeta", "eta", "eta", "theta", "theta", "iota", "iota", "kappa", "kappa", "lambda", "lambda", "mu", "mu", "nu", "nu", "xi", "xi", "omicron", "omicron", "pi", "pi", "rho", "rho", "sigma", "sigma", "tau", "tau", "upsilon", "upsilon", "phi", "phi", "chi", "chi", "psi", "psi", "omega", "omega"]
+
+        // TODO: figure out runtime localisation depending on selected voice locality to support users with multiple voices
+        const greekLocal = greekKey.map(key => {
+            const args = {
+                engine: addon.data.tts.current,
+                letter: "greek-"+key as FluentMessageId
+            }
+            return getString("greek-fixed", {args: args})
+        })
+
+        // iter over greekRaw and greekLocal pairs
+        greekRaw.forEach((_, index) => {
+            const pattern = greekRaw[index]
+            const replacement = greekLocal[index]
+            subs.push([pattern, replacement, "string"])
+        })
     }
 
     for (let sub of subs) {

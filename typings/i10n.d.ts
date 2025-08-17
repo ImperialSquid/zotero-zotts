@@ -5,6 +5,9 @@
 export type FluentMessageId =
   | 'anno-annotation'
   | 'anno-comment'
+  | 'greek-default'
+  | 'greek-fixed'
+  | 'greek-webSpeech'
   | 'itemMenu-abstract'
   | 'itemMenu-title'
   | 'popup-SFH-noSelection'
@@ -53,6 +56,7 @@ export type FluentMessageId =
   | 'pref-subs-citationsOverall'
   | 'pref-subs-citationsParenthetical'
   | 'pref-subs-emails'
+  | 'pref-subs-greekLetters'
   | 'pref-subs-p1'
   | 'pref-subs-p2'
   | 'pref-subs-placeholder'

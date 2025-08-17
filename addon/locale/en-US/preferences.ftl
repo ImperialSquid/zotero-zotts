@@ -79,6 +79,10 @@ pref-subs-citationsNumeric =
     <small><i>(In the form of [Number], used by IEEE, etc)</i></small>
 pref-subs-emails = Remove email addresses
 pref-subs-urls = Remove URLs
+pref-subs-greekLetters =
+    Fix Greek letters (eg ε -> "epsilon") <br>
+    <small>(NOTE: Currently these are optimised for English, and only some voices,</small> <br>
+    <small>please raise an issue on GitHub if things don't sound quite right)</small>
 
 pref-subs-p2 =
     You can also manually specify substitutions.
