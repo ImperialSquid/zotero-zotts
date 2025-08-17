@@ -22,6 +22,18 @@ function registerPrefsWindow() {
 
 // one time call on prefs pane loading
 function prefsLoadHook(type: string, doc: Document) {
+    // disable/grey out engines that have errored
+    for (let engine in addon.data.tts.engines) {
+        if (addon.data.tts.engines[engine].status === "error") {
+            const engineRoot = doc.getElementById(`zotts-${engine}`)
+            for (let node of engineRoot?.getElementsByTagName("*") ?? []) {
+                if (node.id !== `zotts-${engine}-header`){
+                    node.setAttribute("disabled", "true")
+                }
+            }
+        }
+    }
+
     // populate voices list
     addon.data.tts.engines.webSpeech.extras.populateVoiceList(doc)
 
