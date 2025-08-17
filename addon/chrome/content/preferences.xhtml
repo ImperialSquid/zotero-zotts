@@ -1,3 +1,4 @@
+<!--suppress XmlHighlighting -->
 <linkset>
     <html:link rel="localization" href="__addonRef__-preferences.ftl"/>
     <html:link rel="localization" href="__addonRef__-tts.ftl"/>
@@ -26,7 +27,7 @@
              needs to call hook to gracefully transfer (cancel if playing/paused, etc)-->
 </vbox>
 
-<vbox class="main-section" id="__addonRef__-webspeech">
+<vbox class="main-section" id="__addonRef__-webSpeech">
     <label id="__addonRef__-webSpeech-header">
         <html:h1 data-l10n-id="pref-sect-wsa"></html:h1>
     </label>
@@ -38,10 +39,10 @@
     <!-- WSA voice -->
     <vbox>
         <html:label data-l10n-id="pref-wsa-voice"
-                    for="webspeech-voice">
+                    for="webSpeech-voice">
         </html:label>
-        <menulist id="webspeech-voice" preference="__prefsPrefix__.webSpeech.voice">
-            <menupopup id="webspeech-voice-popup">
+        <menulist id="webSpeech-voice" preference="__prefsPrefix__.webSpeech.voice">
+            <menupopup id="webSpeech-voice-popup">
                 <!-- populate at runtime -->
             </menupopup>
         </menulist>
@@ -51,7 +52,7 @@
     <vbox>
         <hbox align="center">
             <html:label data-l10n-id="pref-wsa-volume"
-                        for="webspeech-volume">
+                        for="webSpeech-volume">
             </html:label>
             <html:input preference="__prefsPrefix__.webSpeech.volume"
                         readonly="true"
@@ -60,7 +61,7 @@
             <html:label>%</html:label>
         </hbox>
 
-        <html:input id="webspeech-volume"
+        <html:input id="webSpeech-volume"
                     type="range"
                     min="0"
                     max="100"
@@ -74,7 +75,7 @@
     <vbox>
         <hbox align="center">
             <html:label data-l10n-id="pref-wsa-rate"
-                        for="webspeech-rate">
+                        for="webSpeech-rate">
             </html:label>
             <html:input preference="__prefsPrefix__.webSpeech.rate"
                         readonly="true"
@@ -84,7 +85,7 @@
         </hbox>
 
         <!-- WSA spec allows for x0.1-10 range but that seems excessive for now -->
-        <html:input id="webspeech-rate"
+        <html:input id="webSpeech-rate"
                     type="range"
                     min="25"
                     max="400"
@@ -98,7 +99,7 @@
     <vbox>
         <hbox align="center">
             <html:label data-l10n-id="pref-wsa-pitch"
-                        for="webspeech-pitch">
+                        for="webSpeech-pitch">
             </html:label>
             <html:input preference="__prefsPrefix__.webSpeech.pitch"
                         readonly="true"
@@ -107,7 +108,7 @@
             <html:label>%</html:label>
         </hbox>
 
-        <html:input id="webspeech-pitch"
+        <html:input id="webSpeech-pitch"
                     type="range"
                     min="0"
                     max="200"

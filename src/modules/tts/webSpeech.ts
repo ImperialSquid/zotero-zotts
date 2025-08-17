@@ -138,7 +138,7 @@ function getVoices() {
 }
 
 function populateVoiceList (doc: Document) {
-    let menu = (doc.getElementById("webspeech-voice") as unknown as XULMenuListElement)
+    let menu = (doc.getElementById("webSpeech-voice") as unknown as XULMenuListElement)
     menu.appendItem(
         "Loading Voices...",
         (getPref("webSpeech.voice") as string) // preserve pref while loading
