@@ -13,7 +13,7 @@ speak-testVoice = This is an example sentence using the current voice and other 
 
 ## Popups
 ## Addon/Engine Status Popups
-popup-allGood = Loaded and initialized successfully
+popup-allGood = Loaded and initialised successfully
 
 popup-addonLoadingTitle = NOTICE: ZoTTS is still loading
 popup-addonErrorTitle = ERROR: ZoTTS encountered an error
@@ -38,9 +38,9 @@ popup-SFH-nonspecificSelection1 = Start point for "Speak From Here" is non-uniqu
 popup-SFH-nonspecificSelection2 = Please select more text to start from.
 
 popup-faveLoaded-title = { $engine ->
-    *[other] Favorite loaded from unknown engine
-    [webSpeech] Loaded favorite for { ttsEngine-engineName }
+    *[other] Favourite loaded from unknown engine
+    [webSpeech] Loaded favourite for { ttsEngine-engineName }
 }
 popup-faveLoaded-body = Settings: { ttsEngine-settingsFormatted }
 
-popup-faveLoaded-noneSet = No favorites have been set
+popup-faveLoaded-noneSet = No favourites have been set

@@ -105,14 +105,14 @@ pref-subs-warning = { $count ->
 }
 
 # --- Favourites
-pref-subsect-advanced-faves = Favorites
+pref-subsect-advanced-faves = Favourites
 
 pref-faves-p1 =
-    Set favorites for quick switching between voices
+    Set favourites for quick switching between voices
     (useful for those who read in multiple languages).
 
-pref-faves-addVoice = Add current voice to favorites
+pref-faves-addVoice = Add current voice to favourites
 
-pref-faves-list = Favorites list
+pref-faves-list = Favourites list
 
 pref-faves-removeVoice = Remove selected voice

@@ -12,8 +12,8 @@ ttsEngine-errorCause = { $engine ->
     }
     [webSpeech] { $cause ->
         *[other] Unknown Error
-        [canceled] Initialization was cancelled
-        [interrupted] Initialization was interrupted
+        [canceled] Initialisation was cancelled
+        [interrupted] Initialisation was interrupted
         [audio-busy] Audio service was busy (try restarting)
         [audio-hardware] Unable to identify audio device
         [synthesis-unavailable] No WSA engine available
