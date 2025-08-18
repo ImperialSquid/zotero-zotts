@@ -13,7 +13,7 @@
     </label>
 
     <!-- queue or cancel on playing new items -->
-    <vbox>
+    <html:div id="__addonRef__-general-queue">
         <label data-l10n-id="pref-general-queue-label"></label>
         <radiogroup preference="__prefsPrefix__.newItemBehaviour" style="padding-left:20px">
             <radio data-l10n-id="pref-general-queue-disable"
@@ -21,7 +21,19 @@
             <radio data-l10n-id="pref-general-queue-enable"
                    value="queue"/>
         </radiogroup>
-    </vbox>
+    </html:div>
+
+    <html:div id="__addonRef__-general-tabs">
+        <hbox>
+            <html:input type="checkbox"
+                        id="__addonRef__-pref-general-reloadTabs"
+                        preference="__prefsPrefix__.general.reloadTabs"
+            />
+            <html:label for="__addonRef__-pref-general-reloadTabs"
+                        data-l10n-id="pref-general-reloadTabs"
+            />
+        </hbox>
+    </html:div>
 
     <!--// TODO: future add dropdown to select TTS engine
              needs to call hook to gracefully transfer (cancel if playing/paused, etc)-->

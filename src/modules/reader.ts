@@ -1,6 +1,7 @@
 import { config } from "../../package.json"
 import { getString } from "./utils/locale";
 import { getSelectedText, getSelectedTextToEnd } from "./utils/readerUtils";
+import { getPref } from "./utils/prefs";
 
 export function registerReaderListeners() {
     Zotero.Reader._unregisterEventListenerByPluginID(config.addonID)
@@ -282,4 +283,16 @@ export function registerReaderListeners() {
         },
       config.addonID
     )
+
+    if (getPref("general.reloadTabs")) {
+        // reload all tabs to display ui on startup
+        let num = Zotero_Tabs._tabs.length
+        Zotero_Tabs.closeAll()
+        for (let i = 0; i < num; i++){
+            setTimeout(
+              () => Zotero_Tabs.undoClose(),
+              2*(i+1)  // set tiny and distinct timers to not overload Zotero
+            )
+        }
+    }
 }

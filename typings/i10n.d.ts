@@ -33,6 +33,7 @@ export type FluentMessageId =
   | 'pref-general-queue-disable'
   | 'pref-general-queue-enable'
   | 'pref-general-queue-label'
+  | 'pref-general-reloadTabs'
   | 'pref-sect-advanced'
   | 'pref-sect-general'
   | 'pref-sect-shortcuts'

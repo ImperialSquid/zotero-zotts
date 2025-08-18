@@ -7,6 +7,7 @@ pref-general-queue-disable =
     .label = Cancel anything currently playing
 pref-general-queue-enable =
     .label = Add new item to a queue
+pref-general-reloadTabs = Force reload UI elements on startup (may cause flashing)
 
 # === TTS General
 pref-status-unknown =

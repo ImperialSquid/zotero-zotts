@@ -1,6 +1,7 @@
 pref("__prefsPrefix__.ttsEngine.current", "");
 pref("__prefsPrefix__.ttsEngine.reloadTries", 0);
 pref("__prefsPrefix__.newItemBehaviour", "cancel");
+pref("__prefsPrefix__.general.reloadTabs", true);
 pref("__prefsPrefix__.webSpeech.voice", "");
 pref("__prefsPrefix__.webSpeech.pitch", 100);
 pref("__prefsPrefix__.webSpeech.rate", 100);
