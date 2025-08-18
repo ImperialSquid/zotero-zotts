@@ -3,6 +3,8 @@ import { getString } from "./utils/locale";
 import { getSelectedText, getSelectedTextToEnd } from "./utils/readerUtils";
 
 export function registerReaderListeners() {
+    Zotero.Reader._unregisterEventListenerByPluginID(config.addonID)
+
     Zotero.Reader.registerEventListener(
       "renderTextSelectionPopup",
       (event) => {
@@ -95,8 +97,8 @@ export function registerReaderListeners() {
     )
 
     Zotero.Reader.registerEventListener(
-        "renderSidebarAnnotationHeader",
-        (event) => {
+      "renderSidebarAnnotationHeader",
+      (event) => {
             const { reader, doc, params, append } = event
             const speakAnnotationButtons = ztoolkit.UI.createElement(doc, "div",
                 {
@@ -199,12 +201,13 @@ export function registerReaderListeners() {
             }
 
             append(speakAnnotationButtons)
-        }
+        },
+      config.addonID
     )
 
     Zotero.Reader.registerEventListener(
-        "renderToolbar",
-        (event) => {
+      "renderToolbar",
+      (event) => {
             const { reader, doc, params, append } = event
             let readerToolbarUI = ztoolkit.UI.createElement(doc, "div",
                 {
@@ -276,6 +279,7 @@ export function registerReaderListeners() {
 
             append(readerToolbarUI)
             addon.data.ui.toolbars.push(readerToolbarUI)
-        }
+        },
+      config.addonID
     )
 }
