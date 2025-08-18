@@ -7,6 +7,8 @@ If you're looking to improve the voices you currently have, hopefully this guide
 - third party vendors where you can purchase voices
 - open source projects with free voices
 
+Additionally, for Windows 11 users, the system comes with Natural voices that are smoother but ZoTTS can't access them by default. Users have reported that [this adapter](https://github.com/gexgd0419/NaturalVoiceSAPIAdapter) works well to give ZoTTS access.
+
 # MacOS
 As helpfully pointed out by user `jeofo` in [this issue](https://github.com/ImperialSquid/zotero-zotts/issues/151), Mac users can access enhanced and premium versions of many of the voices available. See [this guide](https://support.apple.com/en-gb/guide/mac-help/mchlp2290/mac) for installing more voices on Mac.
 
