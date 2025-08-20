@@ -23,7 +23,16 @@ export function registerShortcuts() {
                 addon.hooks.onCycleFavourite()
             }
 
-            // TODO: issue - dynamic speed controls, GH issue #179
+            if (ev.ctrlKey && ev.shiftKey &&
+                ev.key.toLowerCase() === (getPref("shortcuts.speedUp") as string).toLowerCase()) {
+                addon.hooks.onSpeedChange(true)
+            }
+
+            if (ev.ctrlKey && ev.shiftKey &&
+                ev.key.toLowerCase() === (getPref("shortcuts.speedDown") as string).toLowerCase()) {
+                addon.hooks.onSpeedChange(false)
+            }
+
         }
     })
 }

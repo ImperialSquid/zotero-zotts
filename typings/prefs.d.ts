@@ -19,6 +19,8 @@ declare namespace _ZoteroTypes {
       "shortcuts.pause": string;
       "shortcuts.cancel": string;
       "shortcuts.cycleFavourite": string;
+      "shortcuts.speedUp": string;
+      "shortcuts.speedDown": string;
       "shortcuts.swapLibraryItem": string;
       "shortcuts.swapAnnotation": string;
       "shortcuts.swapSpeakSelection": string;

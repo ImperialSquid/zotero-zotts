@@ -1,6 +1,6 @@
 import { checkStatus } from "."
 import { getString } from "../utils/locale"
-import { getPref } from "../utils/prefs"
+import { getPref, setPref } from "../utils/prefs"
 import {
     getFullText,
     getSelectedAnnotations,
@@ -150,11 +150,20 @@ function speakTest() {
     speak(getString("speak-testVoice"))
 }
 
+function speedChange(speedUp = true){
+    const currEngine = getPref("ttsEngine.current") as string
+    const currSpeed = getPref(`${currEngine}.rate`) as number
+    // find new speed and clip to range
+    const newSpeed = Math.min(Math.max(currSpeed + (speedUp ? 10 : -10), 40), 300)
+    setPref(`${currEngine}.rate`, newSpeed)
+}
+
 export {
     speak,
     stop,
     pause,
     resume,
     speakOrResume,
-    speakTest
+    speakTest,
+    speedChange
 }

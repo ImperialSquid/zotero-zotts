@@ -8,7 +8,7 @@ import { registerReaderListeners } from "./modules/reader"
 import { cycleFavourites } from "./modules/favourites";
 import { initLocale } from "./modules/utils/locale"
 import { initEngines, checkStatus } from "./modules/tts"
-import { speak, stop, pause, resume, speakOrResume, speakTest } from "./modules/tts/ttsHooks";
+import { speak, stop, pause, resume, speakOrResume, speakTest, speedChange } from "./modules/tts/ttsHooks";
 import { loadIcons } from "./modules/utils/icons";
 import { notifyStatus } from "./modules/utils/notify";
 
@@ -100,6 +100,8 @@ const onSpeakOrResume = speakOrResume
 
 const onSpeakTest = speakTest
 
+const onSpeedChange = speedChange
+
 const onCycleFavourite = cycleFavourites
 
 const onPrefsLoad = prefsLoadHook
@@ -117,6 +119,7 @@ export default {
   onResume,
   onSpeakOrResume,
   onSpeakTest,
+  onSpeedChange,
   onCycleFavourite,
   onPrefsLoad,
   onPrefsRefresh

@@ -149,6 +149,11 @@
                  style="margin-bottom:1px">
         </html:h4>
     </label>
+
+    <html:p data-l10n-id="pref-shortcuts-p1"
+            style="margin-left:20px;">
+    </html:p>
+
     <html:div
             id="__addonRef__-shortcuts-grid"
             style="display: grid;align-items: center;grid-template-columns: 1fr max-content max-content;"
@@ -192,6 +197,26 @@
                     maxlength="1"
                     size="1"
                     preference="__prefsPrefix__.shortcuts.cycleFavourite"/>
+
+        <html:label data-l10n-id="pref-shortcuts-speedUp"
+                    for="__addonRed__-textbox-speedUp">
+        </html:label>
+        <html:label class="modifier required-shift"/>
+        <html:input type="text"
+                    id="__addonRed__-textbox-speedUp"
+                    maxlength="1"
+                    size="1"
+                    preference="__prefsPrefix__.shortcuts.speedUp"/>
+
+        <html:label data-l10n-id="pref-shortcuts-speedDown"
+                    for="__addonRed__-textbox-speedDown">
+        </html:label>
+        <html:label class="modifier required-shift"/>
+        <html:input type="text"
+                    id="__addonRed__-textbox-speedDown"
+                    maxlength="1"
+                    size="1"
+                    preference="__prefsPrefix__.shortcuts.speedDown"/>
     </html:div>
 
     <label for="__addonRef__-shortcuts-shift">

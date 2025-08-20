@@ -34,10 +34,14 @@ pref-sect-shortcuts = Shortcuts
 # --- Keys
 pref-subsect-shortcuts-keys = Shortcut Keys
 
+pref-shortcuts-p1 = <small>(NOTE: for non letter shortcuts, you should enter the symbol that comes up if you hold shift)</small>
+
 pref-shortcuts-speak = Speak
 pref-shortcuts-pause = Pause
 pref-shortcuts-cancel = Cancel
 pref-shortcuts-cycleFav = Cycle favourites
+pref-shortcuts-speedUp = Increase speech rate
+pref-shortcuts-speedDown = Decrease speech rate
 
 # --- Shift Modifier
 pref-subsect-shortcuts-shiftMod = Shift Modifier
