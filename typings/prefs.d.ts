@@ -10,6 +10,7 @@ declare namespace _ZoteroTypes {
       "ttsEngine.current": string;
       "ttsEngine.reloadTries": number;
       "newItemBehaviour": string;
+      "general.reloadTabs": boolean;
       "webSpeech.voice": string;
       "webSpeech.pitch": number;
       "webSpeech.rate": number;
