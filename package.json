@@ -31,7 +31,7 @@
     "zotero-plugin-toolkit": "^5.0.1"
   },
   "devDependencies": {
-    "@types/node": "^22.13.8",
+    "@types/node": "^24.2.1",
     "typescript": "^5.8.2",
     "zotero-plugin-scaffold": "^0.7.2",
     "zotero-types": "^4.0.5"
