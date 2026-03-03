@@ -4,6 +4,17 @@ ZoTTS is a Zotero plugin to add TTS functionality
 [![Zotero target version 7](https://img.shields.io/badge/Zotero-7-green?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
 [![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?style=flat-square&logo=github)](https://github.com/windingwind/zotero-plugin-template)
 
+
+> [!WARNING]
+> Text To Speech [is currently in Beta as a built in feature for Zotero](https://forums.zotero.org/discussion/130097/available-for-beta-testing-read-aloud), since it will likely do everything ZoTTS can and turnaround on new features will be quicker when helmed by the official devs, ZoTTS will probably not receive any major updates going forward.
+> 
+> Thanks to everyone who used ZoTTS over the past two years for your kind words and encouragement, feature requests and bug reports, it's been amazing making this plugin for you all. 
+> 
+> 💜
+> 
+> - Imperial_Squid, ZoTTS Dev
+
+
 ## Install :rocket:
 
 > The latest stable version is available [here](https://github.com/ImperialSquid/zotero-zotts/releases/latest)
