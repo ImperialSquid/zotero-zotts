@@ -14,7 +14,7 @@ export function clearPref(key: string) {
 
 export function setDefaultPrefs() {
     if (!getPref("ttsEngine.current")) {
-        setPref("ttsEngine.current", "webSpeech")
+        setPref("ttsEngine.current", "mozillaTTS")
     }
 
     // Mac seems to delay loading WSA a lot so set a much higher reload tries value for them specifically
