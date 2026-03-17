@@ -15,6 +15,13 @@ declare namespace _ZoteroTypes {
       "webSpeech.pitch": number;
       "webSpeech.rate": number;
       "webSpeech.volume": number;
+      "azure.subscriptionKey": string;
+      "azure.region": string;
+      "azure.language": string;
+      "azure.voice": string;
+      "azure.volume": number;
+      "azure.rate": number;
+      "azure.minSegmentSize": number;
       "shortcuts.speak": string;
       "shortcuts.pause": string;
       "shortcuts.cancel": string;

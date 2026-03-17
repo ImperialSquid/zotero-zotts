@@ -9,6 +9,13 @@ pref-general-queue-enable =
     .label = Add new item to a queue
 pref-general-reloadTabs = Force reload UI elements on startup (may cause flashing)
 
+pref-general-engine-label =
+    .value = TTS Engine:
+pref-general-engine-webSpeech =
+    .label = Web Speech
+pref-general-engine-azure =
+    .label = Azure Speech
+
 # === TTS General
 pref-status-unknown =
     Status: Unknown.<br>
@@ -27,6 +34,19 @@ pref-wsa-volume = Volume
 pref-wsa-rate = Rate
 pref-wsa-pitch = Pitch
 pref-wsa-testVoice = Test Voice
+
+# === Azure Speech
+pref-sect-azure = Azure Speech
+
+pref-azure-key = Subscription Key
+pref-azure-region = Region
+pref-azure-language = Language
+pref-azure-voice = Voice
+pref-azure-volume = Volume
+pref-azure-rate = Rate
+pref-azure-minSegmentSize = Playback Preload Amount
+pref-azure-testText = Test sentence:
+pref-azure-testVoice = Test Voice
 
 # === Shortcuts
 pref-sect-shortcuts = Shortcuts

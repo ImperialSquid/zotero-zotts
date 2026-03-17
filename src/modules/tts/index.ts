@@ -1,7 +1,10 @@
 import Addon from "../../addon"
 
 async function initEngines(addon: Addon) {
-    addon.data.tts.current = "webSpeech"
+    const { getPref } = await import("../utils/prefs");
+
+    const currentEngine = getPref("ttsEngine.current") as string || "webSpeech";
+    addon.data.tts.current = currentEngine;
 
     // TODO: optim - importing most engines with be similar, abstract this into a function?
     let wsaPromise = import("./webSpeech").then(
@@ -39,15 +42,49 @@ async function initEngines(addon: Addon) {
       }
     )
 
+    let azurePromise = import("./azure").then(
+      (e) => {
+          e.setDefaultPrefs()
+
+          addon.data.tts.engines["azure"] = {
+              status: "loading",
+              speak: e.speak,
+              stop: e.stop,
+              canPause: true,
+              pause: e.pause,
+              resume: e.resume,
+              extras: {
+                  getAllVoices: e.getAllVoices,
+                  extractLanguages: e.extractLanguages,
+                  filterVoicesByLanguage: e.filterVoicesByLanguage,
+                  resetConnection: e.resetConnection,
+                  dispose: e.dispose
+              }
+          }
+
+          return e
+      }
+    ).then(
+      async (e) => {
+          await e.initEngine()
+          addon.data.tts.engines["azure"].status = "ready"
+      }
+    ).catch(
+      (e) => {
+          addon.data.tts.engines["azure"].errorMsg = e
+          addon.data.tts.engines["azure"].status = "error"
+      }
+    )
+
     // TODO: future - implement more engines
     //   Google?
-    //   Azure?
     //   OS native (macOS, Windows, Linux) but not WSA?
     //   etc
 
     try {
         await Promise.any([
             wsaPromise,
+            azurePromise,
             // TODO: future - other engines promises here
         ])
         addon.data.tts.status = "ready"

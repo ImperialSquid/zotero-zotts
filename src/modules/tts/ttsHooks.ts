@@ -146,8 +146,16 @@ function speakOrResume(shiftHeld?: boolean) {
 }
 
 // used in prefs window to test voice without having to switch back and forth
-function speakTest() {
-    speak(getString("speak-testVoice"))
+function speakTest(engineName?: string, customText?: string) {
+    const engine = engineName || addon.data.tts.current;
+
+    if (addon.data.tts.engines[engine]?.status === "ready") {
+        const text = customText || getString("speak-testVoice");
+        const processedText = preprocessText(text);
+        addon.data.tts.engines[engine].speak(processedText);
+    } else {
+        notifyTTSStatus(engine);
+    }
 }
 
 function speedChange(speedUp = true){

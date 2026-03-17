@@ -79,6 +79,19 @@ async function onMainWindowUnload(win: Window): Promise<void> {
 
 function onShutdown(): void {
   ztoolkit.unregisterAll()
+
+  // Clean up TTS engines
+  for (const engineName in addon.data.tts.engines) {
+    const engine = addon.data.tts.engines[engineName]
+    if (engine?.extras?.dispose) {
+      try {
+        engine.extras.dispose()
+      } catch (error) {
+        ztoolkit.log(`Error disposing ${engineName} engine: ${error}`)
+      }
+    }
+  }
+
   // Remove addon object
   addon.data.alive = false
   // @ts-ignore - Plugin instance is not typed

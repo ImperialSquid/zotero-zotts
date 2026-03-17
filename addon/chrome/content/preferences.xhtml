@@ -34,9 +34,23 @@
             />
         </hbox>
     </html:div>
-
+        
     <!--// TODO: future add dropdown to select TTS engine
              needs to call hook to gracefully transfer (cancel if playing/paused, etc)-->
+    <!-- TTS Engine selection -->
+    <html:div id="__addonRef__-general-engine">
+        <label data-l10n-id="pref-general-engine-label"></label>
+        <radiogroup preference="__prefsPrefix__.ttsEngine.current"
+                    style="padding-left:20px"
+                    oncommand="Zotero.__addonInstance__.hooks.onPrefsRefresh('engine-change', window.document)">
+            <radio id="engine-webSpeech"
+                   data-l10n-id="pref-general-engine-webSpeech"
+                   value="webSpeech"/>
+            <radio id="engine-azure"
+                   data-l10n-id="pref-general-engine-azure"
+                   value="azure"/>
+        </radiogroup>
+    </html:div>
 </vbox>
 
 <vbox class="main-section" id="__addonRef__-webSpeech">
@@ -130,14 +144,152 @@
         />
     </vbox>
 
-    <html:button
-            onclick="Zotero.__addonInstance__.hooks.onSpeakTest()"
-            data-l10n-id="pref-wsa-testVoice">
+    <html:button id="webSpeech-testVoice-btn"
+                 onclick="Zotero.__addonInstance__.hooks.onSpeakTest('webSpeech')"
+                 data-l10n-id="pref-wsa-testVoice">
     </html:button>
 
 </vbox>
 
 <!-- NEW ENGINES HERE -->
+
+<!-- Azure Speech Settings -->
+<vbox class="main-section" 
+      id="__addonRef__-azure">
+    <label id="__addonRef__-azure-header">
+        <html:h1 data-l10n-id="pref-sect-azure"></html:h1>
+    </label>
+    <html:p id="azure-status"
+            data-l10n-id="pref-status-unknown"
+            style="text-align:center; color:tomato !important; font-weight:bold;">
+    </html:p>
+
+    <!-- Subscription Key -->
+    <vbox>
+        <html:label data-l10n-id="pref-azure-key"
+                    for="azure-key">
+        </html:label>
+        <html:input id="azure-key"
+                    type="password"
+                    preference="__prefsPrefix__.azure.subscriptionKey"
+                    onchange="Zotero.__addonInstance__.hooks.onPrefsRefresh('azure-key-change', window.document)"
+        />
+    </vbox>
+
+    <!-- Region -->
+    <vbox>
+        <html:label data-l10n-id="pref-azure-region"
+                    for="azure-region">
+        </html:label>
+        <html:input id="azure-region"
+                    preference="__prefsPrefix__.azure.region"
+                    onchange="Zotero.__addonInstance__.hooks.onPrefsRefresh('azure-region-change', window.document)"
+        />
+    </vbox>
+
+    <!-- Language -->
+    <vbox>
+        <html:label data-l10n-id="pref-azure-language"
+                    for="azure-language">
+        </html:label>
+        <menulist id="azure-language"
+                  preference="__prefsPrefix__.azure.language"
+                  oncommand="Zotero.__addonInstance__.hooks.onPrefsRefresh('azure-language-change', window.document)">
+            <menupopup id="azure-language-popup">
+                <!-- populate at runtime -->
+            </menupopup>
+        </menulist>
+    </vbox>
+
+    <!-- Voice -->
+    <vbox>
+        <html:label data-l10n-id="pref-azure-voice"
+                    for="azure-voice">
+        </html:label>
+        <menulist id="azure-voice"
+                  preference="__prefsPrefix__.azure.voice"
+                  oncommand="Zotero.__addonInstance__.hooks.onPrefsRefresh('azure-voice-change', window.document)">
+            <menupopup id="azure-voice-popup">
+                <!-- populate at runtime -->
+            </menupopup>
+        </menulist>
+    </vbox>
+
+    <!-- Volume -->
+    <vbox>
+        <hbox align="center">
+            <html:label data-l10n-id="pref-azure-volume"
+                        for="azure-volume">
+            </html:label>
+            <html:input preference="__prefsPrefix__.azure.volume"
+                        readonly="true"
+                        value="100"
+                        style="width:30px"
+            />
+        </hbox>
+        <html:input type="range"
+                    id="azure-volume"
+                    min="0"
+                    max="100"
+                    value="100"
+                    preference="__prefsPrefix__.azure.volume"
+                    style="width:50%"
+        />
+    </vbox>
+
+    <!-- Rate -->
+    <vbox>
+        <hbox align="center">
+            <html:label data-l10n-id="pref-azure-rate"
+                        for="azure-rate">
+            </html:label>
+            <html:input preference="__prefsPrefix__.azure.rate"
+                        readonly="true"
+                        value="100"
+                        style="width:30px"
+            />
+        </hbox>
+        <html:input type="range"
+                    id="azure-rate"
+                    min="25"
+                    max="400"
+                    value="100"
+                    preference="__prefsPrefix__.azure.rate"
+                    style="width:50%"
+        />
+    </vbox>
+
+    <!-- Min Segment Size -->
+    <vbox>
+        <html:label data-l10n-id="pref-azure-minSegmentSize"></html:label>
+        <radiogroup id="azure-minSegmentSize"
+                    orient="horizontal"
+                    style="padding-left:20px;"
+                    oncommand="Zotero.__addonInstance__.hooks.onPrefsRefresh('azure-minSegmentSize-change', window.document)">
+            <radio label="8KB" value="8"/>
+            <radio label="16KB" value="16"/>
+            <radio label="32KB" value="32"/>
+            <radio label="64KB" value="64"/>
+        </radiogroup>
+    </vbox>
+
+    <!-- Test Text Input -->
+    <vbox>
+        <html:label data-l10n-id="pref-azure-testText"
+                    for="azure-testText">
+        </html:label>
+        <html:input id="azure-testText"
+                    type="text"
+        />
+    </vbox>
+
+    <!-- Test Voice Button -->
+    <html:button id="azure-testVoice-btn"
+                 onclick="Zotero.__addonInstance__.hooks.onSpeakTest('azure', window.document.getElementById('azure-testText').value)"
+                 data-l10n-id="pref-azure-testVoice">
+    </html:button>
+
+</vbox>
 
 <vbox class="main-section" id="__addonRef__-shortcuts">
     <label>
